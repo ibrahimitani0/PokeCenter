@@ -1,0 +1,108 @@
+<div *ngIf="dataLoaded; else loadingTemplate" class="game-wrapper">
+
+  <div class="battlefield" [class.throwing]="pokeballAnimation">
+    <div *ngIf="pokeballAnimation" class="css-pokeball-throw ball-shake"></div>
+    <div *ngIf="shakeBallVisible" class="shaking-ground-ball"></div>
+
+    <img
+      *ngIf="!pokeballAnimation && showPokemonAfterThrow && currentPokemon"
+      [src]="currentPokemon.images['official_artwork-default']"
+      [alt]="currentPokemon.name"
+      class="pokemon-sprite"
+    />
+    <div *ngIf="showSparkle" class="sparkle-container">
+      <div class="sparkle"></div>
+      <div class="sparkle"></div>
+      <div class="sparkle"></div>
+      <div class="sparkle"></div>
+    </div>
+
+    <div class="message-box">{{ message }}</div>
+  </div>
+
+  <div class="controls">
+    <button (click)="togglePokedex()">Pokedex</button>
+
+    <button
+      class="pokeball-button"
+      (click)="throwBall('pokeball')"
+      [disabled]="throwInProgress"
+    >
+      <div class="pokeball-bounce-wrapper">
+        <div class="pokeball"></div>
+      </div>
+    </button>
+
+    <button (click)="toggleBag()">Bag</button>
+  </div>
+
+  <div class="ball-options" *ngIf="showBagView">
+    <p><strong>Great Balls:</strong> {{ bag.greatball }}</p>
+    <p><strong>Ultra Balls:</strong> {{ bag.ultraball }}</p>
+    <p><strong>Master Balls:</strong> {{ bag.masterball }}</p>
+    <p><strong>Berries:</strong> {{ bag.berries }}</p>
+
+    <div class="throw-buttons">
+      <button
+        (click)="throwBall('greatball')"
+        [disabled]="bag.greatball <= 0 || throwInProgress"
+      >
+        Great Ball
+      </button>
+      <button
+        (click)="throwBall('ultraball')"
+        [disabled]="bag.ultraball <= 0 || throwInProgress"
+      >
+        Ultra Ball
+      </button>
+      <button
+        (click)="throwBall('masterball')"
+        [disabled]="bag.masterball <= 0 || throwInProgress"
+      >
+        Master Ball
+      </button>
+    </div>
+
+    <div class="berry-button">
+      <button (click)="useBerry()" [disabled]="bag.berries <= 0 || usedBerry">
+        Use Berry
+      </button>
+    </div>
+  </div>
+
+  <!-- Pokédex Modal Overlay -->
+  <div
+    class="pokedex-modal"
+    *ngIf="showPokedexView"
+    (click)="togglePokedex()"
+  >
+    <div class="pokedex-modal-content" (click)="$event.stopPropagation()">
+      <h2>Pokedex</h2>
+      <div class="pokedex-grid">
+        <ng-container *ngFor="let id of [].constructor(1025); let i = index">
+          <ng-container *ngIf="caughtPokemon.has(i + 1); else silhouette">
+            <img
+              *ngIf="getPokemonByDexNumber(i + 1) as poke"
+              [src]="poke.images['sprite-default']"
+              [alt]="'Pokemon #' + (i + 1)"
+              class="dex-sprite"
+            />
+          </ng-container>
+          <ng-template #silhouette>
+            <div class="dex-sprite silhouette"></div>
+          </ng-template>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loadingTemplate>
+  <div
+    class="loading-screen"
+    style="text-align: center; padding: 2rem; font-weight: bold"
+  >
+    Loading game data...
+  </div>
+</ng-template>

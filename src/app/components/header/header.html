@@ -1,0 +1,121 @@
+<header class="app-header">
+  <div class="left-section">
+    <div class="logo" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      PokéCenter
+    </div>
+
+    <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+  </div>
+
+  <nav class="nav-links">
+    <a routerLink="/pokedex" routerLinkActive="active">Pokédex</a>
+    <a routerLink="/guides" routerLinkActive="active">Trainer Guides</a>
+
+    <nav class="dropdown">
+      <a class="dropbtn">Trainer Tools</a>
+      <div class="dropdown-content">
+        <a routerLink="/pokedex-tracker" routerLinkActive="active">Pokédex Tracker</a>
+        <a routerLink="/team-builder" routerLinkActive="active">Team Builder</a>
+        <a routerLink="/compare-pokemon" routerLinkActive="active" >Compare Pokémon</a>
+        <a routerLink="/ev-tracker" routerLinkActive="active">EV Tracker</a>
+      </div>
+
+    </nav>
+    <a routerLink="/community" routerLinkActive="active">Community</a>
+    <a routerLink="/about" routerLinkActive="active">About</a>
+  </nav>
+
+  <div class="right-section">
+    <form
+      #searchForm
+      class="search-bar"
+      autocomplete="off"
+      (submit)="onSearchSubmit()"
+      [attr.aria-expanded]="suggestions.length > 0">
+
+      <input
+        id="search"
+        name="search"
+        type="text"
+        placeholder="Search Pokémon..."
+        [(ngModel)]="searchQuery"
+        (input)="onSearchChange()"
+        (focus)="onInputFocus()"
+        aria-autocomplete="list"
+        aria-haspopup="true"
+      />
+
+      <!-- DESKTOP SLIDER (visible only on desktop) -->
+      <label class="theme-switch desktop-only">
+        <input
+          id="themeSliderDesktop"
+          type="checkbox"
+          (change)="toggleTheme()"
+          [checked]="isDarkTheme"/>
+        <span class="slider"></span>
+      </label>
+
+      <button type="submit" hidden>Search</button>
+
+      <ul
+        class="suggestions-list"
+        *ngIf="suggestions.length > 0"
+        role="listbox"
+      >
+        <li
+          *ngFor="let suggestion of suggestions"
+          (click)="onSelectSuggestion(suggestion)"
+          tabindex="0"
+          role="option"
+          (keydown.enter)="onSelectSuggestion(suggestion)"
+        >
+          {{ suggestion.display }}
+        </li>
+      </ul>
+    </form>
+  </div>
+</header>
+
+<nav class="mobile-nav" *ngIf="menuOpen">
+  <a
+    routerLink="/"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    (click)="toggleMenu()"
+    >Home</a
+  >
+  <a routerLink="/pokedex" routerLinkActive="active" (click)="toggleMenu()"
+    >Pokédex</a
+  >
+  <a routerLink="/guides" routerLinkActive="active" (click)="toggleMenu()"
+    >Trainer Guides</a
+  >
+  <a
+    routerLink="/pokedex-tracker"
+    routerLinkActive="active"
+    (click)="toggleMenu()"
+    >Pokédex Tracker</a
+  >
+  <a routerLink="/team-builder" routerLinkActive="active" (click)="toggleMenu()">Team Builder</a>
+  <a
+    routerLink="/compare-pokemon"
+    routerLinkActive="active"
+    (click)="toggleMenu()"
+    >Compare Pokemon</a>
+  <a routerLink="/ev-tracker" routerLinkActive="active" (click)="toggleMenu()">EV Tracker</a>
+  <a routerLink="/community" routerLinkActive="active" (click)="toggleMenu()"
+    >Community</a
+  >
+  <a routerLink="/about" routerLinkActive="active" (click)="toggleMenu()">About</a>
+
+  <!-- MOBILE SLIDER (only shown on mobile) -->
+  <label class="theme-switch mobile-only">
+    <input
+      id="themeSliderMobile"
+      type="checkbox"
+      (change)="toggleTheme()"
+      [checked]="isDarkTheme"
+    />
+    <span class="slider"></span>
+  </label>
+</nav>

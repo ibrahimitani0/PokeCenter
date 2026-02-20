@@ -1,0 +1,212 @@
+/* ===========================
+   Builder Root Layout
+   =========================== */
+.builder-root {
+  display: flex;
+  height: 100%;
+  gap: 12px;
+  padding: 12px;
+  box-sizing: border-box;
+  color: var(--text-color);
+}
+
+/* ===========================
+   Sidebar / Export-Import
+   =========================== */
+.sidebar {
+  width: 320px;
+  max-width: 320px;
+  background: var(--card-color);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  /* Smooth transitions */
+  transition: max-width 0.35s ease, padding 0.35s ease, opacity 0.35s ease;
+  overflow: hidden;
+}
+
+.sidebar.hidden {
+  max-width: 0;
+  padding: 0;
+  opacity: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Export / Import Container */
+.export-import {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Main toggle button */
+.export-import > button {
+  padding: 8px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--highlight-bg);
+  color: var(--highlight-text);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  box-shadow: var(--box-shadow);
+}
+
+.export-import > button:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-1px);
+  color: var(--highlight-bg);
+  background-color: var(--pokename-color);
+}
+
+/* Export / Import Text Container */
+.export-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--card-inner-bg);
+  border: 1px solid var(--border-muted);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.export-text-container > div {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+/* All buttons inside container */
+.export-text-container button {
+  padding: 6px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--highlight-bg);
+  color: var(--highlight-text);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+/* Hover effect for active buttons */
+.export-text-container button:not(:disabled):hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-1px);
+  color: var(--highlight-bg);
+  background-color: var(--pokename-color);
+}
+
+/* Disabled buttons */
+.export-text-container button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Confirm / Cancel specific styling */
+.confirm-btn {
+  background: var(--highlight-bg);
+  color: var(--highlight-text);
+}
+
+.cancel-btn {
+  background: var(--type-badge-bg);
+  color: var(--type-badge-text);
+}
+
+/* Close button */
+.close-btn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+/* Textarea */
+textarea {
+  resize: vertical;
+  width: 100%;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.8rem;
+  background: var(--card-inner-bg);
+  color: var(--card-text-color);
+  border: 1px solid var(--border-muted);
+  border-radius: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* ===========================
+   Main Area & Workspace
+   =========================== */
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.35s ease;
+}
+
+.main-area.full-width {
+  width: 100%;
+}
+
+.topbar {
+  padding: 8px;
+  background: var(--card-color);
+
+  border-radius: 12px;
+  box-shadow: var(--box-shadow);
+}
+
+.workspace {
+ margin-top: 10px;
+  align-items: center;
+}
+
+/* ===========================
+   Sidebar Toggle Button
+   =========================== */
+.sidebar-toggle {
+  padding: 6px 12px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--highlight-bg);
+  color: var(--highlight-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover effect */
+.sidebar-toggle:hover {
+  background: var(--pokename-color);
+  color: var(--highlight-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Active / pressed effect */
+.sidebar-toggle:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Disabled state */
+.sidebar-toggle:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  background: var(--card-color);
+  color: var(--text-color);
+}

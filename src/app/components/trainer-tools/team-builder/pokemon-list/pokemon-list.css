@@ -1,0 +1,410 @@
+.list-root {
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pokemons-wrapper {
+  display: flex;
+  flex-direction: column; /* stack cards */
+  gap: 10px;
+  width: 100%;
+  align-items: center; /* center cards horizontally */
+  cursor: grab;
+}
+
+.pokemons-wrapper:active {
+  cursor: grabbing;
+}
+
+.team h2 {
+  margin-top: 0;
+  padding-bottom: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--pokename-color);
+}
+
+.poke-card {
+  display: flex;
+  flex-direction: row; /* image left, details right */
+  align-items: stretch; /* <-- make children same height */
+  width: 1000px;
+  border-radius: 10px;
+}
+
+.poke-card:hover {
+  box-shadow: inset 0 0 12px var(--type-color);
+  transform: translateY(-1px);
+}
+
+.poke-card:hover .sprite {
+  transform: scale(0.9);
+}
+
+.poke-card legend {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  border-radius: 6px 6px 0 0;
+}
+
+.poke-card legend button {
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.poke-card legend button[title="Edit"] {
+  background-color: var(--highlight-bg);
+  color: var(--highlight-text);
+}
+
+.poke-card legend button[title="Edit"]:hover {
+  background: var(--pokename-color);
+  color: var(--highlight-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.poke-card legend button[title="Remove"] {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.poke-card legend button[title="Remove"]:hover {
+  background-color: #b03a2e;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.card-info {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column; /* stack sprite above types */
+  align-items: center; /* center horizontally */
+  padding: 12px;
+  margin: 2px;
+}
+
+.card-info h4 {
+  margin-top: -1px;
+}
+
+.card-details {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  flex: 1; /* take up remaining width */
+  text-align: left;
+  margin: 2px;
+}
+
+.sprite {
+  margin-top: -8px;
+  width: 128px;
+  height: 128px;
+  flex-shrink: 0;
+}
+
+.type-label {
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: capitalize;
+  font-weight: bold;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.type {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 20px;
+  border-radius: 50px;
+  color: white;
+  border: 2px solid;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  font-weight: 500;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+}
+
+.type:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+/* Example type colors */
+.type-normal {
+  background-color: #a8a878;
+}
+.type-fire {
+  background-color: #f08030;
+}
+.type-water {
+  background-color: #6890f0;
+}
+.type-electric {
+  background-color: #f8d030;
+}
+.type-grass {
+  background-color: #78c850;
+}
+.type-ice {
+  background-color: #98d8d8;
+}
+.type-fighting {
+  background-color: #c03028;
+}
+.type-poison {
+  background-color: #a040a0;
+}
+.type-ground {
+  background-color: #e0c068;
+}
+.type-flying {
+  background-color: #a890f0;
+}
+.type-psychic {
+  background-color: #f85888;
+}
+.type-bug {
+  background-color: #a8b820;
+}
+.type-rock {
+  background-color: #b8a038;
+}
+.type-ghost {
+  background-color: #705898;
+}
+.type-dragon {
+  background-color: #7038f8;
+}
+.type-dark {
+  background-color: #705848;
+}
+.type-steel {
+  background-color: #b8b8d0;
+}
+.type-fairy {
+  background-color: #ee99ac;
+}
+
+.stats-container {
+  display: block; /* one column for clarity */
+  height: auto;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  padding: 12px;
+  margin: 2px;
+}
+
+.stats-section table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.stats-section table th {
+  text-align: center;
+  padding: 4px;
+  font-weight: 700;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.stat-name-header {
+  width: 200px;
+  font-weight: bold;
+  white-space: nowrap;
+  padding-right: 10px;
+  text-align: start;
+}
+
+.stat-bar-cell {
+  width: 100%;
+  padding-left: 20px;
+  padding-top: 5px;
+}
+
+/* Stat Bar look */
+.stat-bar {
+  border-radius: 6px;
+  height: 16px;
+  overflow: hidden;
+}
+
+.stat-fill {
+  height: 100%;
+  border-radius: 6px;
+  background-color: currentColor;
+  transition: width 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Stat colors */
+.stat-red {
+  color: #ff1d1d;
+}
+.stat-orange-red {
+  color: #d95310;
+}
+.stat-orange {
+  color: #ff832b;
+}
+.stat-yellow {
+  color: #eab308;
+}
+.stat-yellow-green {
+  color: #c5e22c;
+}
+.stat-lime-green {
+  color: #84cc16;
+}
+.stat-green {
+  color: #22c55e;
+}
+.stat-dark-green {
+  color: #3d8736;
+}
+.stat-blue {
+  color: #4a90e2;
+}
+.stat-aqua {
+  color: #37e8ff;
+}
+
+.ev-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nature-sign {
+  font-weight: bold;
+  width: 12px;
+  text-align: center;
+  color: black;
+}
+
+.EVSinput {
+  border: none;
+  background: none;
+  text-align: right;
+  margin-right: -20px;
+}
+
+.moves-container {
+  margin: 2px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 12px;
+}
+
+.moves-container input {
+  width: auto;
+  border-radius: 6px;
+  padding: 4px 6px;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+.team-weaknesses {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+.weakness-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.multiplier {
+  font-weight: bold;
+}
+
+.multiplier.weak {
+  color: red;
+}
+
+.multiplier.resist {
+  color: green;
+}
+
+.multiplier.immune {
+  color: gray;
+  text-decoration: line-through;
+}
+
+.showDefCov {
+  display: flex;
+  justify-content: center;
+}
+
+.showDefCov button {
+  padding: 8px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--highlight-bg);
+  color: var(--highlight-text);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.showDefCov button:hover {
+  color: var(--highlight-bg);
+  background-color: var(--pokename-color);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.showDefCov button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.showDefCov > button {
+  margin: 1rem 0;
+  display: inline-block;
+}
+
+.no-results {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  text-align: center;
+  margin-top: 1rem;
+}

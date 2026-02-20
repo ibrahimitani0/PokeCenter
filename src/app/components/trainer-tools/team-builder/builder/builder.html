@@ -1,0 +1,62 @@
+<div class="builder-root">
+  <aside class="sidebar" [class.hidden]="!sidebarVisible">
+    <app-team-manager
+      (teamSelected)="onTeamSelected($event)"
+    ></app-team-manager>
+
+    <div class="export-import">
+      <button (click)="toggleExportArea()">
+        {{
+          showExportArea
+            ? "✖ Close Backup / Restore"
+            : "Backup / Restore all Teams"
+        }}
+      </button>
+
+      <div *ngIf="showExportArea" class="export-text-container">
+        <div style="display: flex; gap: 8px; margin-bottom: 6px">
+          <button (click)="export()" [disabled]="importMode">Export</button>
+          <button (click)="startImport()" [disabled]="importMode">
+            Import
+          </button>
+
+          <button
+            (click)="confirmImport()"
+            *ngIf="importMode"
+            class="confirm-btn"
+          >
+            Confirm Import
+          </button>
+          <button
+            (click)="cancelImport()"
+            *ngIf="importMode"
+            class="cancel-btn"
+          >
+            Cancel
+          </button>
+        </div>
+
+        <textarea
+          rows="15"
+          cols="30"
+          [readonly]="!importMode"
+          [(ngModel)]="showdownExportText"
+          style="white-space: pre-wrap; font-family: monospace"
+        ></textarea>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-area" [class.full-width]="!sidebarVisible">
+    <div class="topbar">
+      <!-- Sidebar toggle button -->
+      <button class="sidebar-toggle" (click)="toggleSidebar()">
+        {{ sidebarVisible ? "<< Hide Teams" : "Show Teams >>" }}
+      </button>
+      <app-pokemon-list *ngIf="!hidePokemonList"></app-pokemon-list>
+      <section class="workspace">
+        <app-pokemon-editor #editorComponent></app-pokemon-editor>
+      </section>
+    </div>
+  </main>
+</div>

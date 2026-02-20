@@ -1,0 +1,117 @@
+<div *ngIf="versions.length > 0">
+  <h3 class="list-title">Game Versions</h3>
+  <!-- Version Tabs -->
+  <ul class="version-tabs" *ngIf="!isMobile" >
+    <li
+      *ngFor="let version of versions"
+      [class.active]="version === selectedVersion"
+      [ngStyle]="{ background: getTypeShadowColor(pokemon?.types?.[0] || '') }"
+      (click)="selectVersion(version)"
+    >
+      {{ version | titlecase }}
+    </li>
+  </ul>
+
+  <!-- Mobile version select -->
+  <select
+    *ngIf="isMobile"
+    [value]="selectedVersion"
+    (change)="onVersionChange($event)"
+    aria-label="Select version"
+    [ngStyle]="{ background: getBackgroundGradient(pokemon?.types?.[0] || '') }"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    [style.border-color]="borderColor"
+  >
+    <option *ngFor="let version of versions" [value]="version">
+      {{ version | titlecase }}
+    </option>
+  </select>
+
+  <!-- MOVE TABLES -->
+  <div *ngIf="selectedVersion">
+    <div class="moves-methods-row">
+      <div
+        *ngFor="let method of getOrderedMethodsForSelectedVersion()"
+        class="moves-method-column"
+      >
+        
+
+        <table class="moves-table" border="0" cellpadding="0" cellspacing="0">
+          <caption>{{ method }} Moves</caption>
+          <thead
+            [ngStyle]="{ background: getBackgroundGradient(pokemon?.types?.[0] || '') }"
+          >
+            <tr>
+              <th *ngIf="method === 'Level up'">Level</th>
+              <th *ngIf="method === 'TM/HM'">#</th>
+              <th>Move Name</th>
+              <th>Type</th>
+              <th>Category</th>
+              <th>Power</th>
+              <th>Accuracy</th>
+              <th>PP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let move of movesByVersion[selectedVersion][method]"
+            [routerLink]="['/move', move.move_name]">
+              <td *ngIf="method === 'Level up'">
+                {{ move.level > 0 ? move.level : "-" }}
+              </td>
+
+              <td *ngIf="method === 'TM/HM'">
+                <ng-container
+                  *ngIf="getMachinesForSelectedVersion(move) as machines"
+                >
+                  <ng-container *ngIf="machines.length > 0">
+                    <span *ngFor="let machine of machines; let i = index">
+                      {{ machine.machine.toUpperCase() }}
+                      <span *ngIf="i < machines.length - 1">, </span>
+                    </span>
+                  </ng-container>
+                </ng-container>
+              </td>
+
+              <!-- Move Name Cell + Mobile Type/Category Display -->
+              <td class="move-name-cell">
+                <div class="move-name">
+                  {{ formatMoveName(move.moveDetails.name) }}
+                </div>
+              </td>
+
+              <!-- Type and Category columns: desktop only -->
+              <td class="desktop-only">
+                <span
+                  class="type"
+                  [ngClass]="'type-' + move.moveDetails.type.toLowerCase()"
+                  [routerLink]="['/type', move.moveDetails.type]"
+                >
+                  {{ move.moveDetails.type }}
+                </span>
+              </td>
+
+              <td class="desktop-only">
+                <img
+                  [src]="getCategoryStatusImage(move.moveDetails.category)"
+                  [alt]="move.moveDetails.category"
+                  class="category-icon"
+                />
+              </td>
+
+              <!-- Other shared stats -->
+              <td>{{ move.moveDetails.power || "-" }}</td>
+              <td>{{ move.moveDetails.accuracy || "-" }}</td>
+              <td>{{ move.moveDetails.pp }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Fallback -->
+<div *ngIf="versions.length === 0 && !loading">
+  <p>No moves available for this Pokémon.</p>
+</div>

@@ -1,0 +1,635 @@
+<article
+  *ngIf="pokemon"
+  class="pokemon-article"
+  [ngStyle]="{ background: getBackgroundGradient(selectedVariety.types[0]) }"
+>
+  <header
+    class="pokemon-page-menu"
+    [style.borderColor]="getTypeColor(selectedVariety.types[0])"
+  >
+    <nav [class.hidden]="!menuVisible">
+      <div class="pokemon-page-menu-inner">
+        <div class="nav-buttons left">
+          <button
+            *ngIf="prevPokemon"
+            (click)="goToPrevious()"
+            [style.background]="getBackgroundGradient(prevPokemon.types[0])"
+            [style.border-color]="getTypeColor(prevPokemon.types[0])"
+            aria-label="Previous Pokemon"
+          >
+            ←
+            <img
+              class="mini-sprite"
+              [src]="prevPokemon.images['sprite-default']"
+              [alt]="prevPokemon.name + ' sprite'"
+            />
+            #{{ padDexNumber(prevPokemon.dex_number) }}
+            {{ getDisplayName(prevPokemon.name) }}
+          </button>
+        </div>
+        <div>
+          <ul [class.hidden]="!menuVisible">
+            <li><a (click)="scrollTo('info-header')">Info</a></li>
+            <li><a (click)="scrollTo('type-header')">Type Chart</a></li>
+            <li><a (click)="scrollTo('stats-header')">Base Stats</a></li>
+            <li>
+              <a (click)="scrollTo('evolution-header')">Evolution Chain</a>
+            </li>
+            <li><a (click)="scrollTo('entries-header')">Pokédex Entries</a></li>
+            <li><a (click)="scrollTo('locations-header')">Locations</a></li>
+            <li><a (click)="scrollTo('moves-header')">Moves</a></li>
+            <li><a (click)="scrollTo('sprites-header')">Sprites</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-buttons right">
+          <button
+            *ngIf="nextPokemon"
+            (click)="goToNext()"
+            [style.background]="getBackgroundGradient(nextPokemon.types[0])"
+            [style.border-color]="getTypeColor(nextPokemon.types[0])"
+            aria-label="Next Pokemon"
+          >
+            <img
+              class="mini-sprite"
+              [src]="nextPokemon.images['sprite-default']"
+              [alt]="nextPokemon.name + ' sprite'"
+            />
+            #{{ padDexNumber(nextPokemon.dex_number) }}
+            {{ getDisplayName(nextPokemon.name) }}
+            →
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <button
+      (click)="toggleMenu()"
+      class="toggle-button"
+      [style.box-shadow]="
+        '0 0 8px 8px' + getTypeShadowColor(selectedVariety.types[0])
+      "
+    >
+      {{ menuVisible ? "▲" : "▼" }}
+    </button>
+  </header>
+  <!-- <small class="swipe-hint">◀ Swipe to change Pokémon ▶</small> -->
+  <section
+    class="pokemon-container"
+    *ngIf="pokemon"
+    [ngStyle]="{ background: getBackgroundGradient(selectedVariety.types[0]) }"
+  >
+    <div class="pokemon-main">
+      <!-- Introduction-->
+      <section
+        id="info-header"
+        class="pokemon-card"
+        role="complementary"
+        aria-label="Pokemon details"
+        *ngIf="pokemon && selectedVariety"
+      >
+        <h1 class="pokemon-name">
+          {{ getDisplayName(selectedVariety.species) }}
+        </h1>
+
+        <div
+          class="pokemon-summary-container"
+          [style.border-color]="getTypeColor(selectedVariety.types[0])"
+        >
+          <p class="pokemon-summary">
+            <strong [style.color]="getTypeColor(selectedVariety.types[0])">
+              {{ getDisplayName(selectedVariety.form_name) }}
+            </strong>
+            the {{ pokemon.genus }}, is a
+            <span>
+              <span
+                [ngStyle]="{
+                  color: getTypeColor(getPrimaryType(selectedVariety.types))
+                }"
+              >
+                {{ getPrimaryType(selectedVariety.types) }}
+              </span>
+              <span *ngIf="getSecondaryType(selectedVariety.types)">
+                /
+                <span
+                  [ngStyle]="{
+                    color: getTypeColor(getSecondaryType(selectedVariety.types))
+                  }"
+                >
+                  {{ getSecondaryType(selectedVariety.types) }}
+                </span>
+              </span>
+            </span>
+            type Pokémon introduced in
+            <strong>
+              Generation
+              {{
+                convertGenerationToNumber(pokemon.generation_introduced)
+              }}</strong>.
+          </p>
+          
+          <ng-container>
+            <p>{{
+                 pokemon.flavor_texts_en[
+                  pokemon.flavor_texts_en.length - 1
+                ].text.replace("POKéMON", "Pokémon")
+              }}
+            </p>
+          </ng-container>
+          <button
+            (click)="
+              readPokedexEntry(
+                getDisplayName(selectedVariety.form_name) +
+                  '... the ' +
+                  pokemon.genus +
+                  '. It is a ' +
+                  selectedVariety.types.join('/') +
+                  ' type Pokémon introduced in Generation ' +
+                  convertGenerationToNumber(pokemon.generation_introduced) +
+                  '. ' +
+                  pokemon.flavor_texts_en[
+                    pokemon.flavor_texts_en.length - 1
+                  ].text.replace('POKéMON', 'Pokémon')
+              )
+            "
+          >
+            🔊
+          </button>
+
+          <p *ngIf="pokemon">
+            {{ megaEvolutionSentence }}
+            <br *ngIf="megaEvolutionSentence && gigantamaxSentence" />
+            {{ gigantamaxSentence }}
+          </p>
+          <br />
+          <p *ngIf="pokemon && regionalFormsSentence">
+            {{ regionalFormsSentence }}
+          </p>
+        </div>
+
+        <!-- VARIETY TABS -->
+        <div class="varieties-tabs" *ngIf="allForms.length > 1">
+          <button
+            *ngFor="let v of allForms; index as i"
+            (click)="onVarietyChange(i)"
+            [class.active]="selectedVarietyIndex === i"
+            [style.border-color]="
+              selectedVarietyIndex === i
+                ? getTypeColor(v.types[0])
+                : 'transparent'
+            "
+            [style.color]="
+              selectedVarietyIndex === i ? getTypeColor(v.types[0]) : 'inherit'
+            "
+            type="button"
+          >
+            {{ v.form_name }}
+          </button>
+        </div>
+
+        <div class="pokemon-card-content">
+          <div class="summary-details">
+            <div class="image-wrapper-container">
+              <div
+                class="image-wrapper"
+                [ngStyle]="{
+                  'background-color':
+                    getTypeColor(selectedVariety.types[0]) + '22'
+                }"
+              >
+                <img
+                  [src]="
+                    showShiny
+                      ? selectedVariety.images['official_artwork-shiny']
+                      : selectedVariety.images['official_artwork-default']
+                  "
+                  [alt]="getDisplayName(selectedVariety.form_name)"
+                  (click)="toggleShiny()"
+                  title="Click to toggle shiny form"
+                  class="shiny-toggle-img"
+                />
+              </div>
+              <small class="shiny-hint">
+                ✨ Click on {{ getDisplayName(selectedVariety.form_name) }} to
+                show its Shiny form! ✨
+              </small>
+            </div>
+          </div>
+
+          <div class="summary-details">
+            <h2>Pokédex Summary</h2>
+            <table class="summary-table">
+              <tbody>
+                <tr>
+                  <th>National №</th>
+                  <td>#{{ pokemon.dex_number | leadingZero : 4 }}</td>
+                </tr>
+                <tr>
+                  <th>Type</th>
+                  <td>
+                    <span
+                      *ngFor="let type of selectedVariety.types"
+                      class="type"
+                      [ngClass]="'type-' + type.toLowerCase()"
+                      [routerLink]="['/type', type]"
+                    >
+                      {{ type }}
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Species</th>
+                  <td>{{ selectedVariety.genus }}</td>
+                </tr>
+                <tr>
+                  <th>Height</th>
+                  <td>
+                    {{ getHeightInMeters() }} ({{ getHeightFeetInches() }})
+                  </td>
+                </tr>
+                <tr>
+                  <th>Weight</th>
+                  <td>
+                    {{ getWeightInKg() }} kg ({{ getWeightPounds() }} lbs)
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>Abilities</th>
+                  <td>
+                    <div
+                      class="ability"
+                      [class.hidden]="ability.is_hidden"
+                      *ngFor="let ability of selectedVariety.abilities"
+                      [routerLink]="['/ability', ability.name]"
+                    >
+                      {{ ability.name | capitalizeFirstLetter }}
+                      <span *ngIf="ability.is_hidden"> (Hidden)</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Shape</th>
+                  <td>{{ pokemon.shape | capitalizeFirstLetter }}</td>
+                </tr>
+                <tr>
+                  <th>Habitat</th>
+                  <td>
+                    <ng-container
+                      *ngIf="
+                        pokemon.habitat && pokemon.habitat !== '';
+                        else noHabitat
+                      "
+                    >
+                      {{ pokemon.habitat | capitalizeFirstLetter }}
+                    </ng-container>
+                    <ng-template #noHabitat>
+                      <span class="text-muted">Unknown</span>
+                    </ng-template>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Cry</th>
+                  <td>
+                    <div
+                      class="cry-player"
+                      role="region"
+                      aria-label="Pokémon cry player"
+                      [ngStyle]="{
+                        'background-color':
+                          getTypeColor(selectedVariety.types[0]) + '50'
+                      }"
+                    >
+                      <button
+                        class="play-btn"
+                        (click)="playAudio()"
+                        [attr.aria-pressed]="isPlaying"
+                        [title]="
+                          'Play ' +
+                          getDisplayName(selectedVariety.form_name) +
+                          ' cry'
+                        "
+                      >
+                        <img
+                          [src]="selectedVariety.images['sprite-default']"
+                          [alt]="
+                            'Cry of ' +
+                            getDisplayName(selectedVariety.form_name)
+                          "
+                          loading="lazy"
+                          draggable="false"
+                        />
+                      </button>
+
+                      <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        [(ngModel)]="volume"
+                        class="volume-slider"
+                        aria-label="Volume control"
+                        [ngStyle]="{
+                          background: getSliderStyle(selectedVariety.types[0])
+                            .background,
+                          '--slider-thumb-color': getSliderThumbColor(
+                            selectedVariety.types[0]
+                          )
+                        }"
+                      />
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="summary-details">
+            <!-- Training -->
+            <h2>Training</h2>
+            <table class="summary-table">
+              <tbody>
+                <tr>
+                  <th>EV Yield</th>
+                  <td>{{ getEvYield(selectedVariety.stats) }}</td>
+                </tr>
+                <tr>
+                  <th>Catch Rate</th>
+                  <td>
+                    {{ getCatchRateDisplay(selectedVariety.capture_rate) }}
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Base
+                    <span
+                      [ngStyle]="{
+                        color: getTypeColor(selectedVariety.types[0])
+                      }"
+                      >Friendship</span
+                    >
+                  </th>
+                  <td>
+                    {{
+                      getBaseFriendshipDisplay(selectedVariety.base_happiness)
+                    }}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Base Exp.</th>
+                  <td>{{ selectedVariety.base_exp }}</td>
+                </tr>
+                <tr>
+                  <th>Growth Rate</th>
+                  <td>{{ formatGrowthRate(selectedVariety.growth_rate) }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Breeding -->
+            <h2>Breeding</h2>
+            <table class="summary-table">
+              <tbody>
+                <tr>
+                  <th>Egg Groups</th>
+                  <td class="eggGroup">
+                    <span
+                      [ngStyle]="{
+                        background: geteggGroupColor(
+                          selectedVariety.egg_groups[0]
+                        )
+                      }"
+                      [routerLink]="[
+                        '/egg-group',
+                        selectedVariety.egg_groups[0]
+                      ]"
+                    >
+                      {{ selectedVariety.egg_groups[0] | titlecase }}
+                    </span>
+                    <ng-container *ngIf="selectedVariety.egg_groups[1]">
+                      <span class="separator">&nbsp;/&nbsp;</span>
+                      <span
+                        [ngStyle]="{
+                          background: geteggGroupColor(
+                            selectedVariety.egg_groups[1]
+                          )
+                        }"
+                        [routerLink]="[
+                          '/egg-group',
+                          selectedVariety.egg_groups[1]
+                        ]"
+                      >
+                        {{ selectedVariety.egg_groups[1] | titlecase }}
+                      </span>
+                    </ng-container>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Gender</th>
+                  <td
+                    *ngIf="
+                      selectedVariety.gender_rate !== -1 &&
+                      selectedVariety.gender_rate !== undefined
+                    "
+                  >
+                    <span class="gender-male"
+                      >{{ getMaleRate(selectedVariety.gender_rate) }}%
+                      Male</span
+                    >,
+                    <span class="gender-female"
+                      >{{ getFemaleRate(selectedVariety.gender_rate) }}%
+                      Female</span
+                    >
+                  </td>
+                  <td
+                    *ngIf="
+                      selectedVariety.gender_rate === -1 ||
+                      selectedVariety.gender_rate === undefined
+                    "
+                  >
+                    <span class="gender-unknown">Unknown</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Gender Difference</th>
+                  <td>
+                    {{
+                      getGenderDifferenceDisplay(
+                        selectedVariety.has_gender_differences
+                      )
+                    }}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Egg Cycles</th>
+                  <td>
+                    {{ getEggCycleDisplay(selectedVariety.hatch_counter) }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- More Details & Type Def -->
+      <section class="container-flex" id="type-header">
+        <!-- More Details -->
+        <div class="pokemon-card" id="more-details" style="flex: 1">
+          <h2>More Details</h2>
+          <div class="table-responsive">
+            <table class="PokedexNum-table">
+              <tbody>
+                <tr>
+                  <th>Pokedex №s</th>
+                  <td>
+                    <ng-container *ngFor="let dex of pokemon.pokedex_numbers">
+                      <ul *ngIf="showOtherNumbers(dex.pokedex)">
+                        <li>
+                          <span>{{
+                            dex.entry_number.toString().padStart(4, "0")
+                          }}</span>
+                          <span>{{ getRegionGames(dex.pokedex) }}</span>
+                        </li>
+                      </ul>
+                    </ng-container>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Type Defenses -->
+        <div class="pokemon-card" style="flex: 1">
+          <h2>Type Defenses</h2>
+          <app-type-defenses
+            [types]="selectedVariety.types"
+            [name]="selectedVariety.name"
+            context="pokemon"
+          ></app-type-defenses>
+        </div>
+      </section>
+
+      <!-- Stats -->
+      <section class="pokemon-card" id="stats-header">
+        <h2>Base Stats</h2>
+
+        <app-pokemon-stats
+          [pokemon]="selectedVariety"
+          [allPokemon]="pokedex"
+        ></app-pokemon-stats>
+      </section>
+
+      <!-- Evolution Chain -->
+      <section class="pokemon-card" id="evolution-header">
+        <h2>Evolution Chain</h2>
+        <app-pokemon-evolution-chains
+          [pokemon]="pokemon"
+          [pokedex]="pokedex"
+        ></app-pokemon-evolution-chains>
+      </section>
+
+      <!-- Entries Section -->
+      <section class="pokemon-card" id="entries-header">
+        <h2>Entries</h2>
+        <app-pokemon-entries [pokemon]="pokemon"></app-pokemon-entries>
+      </section>
+
+      <!-- LOCATIONS -->
+      <section class="pokemon-card" id="locations-header">
+        <h2>Location Encounters</h2>
+       
+          <app-poke-loc-encounters
+            [pokemon]="pokemon"
+            [selectedPokemon]="selectedVariety"
+          ></app-poke-loc-encounters>
+    
+      </section>
+
+      <!-- MOVES -->
+      <section class="pokemon-card" id="moves-header">
+        <h2>Moves learned by {{ getDisplayName(selectedVariety.name) }}</h2>
+        <div class="pokemon-card-content">
+          <app-pokemon-moves
+            [pokemon]="selectedVariety"
+            [moves]="moves"
+            [loading]="loading"
+          ></app-pokemon-moves>
+        </div>
+      </section>
+
+      <section class="pokemon-card" id="sprites-header">
+        <h2>{{ getDisplayName(pokemon.name) }} sprites</h2>
+        <div class="pokemon-card-content">
+          <div class="sprite-table-container">
+            <table
+              class="sprite-table"
+              [attr.data-pkname]="pokemon.name"
+              [attr.data-pkalias]="pokemon.name.toLowerCase()"
+            >
+              <thead
+                [ngStyle]="{
+                  background: getBackgroundGradient(selectedVariety.types[0])
+                }"
+              >
+                <tr>
+                  <th>Type</th>
+                  <th>Generation 1</th>
+                  <th>Generation 2</th>
+                  <th>Generation 3</th>
+                  <th>Generation 4</th>
+                  <th>Generation 5</th>
+                  <th>Generation 6</th>
+                  <th>Generation 7</th>
+                  <th>Generation 8</th>
+                  <th>Generation 9</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>Normal</b></td>
+                  <td *ngFor="let gen of generations" class="text-center">
+                    <ng-container
+                      *ngIf="spriteGallery[gen]?.normal; else noSprite"
+                    >
+                      <a>
+                        <img
+                          class="img-fixed"
+                          [src]="spriteGallery[gen].normal"
+                          alt="{{ gen }} normal sprite"
+                          loading="lazy"
+                        />
+                      </a>
+                    </ng-container>
+                    <ng-template #noSprite>—</ng-template>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><b>Shiny</b></td>
+                  <td *ngFor="let gen of generations" class="text-center">
+                    <ng-container
+                      *ngIf="spriteGallery[gen]?.shiny; else noShiny"
+                    >
+                      <a>
+                        <img
+                          class="img-fixed"
+                          [src]="spriteGallery[gen].shiny"
+                          alt="{{ gen }} shiny sprite"
+                          loading="lazy"
+                        />
+                      </a>
+                    </ng-container>
+                    <ng-template #noShiny>—</ng-template>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- END OF MAIN DIV-->
+  </section>
+</article>

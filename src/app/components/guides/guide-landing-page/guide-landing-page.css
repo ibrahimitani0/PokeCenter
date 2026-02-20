@@ -1,0 +1,686 @@
+/* === Host container styling using mode-aware variables === */
+:host {
+  display: block;
+  padding: 2rem;
+  min-height: 100vh;
+  color: var(--text-color);
+  box-sizing: border-box;
+}
+
+/* ================================
+   Tab Container + Header Styling
+================================ */
+.tab-container {
+  background: var(--card-color);
+  /* border: 3px solid var(--border-color); */
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 1920px;
+  margin: 2rem auto;
+  box-shadow: var(--box-shadow);
+  backdrop-filter: blur(6px);
+}
+
+.tab-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  border-bottom: 3px dashed var(--border-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.tab-header button {
+  background: var(--highlight-bg);
+  border: none;
+  border-radius: 8px 8px 0 0;
+  padding: 0.75rem 1.2rem;
+  font-weight: 700;
+  color: var(--highlight-text);
+  cursor: pointer;
+  box-shadow: 0 0 6px var(--hover-glow);
+  transition: all 0.3s ease;
+  user-select: none;
+  letter-spacing: 0.06em;
+}
+
+.tab-header button:hover,
+.tab-header button.active:hover {
+  color: #fff;
+  background: var(--highlight-text);
+  border-color: var(--highlight-bg);
+  box-shadow: 0 0 12px var(--highlight-text);
+}
+
+.tab-header button.active {
+  background: var(--highlight-text);
+  color: #fff;
+  border-bottom: 3px solid var(--highlight-bg);
+  box-shadow: none;
+}
+
+/* ================================
+   Tab Content
+================================ */
+.tab-content {
+  background: var(--card-inner-bg);
+  /* border: 2px solid var(--border-color); */
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--box-shadow);
+  color: var(--card-text-color);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* ================================
+   Filter Controls (Theme-Aware)
+================================ */
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-input,
+.filter-select {
+  padding: 0.5rem 1rem;
+  border: 3px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--card-inner-bg);
+  font-size: 0.9rem;
+  color: var(--text-color);
+  box-shadow: inset 0 0 6px var(--hover-glow);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  min-width: 160px;
+  flex: 0 1 auto;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+  outline: none;
+  border-color: var(--highlight-text);
+  box-shadow: 0 0 10px var(--highlight-text);
+}
+
+/* ================================
+   Columns Layout
+================================ */
+.columns {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
+}
+
+.column {
+  flex: 1 1 48%; /* Approx 2 columns on large screens */
+  min-width: 300px; /* Prevents collapsing too much */
+  box-sizing: border-box;
+}
+
+/* ================================
+          TRAINING
+================================ */
+
+h1,h2,h3 {
+  margin-bottom: 1rem;
+  color: var(--highlight-text);
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.training-section ul {
+  list-style: none;
+}
+
+/* ================================
+   Power Items List Styling
+================================ */
+.powerItems {
+  list-style: none; /* Remove default bullets */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+.powerItems li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem; /* Space between items */
+}
+
+.powerItems li:last-child {
+  margin-bottom: 0; /* No margin after last item */
+}
+
+.powerItems .power-icon {
+  vertical-align: middle;
+  margin-right: 8px;
+  width: 24px; /* Icon size */
+  height: auto;
+}
+
+/* ================================
+   Table Wrapper Styling
+================================ */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+}
+
+/* ================================
+   Table Styling
+================================ */
+#eggGroup tbody tr,
+#abilities tbody tr {
+  cursor: pointer;
+}
+
+.modern-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  background-color: var(--card-color);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--text-color);
+}
+
+.modern-table thead {
+  background: var(--table-header-bg);
+  color: var(--table-header-text);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.modern-table thead th {
+  padding: 14px 20px;
+  font-weight: 900;
+  text-align: left;
+  border-bottom: 2px solid var(--highlight-bg);
+}
+
+.modern-table tbody tr {
+  transition: background-color 0.25s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.modern-table tbody tr:nth-child(odd) {
+  background-color: var(--table-row-odd);
+}
+
+.modern-table tbody tr:nth-child(even) {
+  background-color: var(--table-row-even);
+}
+
+.modern-table tbody tr:hover {
+  background-color: var(--table-row-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(255, 203, 5, 0.4);
+}
+
+.modern-table tbody td {
+  padding: 10px 16px;
+  border-top: 1px solid rgba(255, 203, 5, 0.3);
+  vertical-align: middle;
+  font-weight: 600;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+ul li {
+  list-style: none;
+}
+
+.powerItems li::before{
+  content: "";
+}
+
+.item-list li::before{
+  content: "";
+}
+
+ul li::before {
+  content: "▶";
+  padding-right: 5px;
+  color: var(--highlight-bg);
+}
+
+/* ================================
+   Responsive Filter Controls
+================================ */
+@media (max-width: 768px) {
+  /* Filter Controls stacked vertically on small screens */
+  .filter-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-input,
+  .filter-select {
+    width: 86%;
+  }
+
+  /* Tab header buttons full width and centered */
+  .tab-header {
+    justify-content: center;
+  }
+
+  .tab-header button {
+    flex: 1 1 auto;
+  }
+
+  /* Container and content padding adjustments */
+  .tab-container {
+    padding: 1rem;
+  }
+
+  article {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    width: calc(100% + 2rem); /* stretch to viewport edge */
+  }
+
+  .tab-content {
+    padding: 1rem;
+    overflow-x: auto; /* horizontal scroll if needed */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Columns stack vertically */
+  .column {
+    flex: 1 1 100%;
+  }
+}
+
+.genetics-dictionary {
+  max-width: 600px;
+  color: var(--text-color, #222);
+}
+
+.genetics-dictionary h3 {
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--accent-color, #3b4cca);
+  padding-bottom: 0.3rem;
+}
+
+dl {
+  border-left: 3px solid var(--accent-color, #3b4cca);
+  padding-left: 1rem;
+}
+
+.dict-entry {
+  margin-bottom: 1.2rem;
+}
+
+.dict-term {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+  color: var(--accent-color, #3b4cca);
+  cursor: default;
+}
+
+.dict-term em {
+  font-weight: 400;
+  color: var(--text-color, #666);
+}
+
+.dict-desc {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--text-color, #444);
+}
+
+.dict-desc strong {
+  color: var(--highlight-bg, #3b4cca);
+}
+
+canvas {
+  width: 400px !important;
+  height: 400px !important;
+  display: block;
+  margin: 0 auto;
+  user-select: none;
+}
+
+.judge-chart-wrapper h3 {
+  text-align: center;
+
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.table-wrapper {
+  overflow-x: auto; /* horizontal scroll if needed */
+  border-radius: 16px; /* same radius as table */
+}
+
+.type-table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid var(--border-color, #ccc);
+  border-radius: 16px;
+  overflow: hidden; /* clip corners */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  table-layout: fixed; /* optional: for consistent column widths */
+  font-size: 0.8rem;
+}
+
+.type-table th:first-child,
+.type-table td:first-child {
+  border-left: none;
+}
+
+.type-table th:last-child,
+.type-table td:last-child {
+  border-right: none;
+}
+
+.type-table thead th {
+  border-top: none;
+  border-bottom: 2px solid var(--border-color, #ccc);
+  padding: 2px;
+}
+
+.type-table thead th:hover {
+  cursor: pointer;
+  transition: filter 0.2s ease;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+}
+
+.type-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.defend {
+  color: #000;
+}
+
+.attack {
+  color: #000;
+}
+
+td.type-label {
+  
+  cursor: pointer;
+  transition: filter 0.2s ease;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+  
+}
+
+.type-table th,
+.type-table td {
+  border: 1px solid var(--border-color, #ccc);
+  padding: 2px;
+  text-align: center;
+  color: #ffff;
+}
+
+.multiplier {
+  padding: 6px 0;
+  font-weight: bold;
+  font-size: 0.85rem;
+  border-radius: 4px;
+}
+
+.multiplier.weak {
+  background-color: #37963c; /* green */
+  color: #fff;
+}
+
+.multiplier.resist {
+  background-color: #ff4545; /* red */
+  color: #fff;
+}
+
+.multiplier.immune {
+  background-color: #616161; /* gray */
+  color: #fff;
+}
+
+.multiplier.neutral {
+  background-color: #eee;
+  color: #000;
+}
+
+.type-section-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.type-section-description {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.inline-type {
+  display: inline-block;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 2px 10px;
+  border-radius: 999px;
+  margin: 0 2px;
+  vertical-align: baseline;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+.type-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.type {
+  display: inline-flex; /* So they sit side by side and center content */
+  align-items: center;
+  justify-content: center;
+  width: 65px; /* Fixed width */
+  height: 20px; /* Fixed height */
+  border: 2px solid #fff;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  padding: 0; /* Remove padding to keep size consistent */
+  border-radius: 50px;
+  color: white;
+  text-transform: uppercase;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+  margin: 0.2rem;
+}
+
+.type:hover {
+  transform: scale(1.1);
+}
+
+.type-normal {
+  background: linear-gradient(145deg, #a8a878, #7e7e5a);
+  box-shadow: 0 0 8px #a8a878;
+}
+.type-fire {
+  background: linear-gradient(145deg, #f08030, #c06020);
+  box-shadow: 0 0 8px #ff6f00;
+}
+.type-water {
+  background: linear-gradient(145deg, #6890f0, #446fc0);
+  box-shadow: 0 0 8px #6890f0;
+}
+.type-electric {
+  background: linear-gradient(145deg, #f8d030, #c8a720);
+  box-shadow: 0 0 8px #ffee33;
+}
+.type-grass {
+  background: linear-gradient(145deg, #78c850, #5a9a32);
+  box-shadow: 0 0 8px #78c850;
+}
+.type-ice {
+  background: linear-gradient(145deg, #98d8d8, #6fbcbc);
+  box-shadow: 0 0 8px #98d8d8;
+}
+.type-fighting {
+  background: linear-gradient(145deg, #c03028, #902320);
+  box-shadow: 0 0 8px #c03028;
+}
+.type-poison {
+  background: linear-gradient(145deg, #a040a0, #702970);
+  box-shadow: 0 0 8px #a040a0;
+}
+.type-ground {
+  background: linear-gradient(145deg, #e0c068, #b89c50);
+  box-shadow: 0 0 8px #e0c068;
+}
+.type-flying {
+  background: linear-gradient(145deg, #a890f0, #7f6cc0);
+  box-shadow: 0 0 8px #a890f0;
+}
+.type-psychic {
+  background: linear-gradient(145deg, #f85888, #c0406e);
+  box-shadow: 0 0 8px #f85888;
+}
+.type-bug {
+  background: linear-gradient(145deg, #a8b820, #7f9218);
+  box-shadow: 0 0 8px #a8b820;
+}
+.type-rock {
+  background: linear-gradient(145deg, #b8a038, #8c7a28);
+  box-shadow: 0 0 8px #b8a038;
+}
+.type-ghost {
+  background: linear-gradient(145deg, #705898, #503e78);
+  box-shadow: 0 0 8px #705898;
+}
+.type-dragon {
+  background: linear-gradient(145deg, #7038f8, #5028c0);
+  box-shadow: 0 0 8px #7038f8;
+}
+.type-dark {
+  background: linear-gradient(145deg, #705848, #4e3e30);
+  box-shadow: 0 0 8px #705848;
+}
+.type-steel {
+  background: linear-gradient(145deg, #b8b8d0, #8c8cac);
+  box-shadow: 0 0 8px #b8b8d0;
+}
+.type-fairy {
+  background: linear-gradient(145deg, #ee99ac, #c87a8f);
+  box-shadow: 0 0 8px #ee99ac;
+}
+
+.category-icon {
+  display: block;         /* ensures width applies properly */
+ 
+  width: 30px;
+  height: auto;           /* maintain aspect ratio */
+
+}
+
+
+.battle-styles-article h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--highlight-text);
+}
+
+.battle-styles-article section {
+  margin-bottom: 2rem;
+}
+
+.battle-styles-article h2 {
+  font-size: 1.3rem;
+  color: var(--highlight-text);
+  border-bottom: 2px dashed var(--border-color);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.2rem;
+}
+
+.battle-styles-article p {
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+}
+
+
+.pokemon-items-article section {
+  margin-bottom: 2rem;
+}
+
+.pokemon-items-article h2 {
+  text-align: center;
+  padding-bottom: 0.25rem;
+  margin-bottom: 1rem;
+  color: var(--highlight-text, #3b4cca);
+}
+
+.item-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.item-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--card-inner-bg, #fff);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.item-list img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.item-list strong {
+  font-weight: 700;
+  color: var(--highlight-text, #3b4cca);
+}
+
+.evsSection {
+  display: flex;
+  justify-content: space-between; /* pushes left and right apart */
+  align-items: flex-start; /* align items at the top */
+  gap: 20px; /* spacing between the two columns */
+}
+
+.evsSection .left {
+  flex: 2; /* left side takes more space */
+}
+
+.evsSection .right {
+  flex: 1;
+  padding: 12px;
+  background: var(--card-color);
+  border-radius: 10px;
+}
+
+.evsSection .right li:hover {
+  cursor: pointer;
+  color: var(--highlight-text);
+}

@@ -1,0 +1,227 @@
+/* ====== Type Badges ====== */
+.type {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 20px;
+  border: 2px solid #fff;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50px;
+  color: white;
+  text-transform: uppercase;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+  margin: 0.2rem;
+  margin-top: 10px;
+}
+
+.type:hover {
+  transform: scale(1.1);
+}
+
+/* ====== Type Colors ====== */
+.type-normal    { background: linear-gradient(145deg, #a8a878, #7e7e5a); box-shadow: 0 0 8px #a8a878; }
+.type-fire      { background: linear-gradient(145deg, #f08030, #c06020); box-shadow: 0 0 8px #ff6f00; }
+.type-water     { background: linear-gradient(145deg, #6890f0, #446fc0); box-shadow: 0 0 8px #6890f0; }
+.type-electric  { background: linear-gradient(145deg, #f8d030, #c8a720); box-shadow: 0 0 8px #ffee33; }
+.type-grass     { background: linear-gradient(145deg, #78c850, #5a9a32); box-shadow: 0 0 8px #78c850; }
+.type-ice       { background: linear-gradient(145deg, #98d8d8, #6fbcbc); box-shadow: 0 0 8px #98d8d8; }
+.type-fighting  { background: linear-gradient(145deg, #c03028, #902320); box-shadow: 0 0 8px #c03028; }
+.type-poison    { background: linear-gradient(145deg, #a040a0, #702970); box-shadow: 0 0 8px #a040a0; }
+.type-ground    { background: linear-gradient(145deg, #e0c068, #b89c50); box-shadow: 0 0 8px #e0c068; }
+.type-flying    { background: linear-gradient(145deg, #a890f0, #7f6cc0); box-shadow: 0 0 8px #a890f0; }
+.type-psychic   { background: linear-gradient(145deg, #f85888, #c0406e); box-shadow: 0 0 8px #f85888; }
+.type-bug       { background: linear-gradient(145deg, #a8b820, #7f9218); box-shadow: 0 0 8px #a8b820; }
+.type-rock      { background: linear-gradient(145deg, #b8a038, #8c7a28); box-shadow: 0 0 8px #b8a038; }
+.type-ghost     { background: linear-gradient(145deg, #705898, #503e78); box-shadow: 0 0 8px #705898; }
+.type-dragon    { background: linear-gradient(145deg, #7038f8, #5028c0); box-shadow: 0 0 8px #7038f8; }
+.type-dark      { background: linear-gradient(145deg, #705848, #4e3e30); box-shadow: 0 0 8px #705848; }
+.type-steel     { background: linear-gradient(145deg, #b8b8d0, #8c8cac); box-shadow: 0 0 8px #b8b8d0; }
+.type-fairy     { background: linear-gradient(145deg, #ee99ac, #c87a8f); box-shadow: 0 0 8px #ee99ac; }
+
+/* ====== Infocard Evolution Layout ====== */
+.infocard-list-evo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 1rem;
+  gap: 0.5rem;
+  scroll-behavior: smooth;
+
+}
+
+.infocard-evo-split > .infocard-list-evo {
+  justify-content: flex-start;
+}
+
+.infocard-list-evo > .infocard {
+  width: 150px;
+  vertical-align: middle;
+}
+
+.infocard-list-evo > .infocard-arrow {
+  width: 165px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ====== Infocard ====== */
+.infocard {
+  display: inline-block;
+  padding: 0 0.75rem 2rem;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.infocard-lg-img,
+.infocard-lg-data {
+  display: block;
+}
+
+/* ====== Sprite Image ====== */
+.img-sprite {
+  width: 128px;
+  height: 128px;
+  object-fit: contain;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.img-fixed {
+  display: inline-block;
+  max-width: none;
+  vertical-align: middle;
+}
+
+img {
+  border: 0;
+  max-width: 100%;
+  height: auto;
+  font-size: 0.75rem;
+  color: #a3a3a3;
+}
+
+.img-fixed:hover {
+transform: scale(1.1);
+}
+
+/* ====== Text and Labels ====== */
+.text-muted {
+  color: #737373;
+  font-weight: normal;
+}
+
+.ent-name {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #2c3e50;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ent-name:hover {
+  text-decoration: underline;
+}
+
+/* ====== Arrow Styling ====== */
+.icon-arrow {
+  display: block;
+  font: normal 2.5rem / 1 "Arial Unicode MS", "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+
+.icon-arrow-n::before   { content: "↑︎"; }  /* Top */
+.icon-arrow-ne::before  { content: "↗︎"; }  /* Top-right */
+.icon-arrow-e::before   { content: "→︎"; }  /* Right */
+.icon-arrow-se::before  { content: "↘︎"; }  /* Bottom-right */
+.icon-arrow-s::before   { content: "↓︎"; }  /* Bottom */
+.icon-arrow-sw::before  { content: "↙︎"; }  /* Bottom-left */
+.icon-arrow-w::before   { content: "←︎"; }  /* Left */
+.icon-arrow-nw::before  { content: "↖︎"; }  /* Top-left */
+
+.infocard-arrow small {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+i {
+  font-style: italic;
+}
+
+/* ====== Responsive Adjustments ====== */
+@media (max-width: 1000px) {
+  .infocard-list-evo {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .infocard-arrow i.icon-arrow-e::before {
+    content: "↓";
+  }
+
+  .icon-arrow {
+    font-size: 2rem;
+  }
+}
+
+
+.eevee-evolution-circle {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin: auto;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.evo-pos {
+  position: absolute;
+  text-align: center;
+  width: 90px; /* slightly smaller to keep inside */
+  max-width: 100px;
+  pointer-events: auto;
+}
+
+.evo-arrow {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Place the 8 evolutions around the center */
+.evo-0 { top: 2%;    left: 50%; transform: translate(-50%, -50%); }  /* Top (Glaceon) */
+.evo-1 { top: 22%;   left: 83%; transform: translate(-50%, -50%); }  /* Top-right (Vaporeon) */
+.evo-2 { top: 50%;   left: 98%; transform: translate(-50%, -50%); }  /* Right (Flareon) */
+.evo-3 { top: 78%;   left: 83%; transform: translate(-50%, -50%); }  /* Bottom-right (Jolteon) */
+.evo-4 { top: 98%;   left: 50%; transform: translate(-50%, -50%); }  /* Bottom (Leafeon) */
+.evo-5 { top: 78%;   left: 17%; transform: translate(-50%, -50%); }  /* Bottom-left (Sylveon) */
+.evo-6 { top: 50%;   left: 2%;  transform: translate(-50%, -50%); }  /* Left (Umbreon) */
+.evo-7 { top: 22%;   left: 17%; transform: translate(-50%, -50%); }  /* Top-left (Espeon) */
+
+
+/* Arrows aligned just inside or beside each evo */
+.evo-arrow-0 { top: 28%;  left: 50%; } /* Glaceon (Top) */
+.evo-arrow-1 { top: 38%;  left: 68%; } /* Vaporeon (Top-right) */
+.evo-arrow-2 { top: 50%;  left: 74%; } /* Flareon (Right) */
+.evo-arrow-3 { top: 62%;  left: 68%; } /* Jolteon (Bottom-right) */
+.evo-arrow-4 { top: 72%;  left: 50%; } /* Leafeon (Bottom) */
+.evo-arrow-5 { top: 62%;  left: 32%; } /* Sylveon (Bottom-left) */
+.evo-arrow-6 { top: 50%;  left: 26%; } /* Umbreon (Left) */
+.evo-arrow-7 { top: 38%;  left: 32%; } /* Espeon (Top-left) */
+

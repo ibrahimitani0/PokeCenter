@@ -1,0 +1,119 @@
+<section class="container">
+  <div class="homepage-grid">
+    <h1 class="welcome-title">Welcome to PokéCenter</h1>
+    <p class="welcome-subtitle">
+      PokéCenter is your all-in-one trainer guide and companion for the world of
+      Pokémon. Whether you're building your dream team, planning strategies, or
+      just browsing your favorite Pokémon, we've got you covered.
+    </p>
+  
+    <!-- Left: Main Intro Content -->
+    <div class="homepage-left">
+      <article class="homepage-intro">
+        <section>
+          <h2>Features at a Glance</h2>
+          <ul class="feature-list">
+            <li>
+              <strong>National Dex:</strong> View detailed data on every Pokémon
+              across all generations, including types, abilities, evolutions,
+              and stats.
+            </li>
+            <li>
+              <strong>Moves & Abilities:</strong> Explore full move lists with
+              effects, power, accuracy, and which Pokémon can learn them —
+              including TMs, breeding, and level-up methods.
+            </li>
+            <li>
+              <strong>Battle Tools:</strong> Train smarter with EV/IV tools,
+              stat calculators, and team planners.
+            </li>
+            <li>
+              <strong>Item Database:</strong> Search and filter through hundreds
+              of items including battle items, healing tools, and evolution
+              stones.
+            </li>
+            <li>
+              <strong>Training Guide:</strong> Learn how to breed, train, and
+              build competitive Pokémon teams using official and community
+              formats.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Optimized for Trainers</h2>
+          <p>
+            PokéCenter is designed with a clean, mobile-friendly interface,
+            responsive design, and full support for dark/light themes and
+            type-color theming. Whether you're a competitive battler, casual
+            collector, or lore enthusiast, there's something here for you.
+          </p>
+        </section>
+
+        <section class="start-exploring">
+          <h2>Start Exploring</h2>
+          <p>
+            Choose a section from the top navigation to dive in — or head
+            straight to the <a [routerLink]="'/pokedex'">National Dex</a> to browse Pokémon by
+            type, generation, or name.
+          </p>
+        </section>
+      </article>
+    </div>
+
+    <!-- Right: Sidebar -->
+    <aside class="homepage-sidebar">
+      <h3>Quick Links</h3>
+      <div>
+        <div class="quickLinks">
+          <a [routerLink]="'/pokedex'">National Dex</a><br />
+          <a [routerLink]="['/guides/', 'type-chart']">Type Chart</a>
+          <br />
+          <a [routerLink]="['/guides/', 'items']">Items</a>
+          <br />
+          <a [routerLink]="['/guides/', 'training']">Training Guide</a>
+          <br />
+        </div>
+        <div class="quickLinks">
+          <a [routerLink]="['/guides/', 'all-moves']">Moves</a><br />
+          <a [routerLink]="['/guides/', 'type-chart']">Breeding & Egg Groupss</a><br />
+          <a [routerLink]="['/guides/', 'battle-styles']">Battle Styles</a><br />
+          <a [routerLink]="['/guides/', 'evs-ivs']">EVs & IVs</a><br />
+          <a [routerLink]="['/guides/', 'natures']">Natures</a><br />
+        </div>
+      </div>
+
+      <h3>Popular Pokémon</h3>
+      <div>
+        <div class="quickLinks">
+          <ul class="popular-pokemon">
+            <li>#006 <a [routerLink]="['/pokemon/', 'charizard']">Charizard</a></li>
+            <li>#025 <a [routerLink]="['/pokemon/', 'pikachu']">Pikachu</a></li>
+            <li>#094 <a [routerLink]="['/pokemon/', 'gengar']">Gengar</a></li>
+            <li>#130 <a [routerLink]="['/pokemon/', 'gyarados']">Gyarados</a></li>
+          </ul>
+        </div>
+        <div class="quickLinks">
+          <ul class="popular-pokemon">
+            <li>#448 <a [routerLink]="['/pokemon/', 'lucario']">Lucario</a></li>
+            <li>#149 <a [routerLink]="['/pokemon/', 'dragonite']">Dragonite</a></li>
+            <li>#887 <a [routerLink]="['/pokemon/', 'dragapult']">Dragapult</a></li>
+            <li>#468 <a [routerLink]="['/pokemon/', 'togekiss']">Togekiss</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Pokémon Types</h3>
+      <p>
+        <a
+          *ngFor="let type of types"
+          [routerLink]="['/type', type.name]"
+          class="type"
+          [ngClass]="'type-' + type.name"
+        >
+          {{ type.name | titlecase }}
+        </a>
+      </p>
+    </aside>
+  </div>
+</section>

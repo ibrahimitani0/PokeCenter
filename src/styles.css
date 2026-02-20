@@ -1,0 +1,144 @@
+app-root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+:host {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+:host.fade-out {
+  opacity: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Press Start 2P", monospace;
+  font-size: medium;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+main {
+  flex: 1;
+}
+
+body.light-mode {
+  --bg-color: #fffdf5; /* warm parchment background */
+  --text-color: #2e2e2e; /* soft black for clarity */
+  --card-color: #f7f2e8; /* parchment beige */
+  --card-inner-bg: #fffefa; /* lighter parchment */
+  --card-text-color: #3b3a30;
+
+  --box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.08);
+
+  --border-color: #d1c7b2; /* vintage gold-tan */
+  --border-muted: #e7dfc9;
+
+  --pokename-color: #3b4cca; /* Pokémon blue */
+  --type-badge-bg: #ffefe0; /* warm type badge bg */
+  --type-badge-text: #3b4cca; /* matching blue */
+
+  --stat-bg: #fff7df; /* soft yellow background */
+  --stat-fill: #ffcb05; /* Pokémon yellow */
+  --stat-color: #3b4cca;
+
+  --next-nav-bg: #3b4cca;
+  --next-nav-color: #fffefa;
+  --next-nav-hover: #2c2b6d;
+
+  --navmenu-bg: #fbf7ec; /* parchment-style nav */
+  --navmenu-border: #d6cbaa;
+
+  --info-tag-bg: #fffbeb; /* warm faded yellow */
+  --info-tag-text: #3b4cca;
+
+  --hover-glow: 0 0 8px rgba(255, 203, 5, 0.4); /* golden glow */
+
+  --scrollbar-thumb: #d4c68a;
+  --scrollbar-track: #fffdf5;
+
+  --highlight-bg: #ffcb05; /* Pokémon yellow */
+  --highlight-text: #3b4cca;
+
+  --table-header-bg: linear-gradient(
+    90deg,
+    #3b4cca,
+    #5573f7,
+    #2a3bb0
+  );
+  --table-header-text: #ffffff;
+  --table-row-even: #fff6cc;
+  --table-row-odd: #ffeec4;
+  --table-row-hover: #fff1a6;
+
+  background-color: var(--bg-color);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--text-color);
+}
+
+
+body.dark-mode {
+  --bg-color: #121221; /* midnight indigo */
+  --text-color: #e4e6f8;
+  --card-color: #1e1f33; /* navy parchment */
+  --card-inner-bg: #25263f;
+  --card-text-color: #ececff;
+
+  --box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.05);
+
+  --border-color: #3b3c5c;
+  --border-muted: #2d2e49;
+
+  --pokename-color: #ffe066; /* bright yellow */
+  --type-badge-bg: #3b4cca;
+  --type-badge-text: #ffffff;
+
+  --stat-bg: #2a2b46;
+  --stat-fill: #ffe066;
+  --stat-color: #fffbe8;
+
+  --next-nav-bg: #2d2e4b;
+  --next-nav-color: #f4f4ff;
+  --next-nav-hover: #ffe066;
+
+  --navmenu-bg: #1c1c2c;
+  --navmenu-border: #4c4e78;
+
+  --info-tag-bg: #323355;
+  --info-tag-text: #ffdf91;
+
+  --hover-glow: 0 0 10px rgba(255, 224, 102, 0.4);
+
+  --scrollbar-thumb: #4c4e78;
+  --scrollbar-track: #121221;
+
+  --highlight-bg: #ffe066;
+  --highlight-text: #3b4cca;
+
+  --table-header-bg: #3b4cca;
+  --table-header-text: #ffffff;
+  --table-row-even: #202138;
+  --table-row-odd: #18192e;
+  --table-row-hover: #3b4cca88;
+
+  background-color: var(--bg-color);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: var(--text-color);
+}
+

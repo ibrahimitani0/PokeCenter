@@ -1,0 +1,108 @@
+<article *ngIf="ability">
+  <div class="book-wrapper">
+    <div class="book-page">
+      <h1>{{ getDisplayName(ability.name) }}</h1>
+
+      <p class="short-effect">
+        <ng-container *ngFor="let effect of ability.effect_entries">
+          <strong>Effect:</strong> {{ effect.short_effect }}
+        </ng-container>
+      </p>
+      <hr />
+
+      <div class="table-columns">
+        <!-- Left Table: Game Entries -->
+        <div class="table-column">
+          <table class="modern-table">
+            <caption>
+              Entries by game versions
+            </caption>
+            <thead>
+              <tr>
+                <th>Game Version</th>
+                <th>Effect Entry</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let entry of ability.flavor_text_entries">
+                <th>{{ entry.version_group.name }}</th>
+                <td>
+                  <p>{{ entry.flavor_text | capitalizeFirstLetter }}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Right Table: Pokémon with Ability -->
+        <div class="table-column">
+          <table class="modern-table">
+            <caption>
+              Pokémon that have
+              {{
+                ability.name | titlecase
+              }}
+            </caption>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Ability #1</th>
+                <th>Ability #2</th>
+                <th>(Hidden) Ability</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let poke of getPokemonWithThisAbility()"
+                [routerLink]="['/pokemon', getPokemonRoute(poke)]"
+              >
+                <td>
+                  <div style="display: flex; align-items: center; gap: 0.5rem">
+                    <img
+                      [src]="poke.images['sprite-default']"
+                      [alt]="poke.name + ' sprite'"
+                      width="48"
+                      height="48"
+                      (error)="onImgError($event, poke)"
+                    />
+                    <span>{{ poke.dex_number | leadingZero : 4 }}</span>
+                  </div>
+                </td>
+
+                <td>{{ getDisplayName(poke.name) }}</td>
+                <td>
+                  <span *ngIf="poke.abilities[0]">
+                    {{ poke.abilities[0].name }}
+                  </span>
+                </td>
+                <td>
+                  <ng-container *ngIf="poke.abilities.length > 1">
+                    <ng-container *ngIf="!poke.abilities[1].is_hidden">
+                      <span>{{ poke.abilities[1].name }}</span>
+                    </ng-container>
+                    <ng-container *ngIf="poke.abilities[1].is_hidden"
+                      >–</ng-container
+                    >
+                  </ng-container>
+                  <ng-container *ngIf="poke.abilities.length === 1"
+                    >–</ng-container
+                  >
+                </td>
+                <td>
+                  <ng-container *ngIf="getHiddenAbility(poke) as hidden">
+                    <span>
+                      {{ hidden.name }}
+                      <span *ngIf="hidden.is_hidden">(hidden)</span>
+                    </span>
+                  </ng-container>
+                  <ng-container *ngIf="!getHiddenAbility(poke)">–</ng-container>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

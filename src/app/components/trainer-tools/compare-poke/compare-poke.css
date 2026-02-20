@@ -1,0 +1,389 @@
+.search-root {
+  display: block;
+  padding: 2rem;
+  min-height: 100vh;
+  color: var(--text-color);
+  box-sizing: border-box;
+}
+
+.filter-input {
+  width: 900px;
+  padding: 0.5rem 1rem;
+  border: 3px solid var(--border-color);
+  border-radius: 12px;
+  background-color: var(--card-inner-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+  margin: 16px auto 1rem; /* This centers horizontally */
+  box-shadow: inset 0 0 6px var(--hover-glow);
+  display: block; /* ensures block behavior */
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: var(--highlight-text);
+  box-shadow: 0 0 10px var(--highlight-text);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 16px;
+  box-shadow: var(--box-shadow);
+}
+
+.modern-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  background-color: var(--card-color);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--text-color);
+}
+
+.modern-table thead {
+  background: var(--table-header-bg);
+  color: var(--table-header-text);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.modern-table thead th {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 2px solid var(--highlight-bg);
+}
+
+.modern-table tbody tr {
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.modern-table tbody tr:nth-child(odd) {
+  background-color: var(--table-row-odd);
+}
+
+.modern-table tbody tr:nth-child(even) {
+  background-color: var(--table-row-even);
+}
+
+.modern-table tbody tr:hover {
+  background-color: var(--table-row-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(255, 203, 5, 0.4);
+}
+
+.modern-table tbody td {
+  padding: 10px 16px;
+  vertical-align: middle;
+  border-top: 1px solid rgba(255, 203, 5, 0.3);
+  transition: color 0.3s ease;
+}
+
+.modern-table img {
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+}
+
+h2 {
+  color: var(--highlight-text);
+  padding-bottom: 15px;
+  border-bottom: 2px dashed var(--highlight-bg);
+}
+
+.type {
+  display: inline-flex; /* So they sit side by side and center content */
+  align-items: center;
+  justify-content: center;
+  width: 60px; /* Fixed width */
+  height: 20px; /* Fixed height */
+  border: 2px solid #fff;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  padding: 0; /* Remove padding to keep size consistent */
+  border-radius: 50px;
+  color: white;
+  text-transform: uppercase;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+  margin: 0.2rem;
+}
+
+.type:hover {
+  transform: scale(1.05);
+}
+
+/* Example type colors */
+.type-grass {
+  background-color: #78c850;
+}
+.type-fire {
+  background-color: #f08030;
+}
+.type-water {
+  background-color: #6890f0;
+}
+.type-electric {
+  background-color: #f8d030;
+}
+.type-ice {
+  background-color: #98d8d8;
+}
+.type-fighting {
+  background-color: #c03028;
+}
+.type-poison {
+  background-color: #a040a0;
+}
+.type-ground {
+  background-color: #e0c068;
+}
+.type-flying {
+  background-color: #a890f0;
+}
+.type-psychic {
+  background-color: #f85888;
+}
+.type-bug {
+  background-color: #a8b820;
+}
+.type-rock {
+  background-color: #b8a038;
+}
+.type-ghost {
+  background-color: #705898;
+}
+.type-dragon {
+  background-color: #7038f8;
+}
+.type-dark {
+  background-color: #705848;
+}
+.type-steel {
+  background-color: #b8b8d0;
+}
+.type-fairy {
+  background-color: #ee99ac;
+}
+.type-normal {
+  background-color: #a8a878;
+}
+
+.no-results {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* ===========================
+   Fix Compare Cards + Stats
+   =========================== */
+
+/* Compare Section */
+.compare-section {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.compare-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.compare-card:hover {
+  box-shadow: 0 4px 12px var(--type-color), 0 0 15px var(--type-color, #0003);
+}
+
+.remove-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: crimson;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-weight: bold;
+  line-height: 22px;
+  transition: background 0.2s;
+}
+
+.remove-btn:hover {
+  background: darkred;
+}
+
+/* Ensure compare cards align well */
+.compare-grid {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Compare card size consistency */
+.compare-card {
+  position: relative;
+  background: var(--surface, #fff);
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  width: 240px; /* slightly larger for stats */
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Pokémon sprite stays crisp */
+.compare-sprite {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.compare-sprite:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+/* Abilities spacing fix */
+.abilities {
+  font-size: 0.8rem;
+  line-height: 1.3;
+  color: var(--text-secondary, #555);
+  margin: 0.5rem 0;
+}
+
+/* ===========================
+   Stats Table Cleanup
+   =========================== */
+
+.stats-container {
+  display: block; /* one column for clarity */
+}
+
+.stats-section {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 0.5rem;
+}
+
+.stats-section table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.stats-section table th {
+  text-align: center;
+  padding: 4px;
+  font-weight: 700;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.stat-name-header {
+  width: 40px;
+  font-weight: bold;
+  white-space: nowrap;
+  padding-right: 10px;
+  text-align: start;
+}
+
+.stat-value-cell {
+  width: 40px;
+  text-align: right;
+  padding-right: 6px;
+  font-weight: 600;
+}
+
+.stat-bar-cell {
+  width: 100%;
+  padding-left: 8px;
+}
+
+/* Stat Bar look */
+.stat-bar {
+  border-radius: 6px;
+  height: 16px;
+  overflow: hidden;
+}
+
+.stat-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.3s ease-in-out;
+}
+
+/* ===========================
+   Stat Color Tiers
+   =========================== */
+.stat-red {
+  background-color: #d9534f;
+}
+.stat-orange {
+  background-color: #f0ad4e;
+}
+.stat-yellow {
+  background-color: #f7ca18;
+}
+.stat-green {
+  background-color: #5cb85c;
+}
+.stat-dark-green {
+  background-color: #3d8b3d;
+}
+.stat-blue {
+  background-color: #428bca;
+}
+
+.ability-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.ability {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%; /* prevent overflow if parent is narrow */
+  height: 20px; /* Fixed height */
+  padding: 0 12px; /* horizontal padding instead of fixed width */
+  margin: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 2px solid #fff;
+  border-radius: 50px;
+  color: #333;
+  background: linear-gradient(135deg, #e0e7ff, #f0f4ff);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.ability.hidden {
+  background: #ffefc0;
+  border: 1px solid #f6d365;
+  color: #a86900;
+  font-style: italic;
+}
+
+.ability.hidden:hover {
+  background: #fff8dc;
+  transform: scale(1.1);
+}
+
+.ability:hover {
+  transform: scale(1.1);
+  background: #8797c4;
+}

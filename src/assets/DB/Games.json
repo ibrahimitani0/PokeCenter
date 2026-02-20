@@ -1,0 +1,382 @@
+[
+    {
+      "BoxArt": {
+        "art1": "red.jpg",
+        "art2": "blue.jpg"
+      },
+      "Details": {
+        "Director": "Satoshi Tajiri",
+        "Moves": "165",
+        "Platform": "Game Boy",
+        "Pokemon": "151",
+        "Tag": "Red & Blue",
+        "gen": 1
+      },
+      "Game": "Pokémon Red & Blue",
+      "Gameplay": "Pokémon Red & Pokémon Blue, for Nintendo Game Boy, are the first Pokémon games released to a western audience. Pocket Monsters: Red and Pocket Monsters: Green were released in Japan on 27th February 1996, followed by Pocket Monsters: Blue on 10th October the same year. The latter game had much improved graphics and sound and so was used as the base for the international version in 1998, while taking in the story from Red & Green.  The game starts in your home of Pallet Town in Kanto. Professor Oak welcomes you to the world of Pokémon and lets you choose one of three Pokémon to begin your journey into the wide world.  During the game, you battle your Pokémon to make them stronger, evolve and develop a bond with them. You aim to catch all varieties of Pokémon - 151 species in total - and make your way through eight gyms against tough trainers, and finally the Elite Four, the toughest trainers of all. And along the way you manage to foil the evil Team Rocket who try to steal other people's Pokémon.  As they are the first games in the series, there are many features we take for granted now that didn't exist back then. There are no abilities, natures, genders, breeding or shiny Pokémon. There are a total of 165 moves, but many are weak and many types like Bug, Ghost and Dragon don't have powerful moves. Because of this, Psychic Pokémon were considered very over-powered.  There is only one Special stat which is used to calculate both damage dealt and received by special attacks. Furthermore, moves were categorized as physical or special by type only - see the Attackdex for more info.",
+      "Intro": "The Pokémon series started life in Japan as Pocket Monsters: Red and Pocket Monsters: Green. After it became popular the games were released to an international audience as Pokémon Red and Pokémon Blue where they quickly achieved massive success and have spawned nearly 20 follow up games and countless spin-offs.",
+      "NewGameplay": {
+        "Features": "",
+        "Mechanics": "",
+        "Natures": "",
+        "NewAbility": "",
+        "breeding": "",
+        "newTypes": "",
+        "stats": ""
+      },
+      "Releases": {
+        "America": "30th September 1998",
+        "Australia": "23rd October 1998",
+        "Europe": "10th June 1999",
+        "Japan": "27th February 1996 (Red & Green) 10th October 1996 (Blue)"
+      },
+      "Starters": {
+        "img": "kanto-starters.jpg",
+        "info": "The Kanto starters: Bulbasaur, Charmander and Squirtle"
+      },
+      "id": 1
+    },
+    {
+      "BoxArt": {
+        "art1": "yellow.jpg"
+      },
+      "Details": {
+        "Director": "Satoshi Tajiri",
+        "Moves": "165",
+        "Platform": "Game Boy",
+        "Pokemon": "151",
+        "Tag": "Yellow",
+        "gen": 1
+      },
+      "Game": "Pokémon Yellow",
+      "Gameplay": "Pokémon Yellow largely follows the same plot and adventure as its predecessors, Pokémon Red & Blue. You battle to make your Pokémon stronger and progress through eight gyms, foil Team Rocket's evil plans, and defeat the Elite Four.  The biggest difference is your starting Pokémon. The game is known as a Special Pikachu Edition as you receive Pikachu as your starter instead of Bulbasaur, Charmander or Squirtle. Your rival starts with Eevee. The starter Pikachu follows you around outside its Pokéball, a feature that was not used again until HeartGold/SoulSilver many years later. The starter Pikachu cannot evolve into Raichu. To obtain a Raichu, a Pikachu from another game must be traded in.  You can receive all three of the original starters later in the game from certain characters: Bulbasaur is obtained from Cerulean City if your Pikachu's friendship is high enough; Charmander is obtained from the north of Route 24; Squirtle is obtained in Vermillion City after beating the city's gym.",
+      "Intro": "Pokémon Yellow is a remake of the successful Pokémon Red & Blue, with a slightly closer focus on the anime.",
+      "NewGameplay": {
+        "Features": "",
+        "Mechanics": "",
+        "Natures": "",
+        "NewAbility": "",
+        "breeding": "",
+        "newTypes": "",
+        "stats": ""
+      },
+      "Releases": {
+        "America": "1st October 1999",
+        "Australia": "3rd September 1999",
+        "Europe": "16th June 2000",
+        "Japan": "12th September 1998"
+      },
+      "Starters": {
+        "img": "pika.jpg",
+        "info": "The Kanto starter: Pikachu"
+      },
+      "id": 2
+    },
+    {
+      "BoxArt": {
+        "art1": "gold.jpg",
+        "art2": "silver.jpg"
+      },
+      "Details": {
+        "Director": "Satoshi Tajiri",
+        "Moves": "86",
+        "Platform": "Game Boy",
+        "Pokemon": "100",
+        "Tag": "Gold & Silver",
+        "gen": 2
+      },
+      "Game": "Pokémon Gold & Silver",
+      "Gameplay": "Gold & Silver take place in the region of Johto, which it turns out is to the west of Kanto. Starting in New Bark Town, you receive a new Pokémon - Chikorita, Cyndaquil or Totodile - and begin your journey. There are 8 gyms to conquer in Johto (whose types are all different from those in Kanto) followed by the Elite Four.  On your journey you encounter a reformed Team Rocket, who are cutting off the tails of Slowpoke. Later you can encounter a shiny Gyarados at the Lake of Rage.  After the game is complete, it's possible to roam around Kanto and tackle the 8 original gyms. Finally, located between Johto and Kanto is Mt. Silver, containing some rare Pokémon and Pokémon Trainer Red who has some incredibly high level Pokémon.",
+      "Intro": "After the massive success of Pokémon Red/Blue/Yellow came new games Pokémon Gold and Pokémon Silver. They were released for Game Boy Color but were backwards-compatible with the original Game Boy. 100 new Pokémon were available along with several new features like breeding and Pokémon friendship.",
+      "NewGameplay": {
+        "Features": "",
+        "Mechanics": "",
+        "Natures": "",
+        "NewAbility": "",
+        "breeding": "Gold/Silver also introduced the concepts of genders, breeding and egg groups. Most Pokémon encountered can now be male or female. Some Pokémon are male-only or female-only, while some (particularly legendary Pokémon) are genderless.  Breeding Pokémon creates a new baby Pokémon at level 5. Two Pokémon can breed if they are opposite genders and in the same egg group. Genderless Pokémon can only breed with Ditto. Legendary Pokémon cannot breed at all. See the Breeding guide for more.",
+        "newTypes": "Two new types are introduced: Dark & Steel. In generation 1 the Psychic type had ended up being very overpowered - its only weakness was the Bug type but there were no powerful Bug type moves, nor many good Bug type Pokémon.  The Steel type resists Psychic type moves (as well as many other types), while the Dark type is completely immune to Psychic, and super-effective against it. There was also a new powerful Bug move, Megahorn, and several good Dark moves like Crunch and Faint Attack. A few other type matchups were changed - see the type chart page for details.  The Pokémon Magnemite and Magneton were reclassified as Electric/Steel type, while four moves changed types: Karate Chop (Normal → Fighting); Gust (Normal → Flying); Sand-attack (Normal → Ground); and Bite (Normal → Dark).",
+        "stats": "The Special stat of Pokémon was split into two separate stats - Special Attack and Special Defense. Each Pokémon took either their SpAtk or SpDef from the original Special stat, with the other stat being given a new value."
+      },
+      "Releases": {
+        "America": "15th October 2000",
+        "Australia": "13th October 2000",
+        "Europe": "6th April 2001",
+        "Japan": "21st November 1999"
+      },
+      "Starters": {
+        "img": "johto-starters.jpg",
+        "info": "The Johto starters: Chikorita, Cyndaquil and Totodile"
+      },
+      "id": 3
+    },
+    {
+      "BoxArt": {
+        "art1": "crystal.jpg"
+      },
+      "Details": {
+        "Director": "Satoshi Tajiri",
+        "Moves": "86",
+        "Platform": "Game Boy Color",
+        "Pokemon": "100",
+        "Tag": "Crystal",
+        "gen": 2
+      },
+      "Game": "Pokémon Crystal",
+      "Gameplay": "Various graphical updates such as improved Pokémon sprites. The playable character may be male or female. In the Dragon's Den there is now the chance to receive a Dratini with ExtremeSpeed by answering some questions correctly. The Ruins of Alph has more common Unown and an extra quest. The legendary Pokémon Suicune is found in multiple locations throughout Johto, where it promptly flees until the Clear Bell is obtained. The Move Tutor is introduced, located in Goldenrod Game Corner, and can teach Flamethrower, Ice Beam or Thunderbolt. The Battle Tower is added. Three Pokémon are taken inside and you must battle against seven trainers in a row.",
+      "Intro": "The second generation of Pokémon concludes with Pokémon Crystal, a remake of Gold & Silver. There were improvements to graphics and some new features, but the plot is largely the same.",
+      "NewGameplay": {
+        "Features": "",
+        "Mechanics": "",
+        "Natures": "",
+        "NewAbility": "",
+        "breeding": "",
+        "newTypes": "",
+        "stats": ""
+      },
+      "Releases": {
+        "America": "29th July 2001",
+        "Australia": "29th July 2001",
+        "Europe": "2nd November 2001",
+        "Japan": "14th December 2000"
+      },
+      "Starters": {
+        "img": "johto-starters.jpg",
+        "info": "The Johto starters: Chikorita, Cyndaquil and Totodile"
+      },
+      "id": 4
+    },
+    {
+      "BoxArt": {
+        "art1": "ruby.jpg",
+        "art2": "sapphire.jpg"
+      },
+      "Details": {
+        "Abilities": "76",
+        "Director": "Junichi Masuda",
+        "Moves": "103",
+        "Platform": "Game Boy Advance",
+        "Pokemon": "135",
+        "Tag": "Ruby & Sapphire",
+        "gen": 3
+      },
+      "Game": "Pokémon Ruby & Sapphire",
+      "Gameplay": "Ruby & Sapphire follows the usual pattern of training and catching Pokémon, battling through eight gyms and then the Elite Four and Champion. The game starts in Littleroot Town in the Hoenn region. You have just moved to town due to your father becoming a gym leader. After meeting Professor Birch out in the wild you choose a starter Pokémon - Treecko, Torchic or Mudkip.  On your journey you must also defeat the evil Team Magma (Ruby) or Team Aqua (Sapphire), whose want to use a legendary Pokémon to change the climate of Hoenn. In Ruby, Team Magma aim to awaken Groudon to expand the landmass of Hoenn; in Sapphire, Team Aqua aim to awaken Kyogre to expand the oceans and flood Hoenn.",
+      "Intro": "Pokémon moves into its third generation with Pokémon Ruby & Pokémon Sapphire for Nintendo Game Boy Advance, bringing along some big changes in battle mechanics and Pokémon training.",
+      "NewGameplay": {
+        "Features": "Pokémon Contests were introduced as a way to show off other non-battle attributes. They made use of the new Pokémon data format by adding new attributes Beauty, Cool, Cute, Smart and Tough. These stats can be increased by making Pokéblocks and feeding them to Pokémon. In contests, Pokémon are first judged on these attributes, and then appeal by using certain moves. Weather conditions can also be seen outside of battle are a significant part of the storyline. Specifically, rain can be seen on Route 119 and a sandstorm in the desert on Route 111. Weather in the overworld also occurs in battles in those places. New abilities also appear that generate weather as the Pokémon Hail is added as a new weather condition along with a move of the same name.",
+        "Mechanics": "The biggest change in Ruby/Sapphire was a less apparent one - a complete redevelopment of how Pokémon data is stored in-game. As such, Pokémon cannot be traded to generation 3 from any previous game.  Directly tied to the new data format was an overhauled Effort Value (EV) and Individual Value (IV) system. IVs now have a wider range, giving more individuality to Pokémon in the wild.  EVs became more restricted and targeted. In previous games battling with your Pokémon simply increased EVs across all stats, up to a maximum. From Ruby/Sapphire onwards, each Pokémon battled yields small EV increases in specific stats. However, there is a maximum for each stat plus an overall maximum (roughly equivalent to two maxed-out stats). See the Effort Values page for more details.",
+        "Natures": "Pokémon also gained Natures in generation 3, making each Pokémon even more unique and giving each one a personality. Natures will increase one of the Pokémon's stats and decrease another stat, adding yet another layer to battle strategy. There are 25 natures in total, one of which is randomly assigned upon encounter. See the Natures page for more details.",
+        "NewAbility": "One of the biggest visible changes in Ruby/Sapphire was the introduction of Abilities. These are special traits which have a variety of effects in battle, or in some cases out in the field. Each Pokémon can only have one ability, though most species have two options that are randomly chosen upon encounter. See the Abilities page for more details.  Natures Pokémon also gained Natures in generation 3, making each Pokémon even more unique and giving each one a personality. Natures will increase one of the Pokémon's stats and decrease another stat, adding yet another layer to battle strategy. There are 25 natures in total, one of which is randomly assigned upon encounter. See the Natures page for more details.  Double battles A new concept of double battles was introduced, expanding battle strategies further. All moves now have a target which could include both opposing Pokémon or all Pokémon in battle, although most moves still target one Pokémon.",
+        "breeding": "",
+        "newTypes": "",
+        "stats": ""
+      },
+      "Releases": {
+        "America": "19th March 2003",
+        "Australia": "3rd April 2003",
+        "Europe": "25th July 2003",
+        "Japan": "21st November 2002"
+      },
+      "Starters": {
+        "img": "hoenn-starters.jpg",
+        "info": "The Hoenn starters: Treecko, Torchic and Mudkip"
+      },
+      "id": 5
+    },
+    {
+      "BoxArt": {
+        "art1": "firered.jpg",
+        "art2": "leafgreen.jpg"
+      },
+      "Details": {
+        "Director": "Junichi Masuda",
+        "Moves": "165",
+        "Platform": "Game Boy Advance",
+        "Pokemon": "151",
+        "Tag": "Firered & Leafgreen",
+        "gen": 1
+      },
+      "Game": "Pokémon FireRed & LeafGreen",
+      "Gameplay": "FireRed & Leafgreen follows the same plot at the original Red & Blue. You begin in Pallet Town and Professor Oak lets you choose one of three Pokémon - Bulbasaur, Charmander or Squirtle. The usual eight gyms and Elite Four follow, all the while tackling Team Rocket.  All changes to Pokémon and mechanics persist from Ruby/Sapphire, including the EV system, abilities, natures, genders and so on. Evolutionary lines are also retained, so for example Golbat will evolve into Crobat with high friendship - though it does not appear in the Kanto Pokédex.  A new set of locations are introduced, called Sevii Islands, accessible after deafeating the Elite Four and Champion. Many Pokémon from the second generation can be caught here, and a post-game plot involving Team Rocket occurs.",
+      "Intro": "With FireRed & LeafGreen, Pokémon returns to its roots by remaking the original Red & Blue (or Red & Green as in Japan). The release comes partly due to Pokémon Ruby & Sapphire overhauling the core of Pokémon and lacking compatibility with previous games. FR/LG thus allow the capture of Pokémon from the first two generations.",
+      "NewGameplay": {
+        "Features": "",
+        "Mechanics": "",
+        "Natures": "",
+        "NewAbility": "",
+        "breeding": "",
+        "newTypes": "",
+        "stats": ""
+      },
+      "Releases": {
+        "America": "9th September 2004",
+        "Australia": "23rd September 2004",
+        "Europe": "1st October 2004",
+        "Japan": "29th January 2004"
+      },
+      "Starters": {
+        "img": "kanto-starters.jpg",
+        "info": "The Kanto starters: Bulbasaur, Charmander and Squirtle"
+      },
+      "id": 6
+    },
+    {
+      "BoxArt": {
+        "art1": "emerald.jpg",
+        "art2": ""
+      },
+      "Details": {
+        "Abilities": "76",
+        "Director": "Shigeki Morimoto",
+        "Moves": "103",
+        "Platform": "Game Boy Advance",
+        "Pokemon": "135",
+        "Tag": "Emerald",
+        "gen": 3
+      },
+      "Game": "Pokémon Emerald",
+      "Gameplay": "Both Team Magma and Team Aqua make significant appearances in the game, although their purposes are the same: to awaken Groudon and Kyogre respectively. Rayqauza also has a more prominent role. A new facility, the Battle Frontier is accessible after defeating the Elite Four and Champion. It features several areas with differing rules: Battle Tower, Battle Palace, Battle Factory, Battle Pyramid, Battle Dome, Battle Arena and Battle Pike. A new location Trainer Hill in which trainers must battle through as fast as possible. Emerald introduces move tutors that require payment. In this case it is in Battle Points from the Battle Frontier. After completing the Hoenn Pokédex, one of the Johto starters Chikorita, Cyndaquil, or Totodile can be received from Professor Birch. The Sootopolis Gym leader from Ruby/Sapphire, Wallace, is now the Pokémon League Champion. A new trainer Juan has taken his place as gym leader. Gym leaders can be rematched after defeating the Elite Four. All rematches use the double battle format. Deoxys is encountered in its Speed Forme instead of its Normal Forme (Ruby/Sapphire), Attack Forme (FireRed) or Defense Forme (LeafGreen).",
+      "Intro": "The third generation of Pokémon concludes with Pokémon Emerald, a remake of Ruby & Sapphire. There are improvements to graphics and some new features, but the plot is largely the same.",
+      "NewGameplay": {
+        "Features": "",
+        "Mechanics": "",
+        "Natures": "",
+        "NewAbility": "",
+        "breeding": "",
+        "newTypes": "",
+        "stats": ""
+      },
+      "Releases": {
+        "America": "1st May 2005",
+        "Australia": "9th June 2005",
+        "Europe": "21st October 2005",
+        "Japan": "16th September 2004"
+      },
+      "Starters": {
+        "img": "hoenn-starters.jpg",
+        "info": "The Hoenn starters: Treecko, Torchic and Mudkip"
+      },
+      "id": 7
+    },
+    {
+      "BoxArt": {
+        "art1": "diamond.jpg",
+        "art2": "pearl.jpg"
+      },
+      "Details": {
+        "Abilities": "47",
+        "Director": "Junichi Masuda",
+        "Moves": "113",
+        "Platform": "Nintendo DS",
+        "Pokemon": "107",
+        "Tag": "Diamond & Pearl",
+        "gen": 4
+      },
+      "Game": "Pokémon Diamond & Pearl",
+      "Gameplay": "The story takes place in the mountainous region of Sinnoh. In your home town of Twinleaf, your friend encourages you to go looking for Pokémon. When running into trouble, the two of you take a Pokémon from an abandoned briefcase. It turns out to belong to Professor Rowan of Sandgem Town. After returning the case you get to keep the Pokémon and begin your adventure exploring Sinnoh!  Along the way you run into many trainers and wild Pokémon as usual. An evil group called Team Galactic get in your way, and try to take over the world by harnessing the power of legendary Pokémon.",
+      "Intro": "Pokémon moves into its fourth generation with Pokémon Diamond & Pokémon Pearl and brings with it some major changes to the gameplay, in particular the battle system.",
+      "NewGameplay": {
+        "Features": "The day & night system makes a major return, with more time- and day-based events such as new Pokémon evolutions.  The Sinnoh Underground, where you can dig up treasures, Pokémon fossils and other items. It also takes advantage of the DS' infrared connectivity.  A gadget called the Pokémon Watch, or Pokétch is the Diamond/Pearl equivalent of the PokéGear or PokéNav from other games. It utilizes the touch screen and has many apps (25 in total) including a clock, Dowsing Machine (item finder), calculator, step counter.  The wi-fi connectivity feature of the Nintendo DS is taken advantage of, with the Global Trade Station allowing for Pokémon trades over the Internet.  A new type of contests, called Super Contests, are introduced. There are three sections: dressing up a Pokémon with accessories; mimicing and creating dance routines; and performing their battle moves in front of judges.",
+        "Mechanics": "Diamond/Pearl overhauls the battle mechanics and ushers in a new style of competitive gameplay. In previous games, moves of certain types were always physical or special. Now, each attack is individually categorized as Physical (using the Attack stat) or Special (using the Special Attack stat). A third category, Status, covers non-attacking moves such as those raising or lowering stats. This means that every Pokémon can get Same Type Attack Bonus (STAB), whatever their type. For example, Gyarados has always had a much higher Attack than Special Attack, but since Water-type moves were previously all Special category, Gyarados could not use its STAB well. Now, it can use a Physical Water move like Waterfall to great effect!  In many cases however, several types still lean towards Physical or Special. Fighting moves, for example, are mostly physical, while Psychic moves are still mostly special.",
+        "Natures": "",
+        "NewAbility": "",
+        "Pokedex": "Unlike the preceding Ruby/Sapphire, the local Pokédex in Diamond/Pearl features a mix of new Pokémon and older Pokémon like Abra, Zubat and Geodude. There are also many new evolutions for previous Pokémon such as Rhyperior, Electivire, Magmortar and Mamoswine to name a few.  Once you have beaten the Elite Four and seen every Pokémon in the Sinnoh Pokédex, you receive the national dex, which lists all 493 Pokémon in their original order.  Diamond/Pearl also introduces the most legendary Pokémon of any generation, with 14 mythical creatures.",
+        "breeding": "",
+        "newTypes": "",
+        "palPark": "After obtaining the national dex, Pokémon from other regions are imported into Sinnoh. You also receive a key item called the PokéRadar, which allows you to search out rare Pokémon in grass. Using the PokéRadar makes several grass patches shake around you, each indicating a Pokémon is hiding there. Some of them will be a Pokémon from a different region.  Some Pokémon can also be caught in the wild when a Generation 3 game is inserted into the GBA slot on the Nintendo DS.",
+        "stats": ""
+      },
+      "Releases": {
+        "America": "22nd April 2007",
+        "Australia": "21st June 2007",
+        "Europe": "27th July 2007",
+        "Japan": "28th September 2006"
+      },
+      "Starters": {
+        "img": "sinnoh-starters.jpg",
+        "info": "The Sinnoh starters: Turtwig, Chimchar and Piplup"
+      },
+      "id": 8
+    },
+    {
+      "BoxArt": {
+        "art1": "platinum.jpg",
+        "art2": ""
+      },
+      "Details": {
+        "Abilities": "47",
+        "Director": "Takeshi Kawachimaru",
+        "Moves": "113",
+        "Platform": "Nintendo DS",
+        "Pokemon": "107",
+        "Tag": "Platinum",
+        "gen": 4,
+        "newForms": "7"
+      },
+      "Game": "Pokémon Platinum",
+      "Gameplay": "The majority of Platinum follows the same story as Diamond and Pearl, however, there are some key changes. The beginning is slightly different - you meet Professor Rowan and his assistant before you get to the lake and he lets you choose one of the three starters. You then first battle your rival, rather than a wild Pokémon.  The order in which you tackle Sinnoh's gyms changes. In Diamond/Pearl your third gym battle was Maylene in Veilstone City, followed by Crasher Wake in Pastoria City, then Fantina in Hearthome City. In Platinum the third gym you come to is Fantina's then Maylene and Wake.",
+      "Intro": "The fourth generation continues with the usual third game that repeats most of the gameplay from Pokémon Diamond/Pearl but with an updated local Pokédex, Distortion World and other new features.",
+      "NewGameplay": {
+        "BattleFrontier": "After completing the basic storyline, a new area called the Battle Frontier is opened, taking the place of the Battle Park in Diamond/Pearl. While the park in D/P only had basic battling, the Frontier has five different zones with varied rules. Clockwise from top, they are:  Battle Tower Never Lose! Keep Winning! Here you select a team of 3 Pokémon and battle 7 trainers consecutively in each round. Battle Factory Win Consecutively with Rental Pokémon In the factory you cannot use your own Pokémon; instead you must choose from a selection of random Pokémon. You battle 7 trainers consecutively in each round and between battles can trade one of your Pokémon for a Pokémon you just fought. Battle Arcade Where Events Sway Outcomes Before each battle you must choose an event from the game board. Events include reducing the a Pokémon team's levels or HP, or inflicting a status condition. They may be applied to your or your opponent's Pokémon, so can be detrimental as well as beneficial. Battle Castle Manage Battles with Castle Points At the castle you earn points by battling. You choose 3 of your own Pokémon and battle 7 trainers per round. With the points you earn you can heal/revive your Pokémon, raise the level of your opponent's Pokémon (doing this gains you more points), rent items and more. Battle Hall Let Each Pokémon Seek No. 1 Here you choose a single Pokémon and conduct 10 consecutive battles. For each battle you choose the type of the Pokémon you wish to battle. For example if you use an Electric Pokémon you may wish to battle Water or Flying Pokémon. The Battle Frontier was also carried forward to HeartGold/SoulSilver, meaning it appears in two separate regions.  ",
+        "DistWorld": "The biggest change in gameplay is the addition of a parallel universe called Distortion World. Cyrus, the leader of Team Galactic, summons Dialga and Palkia at the Spear Pillar. This causes an apparent rip in the space-time continuum and Giratina briefly emerges from the wormhole.Giratina and Cyrus go back into the Distortion World, and you must follow. It's a very trippy area, quite like an Escher painting. You can walk on the walls and the camera rotates as you jump around. Eventually you can catch Giratina here.",
+        "Features": "A new batch of Move Tutors, who will teach moves to your Pokémon in return for colored shards. See here for details.  A Wi-Fi Plaza, which has various mini-games to be played over Nintendo WFC.",
+        "Mechanics": "Diamond/Pearl overhauls the battle mechanics and ushers in a new style of competitive gameplay. In previous games, moves of certain types were always physical or special. Now, each attack is individually categorized as Physical (using the Attack stat) or Special (using the Special Attack stat). A third category, Status, covers non-attacking moves such as those raising or lowering stats. This means that every Pokémon can get Same Type Attack Bonus (STAB), whatever their type. For example, Gyarados has always had a much higher Attack than Special Attack, but since Water-type moves were previously all Special category, Gyarados could not use its STAB well. Now, it can use a Physical Water move like Waterfall to great effect!  In many cases however, several types still lean towards Physical or Special. Fighting moves, for example, are mostly physical, while Psychic moves are still mostly special.",
+        "Natures": "",
+        "NewAbility": "",
+        "Pokedex": "The local Sinnoh Pokédex is expanded upon, with 59 more Pokémon (old and new) including Rotom, Giratina, the whole Eevee line and new evolutions for older Pokémon like Dusknoir and Tangrowth.  To obtain the National Pokédex, you must have seen all 210 Pokémon in the Sinnoh dex. All Pokémon can be seen throughout the game in the wild and via trainer battles, except for event Pokémon Manaphy, who is added to the dex by reading the book in the Pokémon Mansion.",
+        "breeding": "",
+        "newTypes": "",
+        "stats": ""
+      },
+      "Releases": {
+        "America": "22nd March 2009",
+        "Australia": "14th May 2009",
+        "Europe": "27th July 2007",
+        "Japan": "13th September 2008"
+      },
+      "Starters": {
+        "img": "sinnoh-starters.jpg",
+        "info": "The Sinnoh starters: Turtwig, Chimchar and Piplup"
+      },
+      "id": 9
+    },
+    {
+      "BoxArt": {
+        "art1": "heartgold.jpeg",
+        "art2": "soulsilver.jpeg"
+      },
+      "Details": {
+        "Abilities": "47",
+        "Director": "Shigeki Morimoto",
+        "Moves": "86",
+        "Platform": "Nintendo DS",
+        "Pokemon": "107",
+        "Tag": "HeartGold & SoulSilver",
+        "gen": 2
+      },
+      "Game": "Pokémon HeartGold & SoulSilver",
+      "Gameplay": "The gameplay follows the same story as Gold/Silver/Crystal. You start in Johto and must travel the area beating the eight gym leaders and then the Elite Four (plus the Champion). After 'completing' the game you are able to visit the original Kanto region and battle its eight gym leaders as well as Red, a tough trainer found on top of Mt. Silver. The graphics and music were improved, with terrain looking more 3D-like than in previous games. A key item obtainable later in the game called GB Sounds allows you to switch back to the original 8-bit music. The menu system was vastly improved, making better use of the touch screen for the majority of functions. HG/SS makes much better use of the touchscreen than the previous games, with the game's menu now residing on the touchscreen. All the menu items like the Pokédex and bag can be navigated by the screen alone (although you can still use the DS buttons if you like). HeartGold & SoulSilver also sees the return of a feature from Pokémon Yellow where your lead party Pokémon follows you around outside its PokéBall. However, the larger Pokémon like Ho-Oh or Wailord are put into their PokéBalls when you go inside building.",
+      "Intro": "The fourth generation continues with Pokémon HeartGold and Pokémon SoulSilver, the much-anticipated remakes of second-generation Gold and Silver, with some aspects from Crystal.",
+      "NewGameplay": {
+        "DistWorld": "",
+        "Features": "A feature called the Pokéathlon is included, which is a series of mini-games that test your Pokémon's ability in five newly-introduced stats: Power, Skill, Stamina, Speed and Jump. These are separate from Pokémon's regular stats but are usually based on them or the Pokémon's attributes. Flying Pokémon generally have better Jump, while Pokémon with higher Attack/SpAtk often have more Power. Defog is replaced by Whirlpool as HM05",
+        "breeding": "Gold/Silver also introduced the concepts of genders, breeding and egg groups. Most Pokémon encountered can now be male or female. Some Pokémon are male-only or female-only, while some (particularly legendary Pokémon) are genderless. Breeding Pokémon creates a new baby Pokémon at level 5. Two Pokémon can breed if they are opposite genders and in the same egg group. Genderless Pokémon can only breed with Ditto. Legendary Pokémon cannot breed at all.",
+        "legendaries": "Legendary Pokémon from other generations, not just the ones from the Johto Pokédex.",
+        "newTypes": "Two new types are introduced: Dark & Steel. In generation 1 the Psychic type had ended up being very overpowered - its only weakness was the Bug type but there were no powerful Bug type moves, nor many good Bug type Pokémon. The Steel type resists Psychic type moves (as well as many other types), while the Dark type is completely immune to Psychic, and super-effective against it. There was also a new powerful Bug move, Megahorn, and several good Dark moves like Crunch and Faint Attack. A few other type matchups were changed - see the type chart page for details. The Pokémon Magnemite and Magneton were reclassified as Electric/Steel type, while four moves changed types: Karate Chop (Normal → Fighting); Gust (Normal → Flying); Sand-attack (Normal → Ground); and Bite (Normal → Dark).",
+        "pokéWalker": "The most significant addition was the Pokéwalker - a new peripheral to which you can send Pokémon and take them for a walk. It counts your steps and you can unlock multiple routes with Pokémon to catch and items to find. See our Pokéwalker page for full details.",
+        "pokéWalkerImage": "pokewalker.jpeg",
+        "stats": "The Special stat of Pokémon was split into two separate stats - Special Attack and Special Defense. Each Pokémon took either their SpAtk or SpDef from the original Special stat, with the other stat being given a new value."
+      },
+      "Releases": {
+        "America": "15th October 2000",
+        "Australia": "13th October 2000",
+        "Europe": "6th April 2001",
+        "Japan": "21st November 1999"
+      },
+      "Starters": {
+        "img": "johto-starters.jpg",
+        "info": "The Johto starters: Chikorita, Cyndaquil and Totodile"
+      },
+      "id": 10
+    }
+  ]

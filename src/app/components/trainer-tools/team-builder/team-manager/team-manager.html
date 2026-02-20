@@ -1,0 +1,67 @@
+<div class="team-manager">
+  <h4>Teams</h4>
+  <div class="adder">
+    <input placeholder="New team name" [(ngModel)]="newName" />
+    <button (click)="addTeam()">New Team</button>
+  </div>
+  <div cdkDropList (cdkDropListDropped)="drop($event)" class="team-list">
+    <fieldset
+      class="team-item"
+      *ngFor="let t of teams$ | async; let i = index"
+      cdkDrag
+      [class.active]="(activeIndex$ | async) === i"
+      (click)="select(i)"
+    >
+      <legend class="teamName">
+        <div class="name-container">
+          <ng-container *ngIf="editingIndex !== i; else editNameInput">
+            {{ t.name }}
+          </ng-container>
+
+          <ng-template #editNameInput>
+            <input
+              type="text"
+              [(ngModel)]="editedName"
+              (keydown.enter)="saveName(i)"
+              (keydown.escape)="cancelEditing()"
+              (blur)="saveName(i)"
+              autofocus
+            />
+          </ng-template>
+        </div>
+
+        <div class="actions">
+          <button
+            (click)="startEditing(i); $event.stopPropagation()"
+            title="Edit Name"
+            *ngIf="editingIndex !== i"
+          >
+            ✎
+          </button>
+          <button
+            (click)="remove(i); $event.stopPropagation()"
+            title="Delete"
+            aria-label="Delete Team"
+          >
+            🗑
+          </button>
+        </div>
+      </legend>
+
+      <div class="team-info">
+        <div class="team-images">
+          <img
+            *ngFor="let p of t.pokemon"
+            [src]="p.image"
+            width="28"
+            height="28"
+            alt="{{ p.name }}"
+          />
+        </div>
+      </div>
+      <div class="drag-handle" cdkDragHandle title="Drag to reorder">
+        <fa-icon [icon]="faArrows"></fa-icon>
+      </div>
+    </fieldset>
+  </div>
+</div>

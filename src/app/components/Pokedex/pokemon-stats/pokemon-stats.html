@@ -1,0 +1,193 @@
+<p class="stat-info">
+  Each stat bar represents the Pokémon’s base stat in that category.
+  <br />
+  The bar colors also indicate stat quality:
+  <span style="color: #e53935">Red</span> = Low,
+  <span style="color: #fb8c00">Orange</span> = Below Average,
+  <span style="color: #fdd835">Yellow</span> = Decent,
+  <span style="color: #85c33a">Green</span> = Good,
+  <span style="color: #217826">Dark Green</span> = Very Good,
+  <span style="color: #1e88e5">Blue</span> = Excellent.
+</p>
+
+<!-- <div class="compare-search-container" (clickOutside)="closeDropdown()">
+  <input
+    id="compare-search"
+    type="text"
+    placeholder="Search Pokémon..."
+    [(ngModel)]="compareSearch"
+    (input)="filterPokemon()"
+    (focus)="showDropdown = true"
+    autocomplete="off"
+  />
+
+  <ul *ngIf="showDropdown" class="dropdown-list">
+    <li
+      *ngFor="let poke of filteredPokemon"
+      (click)="selectPokemonToCompare(poke)"
+      class="dropdown-item"
+    >
+      <img
+        [src]="poke.images['sprite-default']"
+        alt="{{ poke.name }}"
+        width="24"
+        height="24"
+        style="vertical-align: middle; margin-right: 8px"
+      />
+      {{ poke.name | titlecase }}
+    </li>
+    <li *ngIf="filteredPokemon.length === 0" class="no-results">
+      No Pokémon found.
+    </li>
+  </ul>
+</div> -->
+
+<!-- Toggle Buttons -->
+<div class="stat-view-toggle">
+  <button
+    [class.active]="statViewMode === 'table'"
+    [ngStyle]="statViewMode === 'table' ? { background: getTypeColor(pokemon?.types?.[0] || '') } : {}"
+    (click)="statViewMode = 'table'"
+  >
+    Stat Table
+  </button>
+  <button
+    [class.active]="statViewMode === 'chart'"
+    [ngStyle]="statViewMode === 'chart' ? { background: getTypeColor(pokemon?.types?.[0] || '') } : {}"
+    (click)="switchToChartView()"
+  >
+    Stat Chart
+  </button>
+</div>
+
+<!-- STAT TABLE VIEW -->
+<div *ngIf="statViewMode === 'table'" class="stats-table-container">
+  <table class="stats-table" role="table" aria-describedby="stats-desc">
+    <thead
+      [ngStyle]="{ background: getBackgroundGradient(pokemon?.types?.[0] || '') }"
+    >
+      <tr>
+        <th scope="col">Stat</th>
+        <th scope="col">Base</th>
+        <th scope="col"></th>
+        <th scope="col">Range</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="pokemon?.stats as stats">
+      <tr *ngFor="let stat of stats">
+        <td class="stat-name">{{ stat.name | titlecase }}</td>
+        <td class="stat-value">{{ stat.base_stat }}</td>
+        <td class="stat-bar-cell">
+          <div class="stat-bar" aria-hidden="true">
+            <div
+              class="stat-fill"
+              [style.width.%]="stat.base_stat / 2"
+              [ngClass]="getStatColorByValue(stat.base_stat)"
+            ></div>
+          </div>
+        </td>
+        <td class="stat-range">
+          <div class="range-pill-min">
+            <span class="range-arrow">▼</span>
+            <span class="min-label">Min</span>
+            <span class="min-value">{{
+              calculateStatRange(stat.name, stat.base_stat).min
+            }}</span>
+          </div>
+          <div class="range-pill-max">
+            <span class="range-arrow">▲</span>
+            <span class="max-label">Max</span>
+            <span class="max-value">{{
+              calculateStatRange(stat.name, stat.base_stat).max
+            }}</span>
+          </div>
+        </td>
+      </tr>
+      <tr class="stats-total-row">
+        <td>Total</td>
+        <td>{{ getTotalStats(stats) }}</td>
+        <td colspan="2"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- RADAR CHART VIEW -->
+<div *ngIf="statViewMode === 'chart'" class="judge-chart-wrapper">
+  <canvas #radarChart width="240" height="240"></canvas>
+</div>
+
+<!-- COMPARISON MODAL -->
+<div class="comparison-modal" *ngIf="comparisonPokemon">
+  <div class="modal-content">
+    <button class="close-btn" (click)="comparisonPokemon = null">✖</button>
+    <h3>Stat Comparison</h3>
+    <div class="comparison-header">
+      <div class="poke-col">
+        <img
+          [src]="pokemon?.images?.['sprite-default']"
+          [alt]="pokemon?.name"
+        />
+        <p>{{ pokemon?.name | titlecase }}</p>
+      </div>
+      <div class="poke-col">
+        <img
+          [src]="comparisonPokemon.images['sprite-default']"
+          [alt]="comparisonPokemon.name"
+        />
+        <p>{{ comparisonPokemon.name | titlecase }}</p>
+      </div>
+    </div>
+
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Stat</th>
+          <th>{{ pokemon?.name }}</th>
+          <th>{{ comparisonPokemon.name }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stat of pokemon?.stats">
+          <td>{{ stat.name | titlecase }}</td>
+          <td
+            [ngClass]="
+              getStatComparisonClass(
+                stat.base_stat,
+                comparisonPokemon.statsMap[stat.name]
+              )
+            "
+          >
+            {{ stat.base_stat }}
+          </td>
+          <td
+            [ngClass]="
+              getStatComparisonClass(
+                comparisonPokemon.statsMap[stat.name],
+                stat.base_stat
+              )
+            "
+          >
+            {{ comparisonPokemon.statsMap[stat.name] }}
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td>
+            <strong>{{ getTotalStats(pokemon?.stats || []) }}</strong>
+          </td>
+          <td>
+            <strong>{{ getTotalStats(comparisonPokemon.stats) }}</strong>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+<p *ngIf="statViewMode != 'chart'">
+  The ranges shown on the right are for a level 100 Pokémon. Maximum values are
+  based on a beneficial nature, 252 EVs, 31 IVs; minimum values are based on a
+  hindering nature, 0 EVs, 0 IVs.
+</p>

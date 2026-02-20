@@ -1,0 +1,364 @@
+/* MOVES */
+h3 {
+  margin-top: 1rem;
+}
+
+.version-tabs {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  user-select: none;
+  border-bottom: 2px dashed;
+  padding-bottom: 0.5rem;
+  letter-spacing: 0.06em;
+  
+}
+
+.version-tabs li {
+  border-radius: 10px 10px 0 0;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #1e3a5f;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  text-transform: uppercase;
+  position: relative;
+  
+}
+
+.version-tabs li:hover:not(.active),
+.version-tabs li:focus:not(.active) {
+  color: #1e3a5f;
+  transform: translateY(-1px);
+}
+
+.version-tabs li.active {
+  color: #ffff;
+  border-bottom: 2px solid transparent;
+  box-shadow: var(--hover-glow);
+  cursor: default;
+}
+
+/*=======================
+        MOVES TABLE
+===========================*/
+
+.moves-methods-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start; /* key: align all items to the left */
+}
+
+.moves-method-column {
+  flex: 0 0 calc(50% - 0.5rem); /* 2 columns with gap */
+  max-width: calc(50% - 0.5rem);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Mobile responsive fallback */
+@media (max-width: 1180px) {
+  .moves-method-column {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+.list-title {
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.moves-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 6px; /* smaller vertical spacing */
+  font-size: small;
+  color: #1e3a5f;
+  table-layout: fixed; /* uniform column widths */
+  border: none;
+}
+
+.moves-table  caption {
+  caption-side: top; /* default: can also use 'bottom' */
+  font-weight: bold;
+  font-size: 1.25rem;
+  text-align: center;
+  padding-bottom: 8px;
+  margin-bottom: 3px;
+  border-bottom: 2px dashed #d0d7e4;
+}
+
+/* === Table Header === */
+.moves-table thead {
+  border-radius: 12px;
+  box-shadow: inset 0 -2px 4px rgb(0 0 0 / 0.06);
+}
+
+.moves-table thead tr {
+  border-radius: 12px;
+}
+
+.moves-table thead th {
+  padding: 1rem 1.25rem;
+  font-weight: 700;
+  color: #1e2a50;
+  text-align: left;
+  user-select: none;
+  border: none;
+  /* smooth rounded corners on first/last */
+}
+
+.moves-table thead th:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.moves-table thead th:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* === Table Body === */
+.moves-table tbody tr {
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgb(30 50 100 / 0.1);
+  border-radius: 8px;
+  padding: 0; /* padding is handled by td */
+  transition: background-color 0.25s ease, box-shadow 0.25s ease,
+    transform 0.2s ease;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.moves-table tbody tr td {
+  padding: 0.75rem 1rem;
+}
+
+.moves-table tbody tr:hover {
+  background-color: #f5f8ff;
+  box-shadow: 0 4px 12px rgb(30 50 100 / 0.15);
+  transform: translateY(-3px);
+}
+
+.moves-table tbody td {
+  padding: 0.75rem 1rem; /* a bit smaller padding for better alignment */
+  vertical-align: middle;
+  text-align: left; /* ensures text aligns nicely on the left */
+  white-space: nowrap; /* prevent wrapping for better layout control */
+  max-width: 150px; /* limit width for better table layout */
+}
+
+.moves-table tbody td img {
+  width: 35px;
+  vertical-align: middle;
+  margin-right: 8px; /* some space between image and text */
+  border-radius: 4px; /* optional for nice rounded edges */
+}
+
+/* Rounded corners on first and last cells of each row */
+.moves-table tbody tr td:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.moves-table tbody tr td:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Wrapper */
+.moves-table-container {
+  background-color: transparent;
+  padding: 1.5rem 0;
+  max-width: 900px; /* optional max width */
+  margin: 0 auto;
+}
+
+/* Default (desktop) */
+.desktop-only {
+  display: table-cell;
+}
+
+.desktop-only span {
+  width: 50px;
+  font-size: 8px;
+}
+
+.category-icon {
+  display: block;         /* ensures width applies properly */
+  margin: 0 auto;         /* center horizontally if needed */
+  width: 30px;
+  height: auto;           /* maintain aspect ratio */
+  align-self: center;     /* if used inside a flex container */
+}
+
+
+/* ==============================
+   Type List & Type Colors
+   ============================== */
+
+.type {
+  display: inline-flex; /* So they sit side by side and center content */
+  align-items: center;
+  justify-content: center;
+  width: 60px; /* Fixed width */
+  height: 20px; /* Fixed height */
+  border: 2px solid #fff;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  padding: 0; /* Remove padding to keep size consistent */
+  border-radius: 50px;
+  color: white;
+  text-transform: uppercase;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+  margin: 0.2rem;
+}
+
+.type:hover {
+  transform: scale(1.1);
+}
+
+.type-normal {
+  background: linear-gradient(145deg, #a8a878, #7e7e5a);
+  box-shadow: 0 0 8px #a8a878;
+}
+.type-fire {
+  background: linear-gradient(145deg, #f08030, #c06020);
+  box-shadow: 0 0 8px #ff6f00;
+}
+.type-water {
+  background: linear-gradient(145deg, #6890f0, #446fc0);
+  box-shadow: 0 0 8px #6890f0;
+}
+.type-electric {
+  background: linear-gradient(145deg, #f8d030, #c8a720);
+  box-shadow: 0 0 8px #ffee33;
+}
+.type-grass {
+  background: linear-gradient(145deg, #78c850, #5a9a32);
+  box-shadow: 0 0 8px #78c850;
+}
+.type-ice {
+  background: linear-gradient(145deg, #98d8d8, #6fbcbc);
+  box-shadow: 0 0 8px #98d8d8;
+}
+.type-fighting {
+  background: linear-gradient(145deg, #c03028, #902320);
+  box-shadow: 0 0 8px #c03028;
+}
+.type-poison {
+  background: linear-gradient(145deg, #a040a0, #702970);
+  box-shadow: 0 0 8px #a040a0;
+}
+.type-ground {
+  background: linear-gradient(145deg, #e0c068, #b89c50);
+  box-shadow: 0 0 8px #e0c068;
+}
+.type-flying {
+  background: linear-gradient(145deg, #a890f0, #7f6cc0);
+  box-shadow: 0 0 8px #a890f0;
+}
+.type-psychic {
+  background: linear-gradient(145deg, #f85888, #c0406e);
+  box-shadow: 0 0 8px #f85888;
+}
+.type-bug {
+  background: linear-gradient(145deg, #a8b820, #7f9218);
+  box-shadow: 0 0 8px #a8b820;
+}
+.type-rock {
+  background: linear-gradient(145deg, #b8a038, #8c7a28);
+  box-shadow: 0 0 8px #b8a038;
+}
+.type-ghost {
+  background: linear-gradient(145deg, #705898, #503e78);
+  box-shadow: 0 0 8px #705898;
+}
+.type-dragon {
+  background: linear-gradient(145deg, #7038f8, #5028c0);
+  box-shadow: 0 0 8px #7038f8;
+}
+.type-dark {
+  background: linear-gradient(145deg, #705848, #4e3e30);
+  box-shadow: 0 0 8px #705848;
+}
+.type-steel {
+  background: linear-gradient(145deg, #b8b8d0, #8c8cac);
+  box-shadow: 0 0 8px #b8b8d0;
+}
+.type-fairy {
+  background: linear-gradient(145deg, #ee99ac, #c87a8f);
+  box-shadow: 0 0 8px #ee99ac;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* Remove fixed border-color here to allow inline override */
+  border: 1.5px solid; /* no color specified */
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffff;
+  cursor: pointer;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: inset 0 2px 4px rgba(0, 123, 255, 0.1);
+  transition: border-color 0.3s ease;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23007bff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+}
+
+select:focus {
+  outline: none;
+  /* no border-color here - handled in component */
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Option styling */
+select option {
+  padding: 0.5rem;
+  font-weight: 400;
+  color: #1e2a50;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1000px) {
+  .moves-methods-row {
+    flex-direction: column;
+  }
+
+  /* Simplify table for mobile: hide less important columns */
+  .moves-table thead th:nth-child(n + 4),
+  .moves-table tbody td:nth-child(n + 4) {
+    display: none;
+  }
+
+  .moves-table thead th:first-child,
+  .moves-table tbody td:first-child {
+    width: 50px;
+  }
+
+  /* Make version select visible */
+  select {
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+}

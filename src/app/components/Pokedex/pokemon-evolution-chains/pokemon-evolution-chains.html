@@ -1,0 +1,1755 @@
+<!-- Default Evolution Chain (0, 1, or 2 evolutions) -->
+<div class="infocard-list-evo">
+  <!-- Stage 1 -->
+  <div class="infocard" *ngIf="evolutionChainFlat[0]">
+    <picture [routerLink]="['/pokemon', evolutionChainFlat[0].species]">
+      <source
+        *ngIf="evolutionChainFlat[0].image"
+        [srcset]="evolutionChainFlat[0].image.replace('.jpg', '.avif')"
+        type="image/avif"
+      />
+      <img
+        class="img-fixed img-sprite"
+        [src]="evolutionChainFlat[0].image"
+        [alt]="evolutionChainFlat[0].species"
+      />
+    </picture>
+    <div class="infocard-lg-data text-muted">
+      <span
+        class="ent-name"
+        [routerLink]="['/pokemon', evolutionChainFlat[0].species]"
+      >
+        {{ evolutionChainFlat[0].species | titlecase }}
+      </span>
+      <br />
+      <small>
+        <ng-container *ngFor="let type of evolutionChainFlat[0].types">
+          <span class="type" [ngClass]="'type-' + type.toLowerCase()">
+            {{ type }}
+          </span>
+        </ng-container>
+      </small>
+    </div>
+  </div>
+
+  <!-- Arrow  -->
+  <ng-container *ngIf="evolutionChainFlat[1]">
+    <span class="infocard infocard-arrow">
+      <i class="icon-arrow icon-arrow-e"></i>
+      <small>
+        <ng-container
+          *ngFor="let detail of evolutionChainFlat[1].evolution_details"
+        >
+          <ng-container *ngIf="detail.min_level !== null"
+            >Level {{ detail.min_level }}</ng-container
+          >
+          <ng-container *ngIf="detail.min_happiness !== null"
+            >Happiness {{ detail.min_happiness }}</ng-container
+          >
+          <ng-container *ngIf="detail.min_affection !== null"
+            >Affection {{ detail.min_affection }}</ng-container
+          >
+          <ng-container *ngIf="detail.min_beauty !== null"
+            >Beauty {{ detail.min_beauty }}</ng-container
+          >
+          <ng-container *ngIf="detail.item"
+            >Use {{ detail.item | titlecase }}
+          </ng-container>
+          <ng-container *ngIf="detail.held_item">
+            while holding
+            {{ detail.held_item | titlecase }}</ng-container
+          >
+
+          <ng-container *ngIf="detail.known_move"
+            >Knows {{ detail.known_move | titlecase }}</ng-container
+          >
+          <ng-container *ngIf="detail.known_move_type"
+            >Knows {{ detail.known_move_type | titlecase }}-type
+            move</ng-container
+          >
+          <ng-container *ngIf="detail.location"
+            >. {{ detail.location | titlecase }}</ng-container
+          >
+          <ng-container *ngIf="detail.party_species"
+            >With {{ detail.party_species | titlecase }} in party</ng-container
+          >
+          <ng-container *ngIf="detail.party_type"
+            >With {{ detail.party_type | titlecase }}-type in
+            party</ng-container
+          >
+          <ng-container *ngIf="detail.time_of_day"
+            >During {{ detail.time_of_day | titlecase }}</ng-container
+          >
+          <ng-container *ngIf="detail.needs_overworld_rain"
+            >While raining</ng-container
+          >
+          <ng-container *ngIf="detail.relative_physical_stats !== null">
+            <ng-container [ngSwitch]="detail.relative_physical_stats">
+              <span *ngSwitchCase="1">Attack > Defense</span>
+              <span *ngSwitchCase="0">Attack = Defense</span>
+              <span *ngSwitchCase="-1">Attack < Defense</span>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="detail.turn_upside_down"
+            >Turn device upside down</ng-container
+          >
+          <ng-container *ngIf="detail.gender !== null">
+            {{ detail.gender === 1 ? "Female" : "Male" }}
+          </ng-container>
+        </ng-container>
+      </small>
+    </span>
+  </ng-container>
+
+  <!-- Stage 2 -->
+  <div class="infocard" *ngIf="evolutionChainFlat[1]">
+    <picture [routerLink]="['/pokemon', evolutionChainFlat[1].species]">
+      <source
+        *ngIf="evolutionChainFlat[1].image"
+        [srcset]="evolutionChainFlat[1].image.replace('.jpg', '.avif')"
+        type="image/avif"
+      />
+      <img
+        class="img-fixed img-sprite"
+        [src]="evolutionChainFlat[1].image"
+        [alt]="evolutionChainFlat[1].species"
+      />
+    </picture>
+    <div class="infocard-lg-data text-muted">
+      <span
+        class="ent-name"
+        [routerLink]="['/pokemon', evolutionChainFlat[1].species]"
+      >
+        {{ evolutionChainFlat[1].species | titlecase }}
+      </span>
+      <br />
+      <small>
+        <ng-container *ngFor="let type of evolutionChainFlat[1].types">
+          <span class="type" [ngClass]="'type-' + type.toLowerCase()">
+            {{ type }}
+          </span>
+        </ng-container>
+      </small>
+    </div>
+  </div>
+
+  <!-- Split Evolutions (if any beyond stage 2) -->
+  <ng-container *ngIf="evolutionChainFlat.length > 2">
+    <div class="infocard-evo-split">
+      <div
+        class="infocard-list-evo"
+        *ngFor="let node of evolutionChainFlat.slice(2); let i = index"
+      >
+        <!-- Arrow to each split -->
+        <span class="infocard infocard-arrow">
+          <!-- Handle split branches with index-based directions -->
+          <ng-container
+            *ngIf="evolutionChainFlat.length - 2 > 1; else linearArrow"
+          >
+            <i
+              class="icon-arrow"
+              [ngClass]="i % 2 === 0 ? 'icon-arrow-ne' : 'icon-arrow-se'"
+            ></i>
+          </ng-container>
+          <!-- Handle linear evolution -->
+          <ng-template #linearArrow>
+            <i class="icon-arrow icon-arrow-e"></i>
+          </ng-template>
+
+          <!-- Evolution method detail -->
+          <small>
+            <ng-container *ngFor="let detail of node.evolution_details">
+              <ng-container *ngIf="detail.min_level !== null"
+                >Level {{ detail.min_level }}</ng-container
+              >
+              <ng-container *ngIf="detail.min_happiness !== null"
+                >Happiness {{ detail.min_happiness }}</ng-container
+              >
+              <ng-container *ngIf="detail.min_affection !== null"
+                >Affection {{ detail.min_affection }}</ng-container
+              >
+              <ng-container *ngIf="detail.min_beauty !== null"
+                >Beauty {{ detail.min_beauty }}</ng-container
+              >
+              <ng-container *ngIf="detail.item"
+                >Use {{ detail.item | titlecase }}
+              </ng-container>
+
+              <ng-container *ngIf="detail.held_item">
+                while holding
+                {{ detail.held_item | titlecase }}</ng-container
+              >
+              <ng-container *ngIf="detail.trigger === 'trade'"
+                >Trade</ng-container
+              >
+
+              <ng-container *ngIf="detail.known_move"
+                >Knows {{ detail.known_move | titlecase }}</ng-container
+              >
+              <ng-container *ngIf="detail.known_move_type"
+                >Knows {{ detail.known_move_type | titlecase }}-type
+                move</ng-container
+              >
+              <ng-container *ngIf="detail.location"
+                >. {{ detail.location | titlecase }}</ng-container
+              >
+              <ng-container *ngIf="detail.party_species"
+                >With {{ detail.party_species | titlecase }} in
+                party</ng-container
+              >
+              <ng-container *ngIf="detail.party_type"
+                >With {{ detail.party_type | titlecase }}-type in
+                party</ng-container
+              >
+              <ng-container *ngIf="detail.time_of_day"
+                >During {{ detail.time_of_day | titlecase }}</ng-container
+              >
+              <ng-container *ngIf="detail.needs_overworld_rain"
+                >While raining</ng-container
+              >
+              <ng-container *ngIf="detail.relative_physical_stats !== null">
+                <ng-container [ngSwitch]="detail.relative_physical_stats">
+                  <span *ngSwitchCase="1">Attack > Defense</span>
+                  <span *ngSwitchCase="0">Attack = Defense</span>
+                  <span *ngSwitchCase="-1">Attack < Defense</span>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngIf="detail.turn_upside_down"
+                >Turn device upside down</ng-container
+              >
+              <ng-container *ngIf="detail.gender !== null">
+                {{ detail.gender === 1 ? "Female" : "Male" }}
+              </ng-container>
+            </ng-container>
+          </small>
+        </span>
+
+        <!-- Split Evolution Stage -->
+        <div class="infocard">
+          <picture [routerLink]="['/pokemon', node.species]">
+            <source
+              *ngIf="node.image"
+              [srcset]="node.image.replace('.jpg', '.avif')"
+              type="image/avif"
+            />
+            <img
+              class="img-fixed img-sprite"
+              [src]="node.image"
+              [alt]="node.species"
+            />
+          </picture>
+          <div class="infocard-lg-data text-muted">
+            <span class="ent-name" [routerLink]="['/pokemon', node.species]">
+              {{ node.species | titlecase }}
+            </span>
+            <br />
+            <small>
+              <ng-container *ngFor="let type of node.types">
+                <span class="type" [ngClass]="'type-' + type.toLowerCase()">
+                  {{ type }}
+                </span>
+              </ng-container>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div class="infocard-evolution-wrapper" *ngIf="exceptionalChainType === '111'">
+  <ng-container *ngFor="let root of evolutionChainRoots">
+    <div class="infocard-list-evo">
+      <!-- Stage 1 -->
+      <div class="infocard" *ngIf="root">
+        <picture [routerLink]="['/pokemon', root.species]">
+          <source
+            *ngIf="root.image"
+            [srcset]="root.image.replace('.jpg', '.avif')"
+            type="image/avif"
+          />
+          <img
+            class="img-fixed img-sprite"
+            [src]="root.image"
+            [alt]="root.species"
+          />
+        </picture>
+        <div class="infocard-lg-data text-muted">
+          <span class="ent-name" [routerLink]="['/pokemon', root.species]">
+            {{ root.species | titlecase }}
+          </span>
+          <br />
+          <small>
+            <ng-container *ngFor="let type of root.types">
+              <span class="type" [ngClass]="'type-' + type.toLowerCase()">
+                {{ type }}
+              </span>
+            </ng-container>
+          </small>
+        </div>
+      </div>
+
+      <!-- Arrow to Stage 2 -->
+      <ng-container *ngIf="root.evolves_to?.length === 1">
+        <span class="infocard infocard-arrow">
+          <i class="icon-arrow icon-arrow-e"></i>
+          <small>
+            <ng-container
+              *ngFor="let detail of root.evolves_to[0].evolution_details"
+            >
+              <ng-container *ngIf="detail.min_level !== null"
+                >Level {{ detail.min_level }}</ng-container
+              >
+              <ng-container *ngIf="detail.min_happiness !== null"
+                >Happiness {{ detail.min_happiness }}</ng-container
+              >
+              <ng-container *ngIf="detail.min_affection !== null"
+                >Affection {{ detail.min_affection }}</ng-container
+              >
+              <ng-container *ngIf="detail.min_beauty !== null"
+                >Beauty {{ detail.min_beauty }}</ng-container
+              >
+              <ng-container *ngIf="detail.item"
+                >Use {{ detail.item | titlecase }}
+              </ng-container>
+              <ng-container *ngIf="detail.held_item">
+                while holding
+                {{ detail.held_item | titlecase }}</ng-container
+              >
+
+              <ng-container *ngIf="detail.known_move"
+                >Knows {{ detail.known_move | titlecase }}</ng-container
+              >
+              <ng-container *ngIf="detail.known_move_type"
+                >Knows {{ detail.known_move_type | titlecase }}-type
+                move</ng-container
+              >
+              <ng-container *ngIf="detail.location"
+                >. {{ detail.location | titlecase }}</ng-container
+              >
+              <ng-container *ngIf="detail.party_species"
+                >With {{ detail.party_species | titlecase }} in
+                party</ng-container
+              >
+              <ng-container *ngIf="detail.party_type"
+                >With {{ detail.party_type | titlecase }}-type in
+                party</ng-container
+              >
+              <ng-container *ngIf="detail.time_of_day"
+                >During {{ detail.time_of_day | titlecase }}</ng-container
+              >
+              <ng-container *ngIf="detail.needs_overworld_rain"
+                >While raining</ng-container
+              >
+              <ng-container *ngIf="detail.relative_physical_stats !== null">
+                <ng-container [ngSwitch]="detail.relative_physical_stats">
+                  <span *ngSwitchCase="1">Attack > Defense</span>
+                  <span *ngSwitchCase="0">Attack = Defense</span>
+                  <span *ngSwitchCase="-1">Attack < Defense</span>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngIf="detail.turn_upside_down"
+                >Turn device upside down</ng-container
+              >
+              <ng-container *ngIf="detail.gender !== null">
+                {{ detail.gender === 1 ? "Female" : "Male" }}
+              </ng-container>
+            </ng-container>
+          </small>
+        </span>
+
+        <!-- Stage 2 -->
+        <div class="infocard" *ngIf="root.evolves_to[0]">
+          <picture [routerLink]="['/pokemon', root.evolves_to[0].species]">
+            <source
+              *ngIf="root.evolves_to[0].image"
+              [srcset]="root.evolves_to[0].image.replace('.jpg', '.avif')"
+              type="image/avif"
+            />
+            <img
+              class="img-fixed img-sprite"
+              [src]="root.evolves_to[0].image"
+              [alt]="root.evolves_to[0].species"
+            />
+          </picture>
+          <div class="infocard-lg-data text-muted">
+            <span
+              class="ent-name"
+              [routerLink]="['/pokemon', root.evolves_to[0].species]"
+            >
+              {{ root.evolves_to[0].species | titlecase }}
+            </span>
+            <br />
+            <small>
+              <ng-container *ngFor="let type of root.evolves_to[0].types">
+                <span class="type" [ngClass]="'type-' + type.toLowerCase()">
+                  {{ type }}
+                </span>
+              </ng-container>
+            </small>
+          </div>
+        </div>
+
+        <!-- Arrow to Stage 3 -->
+        <ng-container *ngIf="root.evolves_to[0].evolves_to?.length === 1">
+          <span class="infocard infocard-arrow">
+            <i class="icon-arrow icon-arrow-e"></i>
+            <small>
+              <ng-container
+                *ngFor="
+                  let detail of root.evolves_to[0].evolves_to[0]
+                    .evolution_details
+                "
+              >
+                <ng-container *ngIf="detail.min_level !== null"
+                  >Level {{ detail.min_level }}</ng-container
+                >
+                <ng-container *ngIf="detail.item"
+                  >Use {{ detail.item | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.trigger === 'trade'"
+                  >Trade</ng-container
+                >
+              </ng-container>
+            </small>
+          </span>
+
+          <!-- Stage 3 -->
+          <div class="infocard" *ngIf="root.evolves_to[0].evolves_to[0]">
+            <picture
+              [routerLink]="[
+                '/pokemon',
+                root.evolves_to[0].evolves_to[0].species
+              ]"
+            >
+              <source
+                *ngIf="root.evolves_to[0].evolves_to[0].image"
+                [srcset]="
+                  root.evolves_to[0].evolves_to[0].image.replace(
+                    '.jpg',
+                    '.avif'
+                  )
+                "
+                type="image/avif"
+              />
+              <img
+                class="img-fixed img-sprite"
+                [src]="root.evolves_to[0].evolves_to[0].image"
+                [alt]="root.evolves_to[0].evolves_to[0].species"
+              />
+            </picture>
+            <div class="infocard-lg-data text-muted">
+              <span
+                class="ent-name"
+                [routerLink]="[
+                  '/pokemon',
+                  root.evolves_to[0].evolves_to[0].species
+                ]"
+              >
+                {{ root.evolves_to[0].evolves_to[0].species | titlecase }}
+              </span>
+              <br />
+              <small>
+                <ng-container
+                  *ngFor="let type of root.evolves_to[0].evolves_to[0].types"
+                >
+                  <span class="type" [ngClass]="'type-' + type.toLowerCase()">
+                    {{ type }}
+                  </span>
+                </ng-container>
+              </small>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+
+    <hr class="evolution-chain-separator" />
+  </ng-container>
+</div>
+
+<div class="infocard-evolution-wrapper" *ngIf="exceptionalChainType === '11'">
+  <ng-container *ngFor="let root of evolutionChainRoots">
+    <div class="infocard-list-evo">
+      <!-- Base stage -->
+      <div class="infocard" *ngIf="root">
+        <picture [routerLink]="['/pokemon', root.species]">
+          <source
+            *ngIf="root.image"
+            [srcset]="root.image.replace('.jpg', '.avif')"
+            type="image/avif"
+          />
+          <img
+            class="img-fixed img-sprite"
+            [src]="root.image"
+            [alt]="root.species"
+          />
+        </picture>
+        <div class="infocard-lg-data text-muted">
+          <span class="ent-name" [routerLink]="['/pokemon', root.species]">
+            {{ root.species | titlecase }}
+          </span>
+          <br />
+          <small>
+            <ng-container *ngFor="let type of root.types">
+              <span class="type" [ngClass]="'type-' + type.toLowerCase()">
+                {{ type }}
+              </span>
+            </ng-container>
+          </small>
+        </div>
+      </div>
+
+      <!-- Arrow and single evolution -->
+      <ng-container *ngIf="root.evolves_to?.length === 1">
+        <span class="infocard infocard-arrow">
+          <i class="icon-arrow icon-arrow-e"></i>
+
+          <small>
+            <ng-container
+              *ngFor="let detail of root.evolves_to[0].evolution_details"
+            >
+              <ng-container *ngIf="detail.min_level !== null"
+                >Level {{ detail.min_level }}</ng-container
+              >
+              <ng-container *ngIf="detail.min_happiness !== null"
+                >Happiness {{ detail.min_happiness }}</ng-container
+              >
+              <ng-container *ngIf="detail.min_affection !== null"
+                >Affection {{ detail.min_affection }}</ng-container
+              >
+              <ng-container *ngIf="detail.min_beauty !== null"
+                >Beauty {{ detail.min_beauty }}</ng-container
+              >
+              <ng-container *ngIf="detail.item"
+                >Use {{ detail.item | titlecase }}
+              </ng-container>
+              <ng-container *ngIf="detail.held_item">
+                while holding
+                {{ detail.held_item | titlecase }}</ng-container
+              >
+
+              <ng-container *ngIf="detail.known_move"
+                >Knows {{ detail.known_move | titlecase }}</ng-container
+              >
+              <ng-container *ngIf="detail.known_move_type"
+                >Knows {{ detail.known_move_type | titlecase }}-type
+                move</ng-container
+              >
+              <ng-container *ngIf="detail.location"
+                >. {{ detail.location | titlecase }}</ng-container
+              >
+              <ng-container *ngIf="detail.party_species"
+                >With {{ detail.party_species | titlecase }} in
+                party</ng-container
+              >
+              <ng-container *ngIf="detail.party_type"
+                >With {{ detail.party_type | titlecase }}-type in
+                party</ng-container
+              >
+              <ng-container *ngIf="detail.time_of_day"
+                >During {{ detail.time_of_day | titlecase }}</ng-container
+              >
+              <ng-container *ngIf="detail.needs_overworld_rain"
+                >While raining</ng-container
+              >
+              <ng-container *ngIf="detail.relative_physical_stats !== null">
+                <ng-container [ngSwitch]="detail.relative_physical_stats">
+                  <span *ngSwitchCase="1">Attack > Defense</span>
+                  <span *ngSwitchCase="0">Attack = Defense</span>
+                  <span *ngSwitchCase="-1">Attack < Defense</span>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngIf="detail.turn_upside_down"
+                >Turn device upside down</ng-container
+              >
+              <ng-container *ngIf="detail.gender !== null">
+                {{ detail.gender === 1 ? "Female" : "Male" }}
+              </ng-container>
+            </ng-container>
+          </small>
+        </span>
+
+        <!-- Evolution card -->
+        <div class="infocard" *ngIf="root.evolves_to[0]">
+          <picture [routerLink]="['/pokemon', root.evolves_to[0].species]">
+            <source
+              *ngIf="root.evolves_to[0].image"
+              [srcset]="root.evolves_to[0].image.replace('.jpg', '.avif')"
+              type="image/avif"
+            />
+            <img
+              class="img-fixed img-sprite"
+              [src]="root.evolves_to[0].image"
+              [alt]="root.evolves_to[0].species"
+            />
+          </picture>
+          <div class="infocard-lg-data text-muted">
+            <span
+              class="ent-name"
+              [routerLink]="['/pokemon', root.evolves_to[0].species]"
+            >
+              {{ root.evolves_to[0].species | titlecase }}
+            </span>
+            <br />
+            <small>
+              <ng-container *ngFor="let type of root.evolves_to[0].types">
+                <span class="type" [ngClass]="'type-' + type.toLowerCase()">
+                  {{ type }}
+                </span>
+              </ng-container>
+            </small>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Split evolutions (multiple evolves_to) -->
+      <div class="infocard-evo-split" *ngIf="root.evolves_to.length > 1">
+        <div
+          class="infocard-list-evo"
+          *ngFor="let evo of root.evolves_to; let i = index"
+        >
+          <span class="infocard infocard-arrow">
+            <i
+              class="icon-arrow"
+              [ngClass]="i % 2 === 0 ? 'icon-arrow-ne' : 'icon-arrow-se'"
+            ></i>
+            <small>
+              <ng-container *ngFor="let detail of evo.evolution_details">
+                <ng-container *ngIf="detail.min_level !== null">
+                  Level {{ detail.min_level }}
+                </ng-container>
+                <ng-container *ngIf="detail.item">
+                  Use {{ detail.item | titlecase }}
+                </ng-container>
+                <ng-container *ngIf="detail.trigger === 'trade'">
+                  Trade
+                </ng-container>
+              </ng-container>
+            </small>
+          </span>
+
+          <div class="infocard" *ngIf="evo">
+            <picture [routerLink]="['/pokemon', evo.species]">
+              <source
+                *ngIf="evo.image"
+                [srcset]="evo.image.replace('.jpg', '.avif')"
+                type="image/avif"
+              />
+              <img
+                class="img-fixed img-sprite"
+                [src]="evo.image"
+                [alt]="evo.species"
+              />
+            </picture>
+            <div class="infocard-lg-data text-muted">
+              <span class="ent-name" [routerLink]="['/pokemon', evo.species]">
+                {{ evo.species | titlecase }}
+              </span>
+              <br />
+              <small>
+                <ng-container *ngFor="let type of evo.types">
+                  <span class="type" [ngClass]="'type-' + type.toLowerCase()">
+                    {{ type }}
+                  </span>
+                </ng-container>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="evolution-chain-separator" />
+  </ng-container>
+</div>
+
+<!-- Handles 1 → 2 split like Slowpoke → Slowbro / Slowking -->
+<div class="infocard-evolution-wrapper" *ngIf="exceptionalChainType === '12'">
+  <ng-container *ngFor="let root of evolutionChainRoots">
+    <div class="infocard-list-evo">
+      <!-- Base stage -->
+      <div class="infocard">
+        <picture [routerLink]="['/pokemon', root.species]">
+          <source
+            *ngIf="root.image"
+            [srcset]="root.image.replace('.jpg', '.avif')"
+            type="image/avif"
+          />
+          <img
+            class="img-fixed img-sprite"
+            [src]="root.image"
+            [alt]="root.species"
+          />
+        </picture>
+        <div class="infocard-lg-data text-muted">
+          <span class="ent-name" [routerLink]="['/pokemon', root.species]">{{
+            root.species | titlecase
+          }}</span>
+          <br />
+          <small>
+            <ng-container *ngFor="let type of root.types">
+              <span class="type" [ngClass]="'type-' + type.toLowerCase()">{{
+                type
+              }}</span>
+            </ng-container>
+          </small>
+        </div>
+      </div>
+
+      <!-- Branching Evolutions -->
+      <div class="infocard-evo-split" *ngIf="root.evolves_to.length > 0">
+        <div
+          class="infocard-list-evo"
+          *ngFor="let evo of root.evolves_to; let i = index"
+        >
+          <span class="infocard infocard-arrow">
+            <i
+              class="icon-arrow"
+              [ngClass]="i % 2 === 0 ? 'icon-arrow-ne' : 'icon-arrow-se'"
+            ></i>
+            <small>
+              <ng-container *ngFor="let detail of evo.evolution_details">
+                <ng-container *ngIf="detail.min_level !== null"
+                  >Level {{ detail.min_level }}</ng-container
+                >
+                <ng-container *ngIf="detail.min_happiness !== null"
+                  >Happiness {{ detail.min_happiness }}</ng-container
+                >
+                <ng-container *ngIf="detail.min_affection !== null"
+                  >Affection {{ detail.min_affection }}</ng-container
+                >
+                <ng-container *ngIf="detail.min_beauty !== null"
+                  >Beauty {{ detail.min_beauty }}</ng-container
+                >
+                <ng-container *ngIf="detail.item"
+                  >Use {{ detail.item | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.held_item"
+                  >Hold {{ detail.held_item | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.trigger === 'trade'">
+                  Trade
+                  <ng-container *ngIf="detail.held_item">
+                    while holding
+                    {{ detail.held_item | titlecase }}</ng-container
+                  >
+                  <ng-container *ngIf="detail.trade_species">
+                    for {{ detail.trade_species | titlecase }}</ng-container
+                  >
+                </ng-container>
+                <ng-container *ngIf="detail.known_move"
+                  >Knows {{ detail.known_move | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.known_move_type"
+                  >Knows {{ detail.known_move_type | titlecase }}-type
+                  move</ng-container
+                >
+                <ng-container *ngIf="detail.location"
+                  >. {{ detail.location | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.party_species"
+                  >With {{ detail.party_species | titlecase }} in
+                  party</ng-container
+                >
+                <ng-container *ngIf="detail.party_type"
+                  >With {{ detail.party_type | titlecase }}-type in
+                  party</ng-container
+                >
+                <ng-container *ngIf="detail.time_of_day"
+                  >During {{ detail.time_of_day | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.needs_overworld_rain"
+                  >While raining</ng-container
+                >
+                <ng-container *ngIf="detail.relative_physical_stats !== null">
+                  <ng-container [ngSwitch]="detail.relative_physical_stats">
+                    <span *ngSwitchCase="1">Attack > Defense</span>
+                    <span *ngSwitchCase="0">Attack = Defense</span>
+                    <span *ngSwitchCase="-1">Attack < Defense</span>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngIf="detail.turn_upside_down"
+                  >Turn device upside down</ng-container
+                >
+                <ng-container *ngIf="detail.gender !== null">
+                  {{ detail.gender === 1 ? "Female" : "Male" }}
+                </ng-container>
+                <ng-container
+                  *ngIf="
+                    detail.trigger &&
+                    !detail.min_level &&
+                    !detail.item &&
+                    !detail.trade_species &&
+                    !detail.held_item
+                  "
+                >
+                  ({{ detail.trigger | titlecase }})
+                </ng-container>
+              </ng-container>
+            </small>
+          </span>
+
+          <!-- Evolution Card -->
+          <div class="infocard">
+            <picture [routerLink]="['/pokemon', evo.species]">
+              <source
+                *ngIf="evo.image"
+                [srcset]="evo.image.replace('.jpg', '.avif')"
+                type="image/avif"
+              />
+              <img
+                class="img-fixed img-sprite"
+                [src]="evo.image"
+                [alt]="evo.species"
+              />
+            </picture>
+            <div class="infocard-lg-data text-muted">
+              <span class="ent-name" [routerLink]="['/pokemon', evo.species]">{{
+                evo.species | titlecase
+              }}</span>
+              <br />
+              <small>
+                <ng-container *ngFor="let type of evo.types">
+                  <span class="type" [ngClass]="'type-' + type.toLowerCase()">{{
+                    type
+                  }}</span>
+                </ng-container>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="evolution-chain-separator" />
+  </ng-container>
+</div>
+
+<div class="infocard-evolution-wrapper" *ngIf="exceptionalChainType === '13'">
+  <ng-container *ngFor="let root of evolutionChainRoots">
+    <!-- Base Pokémon -->
+    <div class="infocard-list-evo">
+      <div class="infocard">
+        <picture [routerLink]="['/pokemon', root.species]">
+          <source
+            *ngIf="root.image"
+            [srcset]="root.image.replace('.jpg', '.avif')"
+            type="image/avif"
+          />
+          <img
+            class="img-fixed img-sprite"
+            [src]="root.image"
+            [alt]="root.species"
+          />
+        </picture>
+        <div class="infocard-lg-data text-muted">
+          <span class="ent-name" [routerLink]="['/pokemon', root.species]">{{
+            root.species | titlecase
+          }}</span>
+          <br />
+          <small>
+            <ng-container *ngFor="let type of root.types">
+              <span class="type" [ngClass]="'type-' + type.toLowerCase()">{{
+                type
+              }}</span>
+            </ng-container>
+          </small>
+        </div>
+      </div>
+
+      <!-- Multiple evolutions branch (1 → 3 like Tyrogue) -->
+      <div
+        class="infocard-evo-split"
+        *ngIf="(root.evolves_to ?? []).length > 1"
+      >
+        <div
+          class="infocard-list-evo"
+          *ngFor="let evo of root.evolves_to; let i = index"
+        >
+          <span class="infocard infocard-arrow">
+            <i
+              class="icon-arrow"
+              [ngClass]="
+                ['icon-arrow-ne', 'icon-arrow-e', 'icon-arrow-se'][i] ||
+                'icon-arrow-e'
+              "
+            ></i>
+            <small>
+              <ng-container *ngFor="let detail of evo.evolution_details">
+                <ng-container *ngIf="detail.min_level !== null"
+                  >Level {{ detail.min_level }}</ng-container
+                >
+                <ng-container *ngIf="detail.relative_physical_stats !== null">
+                  <span *ngIf="detail.relative_physical_stats === 1"
+                    >, Attack &gt; Defense</span
+                  >
+                  <span *ngIf="detail.relative_physical_stats === 0"
+                    >, Attack = Defense</span
+                  >
+                  <span *ngIf="detail.relative_physical_stats === -1"
+                    >, Attack &lt; Defense</span
+                  >
+                </ng-container>
+                <ng-container
+                  *ngIf="detail.trigger === 'use-item' && detail.item"
+                  >Use {{ detail.item | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.trigger === 'trade'">
+                  Trade
+                  <ng-container *ngIf="detail.held_item">
+                    while holding
+                    {{ detail.held_item | titlecase }}</ng-container
+                  >
+                  <ng-container *ngIf="detail.trade_species">
+                    for {{ detail.trade_species | titlecase }}</ng-container
+                  >
+                </ng-container>
+                <ng-container
+                  *ngIf="detail.held_item && detail.trigger !== 'trade'"
+                  >Hold {{ detail.held_item | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.known_move"
+                  >Knows {{ detail.known_move | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.known_move_type"
+                  >Knows {{ detail.known_move_type | titlecase }}-type
+                  move</ng-container
+                >
+                <ng-container *ngIf="detail.location"
+                  >at {{ detail.location | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.party_species"
+                  >With {{ detail.party_species | titlecase }} in
+                  party</ng-container
+                >
+                <ng-container *ngIf="detail.party_type"
+                  >With {{ detail.party_type | titlecase }}-type in
+                  party</ng-container
+                >
+                <ng-container *ngIf="detail.time_of_day"
+                  >During {{ detail.time_of_day | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.min_happiness !== null"
+                  >Happiness {{ detail.min_happiness }}</ng-container
+                >
+                <ng-container *ngIf="detail.min_affection !== null"
+                  >Affection {{ detail.min_affection }}</ng-container
+                >
+                <ng-container *ngIf="detail.min_beauty !== null"
+                  >Beauty {{ detail.min_beauty }}</ng-container
+                >
+                <ng-container *ngIf="detail.needs_overworld_rain"
+                  >While raining</ng-container
+                >
+                <ng-container *ngIf="detail.turn_upside_down"
+                  >Turn device upside down</ng-container
+                >
+                <ng-container *ngIf="detail.gender !== null">{{
+                  detail.gender === 1 ? "Female" : "Male"
+                }}</ng-container>
+                <ng-container
+                  *ngIf="
+                    detail.trigger &&
+                    !detail.min_level &&
+                    !detail.item &&
+                    !detail.trade_species &&
+                    !detail.held_item
+                  "
+                  >({{ detail.trigger | titlecase }})</ng-container
+                >
+              </ng-container>
+            </small>
+          </span>
+
+          <div class="infocard">
+            <picture [routerLink]="['/pokemon', evo.species]">
+              <source
+                *ngIf="evo.image"
+                [srcset]="evo.image.replace('.jpg', '.avif')"
+                type="image/avif"
+              />
+              <img
+                class="img-fixed img-sprite"
+                [src]="evo.image"
+                [alt]="evo.species"
+              />
+            </picture>
+            <div class="infocard-lg-data text-muted">
+              <span class="ent-name" [routerLink]="['/pokemon', evo.species]">{{
+                evo.species | titlecase
+              }}</span>
+              <br />
+              <small>
+                <ng-container *ngFor="let type of evo.types">
+                  <span class="type" [ngClass]="'type-' + type.toLowerCase()">{{
+                    type
+                  }}</span>
+                </ng-container>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Single evolution that itself branches (1 → 1 → 3 like Applin) -->
+      <div class="infocard-evo-split" *ngIf="root.evolves_to?.length === 1">
+        <ng-container *ngFor="let evo of root.evolves_to">
+          <span class="infocard infocard-arrow">
+            <i class="icon-arrow icon-arrow-e"></i>
+            <small>
+              <ng-container *ngFor="let detail of evo.evolution_details">
+                <!-- same detail display as above (can be factored out if desired) -->
+                <ng-container *ngIf="detail.min_level !== null"
+                  >Level {{ detail.min_level }}</ng-container
+                >
+                <ng-container *ngIf="detail.relative_physical_stats !== null">
+                  <span *ngIf="detail.relative_physical_stats === 1"
+                    >, Attack &gt; Defense</span
+                  >
+                  <span *ngIf="detail.relative_physical_stats === 0"
+                    >, Attack = Defense</span
+                  >
+                  <span *ngIf="detail.relative_physical_stats === -1"
+                    >, Attack &lt; Defense</span
+                  >
+                </ng-container>
+                <ng-container
+                  *ngIf="detail.trigger === 'use-item' && detail.item"
+                  >Use {{ detail.item | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.trigger === 'trade'">
+                  Trade
+                  <ng-container *ngIf="detail.held_item">
+                    while holding
+                    {{ detail.held_item | titlecase }}</ng-container
+                  >
+                  <ng-container *ngIf="detail.trade_species">
+                    for {{ detail.trade_species | titlecase }}</ng-container
+                  >
+                </ng-container>
+                <ng-container
+                  *ngIf="detail.held_item && detail.trigger !== 'trade'"
+                  >Hold {{ detail.held_item | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.known_move"
+                  >Knows {{ detail.known_move | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.known_move_type"
+                  >Knows {{ detail.known_move_type | titlecase }}-type
+                  move</ng-container
+                >
+                <ng-container *ngIf="detail.location"
+                  >at {{ detail.location | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.party_species"
+                  >With {{ detail.party_species | titlecase }} in
+                  party</ng-container
+                >
+                <ng-container *ngIf="detail.party_type"
+                  >With {{ detail.party_type | titlecase }}-type in
+                  party</ng-container
+                >
+                <ng-container *ngIf="detail.time_of_day"
+                  >During {{ detail.time_of_day | titlecase }}</ng-container
+                >
+                <ng-container *ngIf="detail.min_happiness !== null"
+                  >Happiness {{ detail.min_happiness }}</ng-container
+                >
+                <ng-container *ngIf="detail.min_affection !== null"
+                  >Affection {{ detail.min_affection }}</ng-container
+                >
+                <ng-container *ngIf="detail.min_beauty !== null"
+                  >Beauty {{ detail.min_beauty }}</ng-container
+                >
+                <ng-container *ngIf="detail.needs_overworld_rain"
+                  >While raining</ng-container
+                >
+                <ng-container *ngIf="detail.turn_upside_down"
+                  >Turn device upside down</ng-container
+                >
+                <ng-container *ngIf="detail.gender !== null">{{
+                  detail.gender === 1 ? "Female" : "Male"
+                }}</ng-container>
+                <ng-container
+                  *ngIf="
+                    detail.trigger &&
+                    !detail.min_level &&
+                    !detail.item &&
+                    !detail.trade_species &&
+                    !detail.held_item
+                  "
+                  >({{ detail.trigger | titlecase }})</ng-container
+                >
+              </ng-container>
+            </small>
+          </span>
+
+          <div class="infocard">
+            <picture [routerLink]="['/pokemon', evo.species]">
+              <source
+                *ngIf="evo.image"
+                [srcset]="evo.image.replace('.jpg', '.avif')"
+                type="image/avif"
+              />
+              <img
+                class="img-fixed img-sprite"
+                [src]="evo.image"
+                [alt]="evo.species"
+              />
+            </picture>
+            <div class="infocard-lg-data text-muted">
+              <span class="ent-name" [routerLink]="['/pokemon', evo.species]">{{
+                evo.species | titlecase
+              }}</span>
+              <br />
+              <small>
+                <ng-container *ngFor="let type of evo.types">
+                  <span class="type" [ngClass]="'type-' + type.toLowerCase()">{{
+                    type
+                  }}</span>
+                </ng-container>
+              </small>
+            </div>
+          </div>
+
+          <!-- Branching evolutions of this child -->
+          <div
+            class="infocard-evo-split"
+            *ngIf="(evo.evolves_to ?? []).length > 1"
+            style="margin-left: 1rem"
+          >
+            <div
+              class="infocard-list-evo"
+              *ngFor="let branch of evo.evolves_to; let i = index"
+            >
+              <span class="infocard infocard-arrow">
+                <i
+                  class="icon-arrow"
+                  [ngClass]="
+                    ['icon-arrow-ne', 'icon-arrow-e', 'icon-arrow-se'][i] ||
+                    'icon-arrow-e'
+                  "
+                ></i>
+                <small>
+                  <ng-container *ngFor="let detail of branch.evolution_details">
+                    <!-- same detail display repeated for branch -->
+                    <ng-container *ngIf="detail.min_level !== null"
+                      >Level {{ detail.min_level }}</ng-container
+                    >
+                    <ng-container
+                      *ngIf="detail.relative_physical_stats !== null"
+                    >
+                      <span *ngIf="detail.relative_physical_stats === 1"
+                        >, Attack &gt; Defense</span
+                      >
+                      <span *ngIf="detail.relative_physical_stats === 0"
+                        >, Attack = Defense</span
+                      >
+                      <span *ngIf="detail.relative_physical_stats === -1"
+                        >, Attack &lt; Defense</span
+                      >
+                    </ng-container>
+                    <ng-container
+                      *ngIf="detail.trigger === 'use-item' && detail.item"
+                      >Use {{ detail.item | titlecase }}</ng-container
+                    >
+                    <ng-container *ngIf="detail.trigger === 'trade'">
+                      Trade
+                      <ng-container *ngIf="detail.held_item">
+                        while holding
+                        {{ detail.held_item | titlecase }}</ng-container
+                      >
+                      <ng-container *ngIf="detail.trade_species">
+                        for {{ detail.trade_species | titlecase }}</ng-container
+                      >
+                    </ng-container>
+                    <ng-container
+                      *ngIf="detail.held_item && detail.trigger !== 'trade'"
+                      >Hold {{ detail.held_item | titlecase }}</ng-container
+                    >
+                    <ng-container *ngIf="detail.known_move"
+                      >Knows {{ detail.known_move | titlecase }}</ng-container
+                    >
+                    <ng-container *ngIf="detail.known_move_type"
+                      >Knows {{ detail.known_move_type | titlecase }}-type
+                      move</ng-container
+                    >
+                    <ng-container *ngIf="detail.location"
+                      >at {{ detail.location | titlecase }}</ng-container
+                    >
+                    <ng-container *ngIf="detail.party_species"
+                      >With {{ detail.party_species | titlecase }} in
+                      party</ng-container
+                    >
+                    <ng-container *ngIf="detail.party_type"
+                      >With {{ detail.party_type | titlecase }}-type in
+                      party</ng-container
+                    >
+                    <ng-container *ngIf="detail.time_of_day"
+                      >During {{ detail.time_of_day | titlecase }}</ng-container
+                    >
+                    <ng-container *ngIf="detail.min_happiness !== null"
+                      >Happiness {{ detail.min_happiness }}</ng-container
+                    >
+                    <ng-container *ngIf="detail.min_affection !== null"
+                      >Affection {{ detail.min_affection }}</ng-container
+                    >
+                    <ng-container *ngIf="detail.min_beauty !== null"
+                      >Beauty {{ detail.min_beauty }}</ng-container
+                    >
+                    <ng-container *ngIf="detail.needs_overworld_rain"
+                      >While raining</ng-container
+                    >
+                    <ng-container *ngIf="detail.turn_upside_down"
+                      >Turn device upside down</ng-container
+                    >
+                    <ng-container *ngIf="detail.gender !== null">{{
+                      detail.gender === 1 ? "Female" : "Male"
+                    }}</ng-container>
+                    <ng-container
+                      *ngIf="
+                        detail.trigger &&
+                        !detail.min_level &&
+                        !detail.item &&
+                        !detail.trade_species &&
+                        !detail.held_item
+                      "
+                      >({{ detail.trigger | titlecase }})</ng-container
+                    >
+                  </ng-container>
+                </small>
+              </span>
+
+              <div class="infocard">
+                <picture [routerLink]="['/pokemon', branch.species]">
+                  <source
+                    *ngIf="branch.image"
+                    [srcset]="branch.image.replace('.jpg', '.avif')"
+                    type="image/avif"
+                  />
+                  <img
+                    class="img-fixed img-sprite"
+                    [src]="branch.image"
+                    [alt]="branch.species"
+                  />
+                </picture>
+                <div class="infocard-lg-data text-muted">
+                  <span
+                    class="ent-name"
+                    [routerLink]="['/pokemon', branch.species]"
+                    >{{ branch.species | titlecase }}</span
+                  >
+                  <br />
+                  <small>
+                    <ng-container *ngFor="let type of branch.types">
+                      <span
+                        class="type"
+                        [ngClass]="'type-' + type.toLowerCase()"
+                        >{{ type }}</span
+                      >
+                    </ng-container>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <hr class="evolution-chain-separator" />
+  </ng-container>
+</div>
+
+<!-- burmy or 1 4 evo -->
+<div class="infocard-evolution-wrapper" *ngIf="exceptionalChainType === '14'">
+  <ng-container *ngFor="let root of evolutionChainRoots">
+    <!-- Burmy Cloak -->
+    <div class="infocard-list-evo">
+      <div class="infocard">
+        <picture [routerLink]="['/pokemon', root.species]">
+          <source
+            *ngIf="root.image"
+            [srcset]="root.image.replace('.jpg', '.avif')"
+            type="image/avif"
+          />
+          <img
+            class="img-fixed img-sprite"
+            [src]="root.image"
+            [alt]="root.species"
+          />
+        </picture>
+        <div class="infocard-lg-data text-muted">
+          <span class="ent-name" [routerLink]="['/pokemon', root.species]">{{
+            root.species | titlecase
+          }}</span>
+          <br />
+          <small>
+            <ng-container *ngFor="let type of root.types">
+              <span class="type" [ngClass]="'type-' + type.toLowerCase()">{{
+                type
+              }}</span>
+            </ng-container>
+          </small>
+        </div>
+      </div>
+
+      <!-- Evolves to: Female → Wormadam-* | Male → Mothim -->
+      <div class="infocard-evo-split">
+        <div
+          class="infocard-list-evo"
+          *ngFor="let evo of root.evolves_to; let i = index"
+        >
+          <span class="infocard infocard-arrow">
+            <small>
+              <ng-container *ngFor="let detail of evo.evolution_details">
+                <ng-container *ngIf="detail.min_level !== null"
+                  >Level {{ detail.min_level }}</ng-container
+                >
+                <ng-container *ngIf="detail.gender !== null">
+                  , {{ detail.gender === 1 ? "Female" : "Male" }}
+                </ng-container>
+              </ng-container>
+            </small>
+            <i
+              class="icon-arrow"
+              [ngClass]="i === 0 ? 'icon-arrow-e' : 'icon-arrow-se'"
+            ></i>
+          </span>
+
+          <div class="infocard">
+            <picture [routerLink]="['/pokemon', evo.species]">
+              <source
+                *ngIf="evo.image"
+                [srcset]="evo.image.replace('.jpg', '.avif')"
+                type="image/avif"
+              />
+              <img
+                class="img-fixed img-sprite"
+                [src]="evo.image"
+                [alt]="evo.species"
+              />
+            </picture>
+            <div class="infocard-lg-data text-muted">
+              <span class="ent-name" [routerLink]="['/pokemon', evo.species]">{{
+                evo.species | titlecase
+              }}</span>
+              <br />
+              <small>
+                <ng-container *ngFor="let type of evo.types">
+                  <span class="type" [ngClass]="'type-' + type.toLowerCase()">{{
+                    type
+                  }}</span>
+                </ng-container>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="evolution-chain-separator" />
+  </ng-container>
+</div>
+
+<!-- Applin or 1 3 1 evo -->
+<div class="infocard-evolution-wrapper" *ngIf="exceptionalChainType === '15'">
+  <ng-container *ngFor="let root of evolutionChainRoots">
+    <!-- Applin -->
+    <div class="infocard-list-evo">
+      <div class="infocard">
+        <picture [routerLink]="['/pokemon', root.species]">
+          <source
+            *ngIf="root.image"
+            [srcset]="root.image.replace('.jpg', '.avif')"
+            type="image/avif"
+          />
+          <img
+            class="img-fixed img-sprite"
+            [src]="root.image"
+            [alt]="root.species"
+          />
+        </picture>
+        <div class="infocard-lg-data text-muted">
+          <span class="ent-name" [routerLink]="['/pokemon', root.species]">{{
+            root.species | titlecase
+          }}</span>
+          <br />
+          <small>
+            <ng-container *ngFor="let type of root.types">
+              <span class="type" [ngClass]="'type-' + type.toLowerCase()">{{
+                type
+              }}</span>
+            </ng-container>
+          </small>
+        </div>
+      </div>
+
+      <!-- Applin → Flapple, Appletun, Dipplin -->
+      <div class="infocard-evo-split">
+        <div
+          class="infocard-list-evo"
+          *ngFor="let evo of root.evolves_to; let i = index"
+        >
+          <!-- Arrow from Applin -->
+          <span class="infocard infocard-arrow">
+            <small>
+              <ng-container *ngFor="let detail of evo.evolution_details">
+                <ng-container *ngIf="detail.item"
+                  >Use {{ detail.item | titlecase }}</ng-container
+                >
+              </ng-container>
+            </small>
+            <i
+              class="icon-arrow"
+              [ngClass]="
+                ['icon-arrow-ne', 'icon-arrow-e', 'icon-arrow-se'][i] ||
+                'icon-arrow-e'
+              "
+            ></i>
+          </span>
+
+          <!-- Evolution target (Flapple, Appletun, Dipplin) -->
+          <div class="infocard">
+            <picture [routerLink]="['/pokemon', evo.species]">
+              <source
+                *ngIf="evo.image"
+                [srcset]="evo.image.replace('.jpg', '.avif')"
+                type="image/avif"
+              />
+              <img
+                class="img-fixed img-sprite"
+                [src]="evo.image"
+                [alt]="evo.species"
+              />
+            </picture>
+            <div class="infocard-lg-data text-muted">
+              <span class="ent-name" [routerLink]="['/pokemon', evo.species]">{{
+                evo.species | titlecase
+              }}</span>
+              <br />
+              <small>
+                <ng-container *ngFor="let type of evo.types">
+                  <span class="type" [ngClass]="'type-' + type.toLowerCase()">{{
+                    type
+                  }}</span>
+                </ng-container>
+              </small>
+            </div>
+          </div>
+
+          <!-- Dipplin → Hydrapple -->
+          <div
+            *ngIf="evo.evolves_to?.length"
+            class="infocard-evo-split"
+            style="margin-left: 1rem"
+          >
+            <div
+              class="infocard-list-evo"
+              *ngFor="let branch of evo.evolves_to"
+            >
+              <span class="infocard infocard-arrow">
+                <small>
+                  <ng-container *ngFor="let detail of branch.evolution_details">
+                    <ng-container *ngIf="detail.min_level"
+                      >Level {{ detail.min_level }}</ng-container
+                    >
+                    <ng-container *ngIf="detail.item"
+                      >Use {{ detail.item | titlecase }}</ng-container
+                    >
+                  </ng-container>
+                </small>
+                <i class="icon-arrow icon-arrow-e"></i>
+              </span>
+
+              <div class="infocard">
+                <picture [routerLink]="['/pokemon', branch.species]">
+                  <source
+                    *ngIf="branch.image"
+                    [srcset]="branch.image.replace('.jpg', '.avif')"
+                    type="image/avif"
+                  />
+                  <img
+                    class="img-fixed img-sprite"
+                    [src]="branch.image"
+                    [alt]="branch.species"
+                  />
+                </picture>
+                <div class="infocard-lg-data text-muted">
+                  <span
+                    class="ent-name"
+                    [routerLink]="['/pokemon', branch.species]"
+                    >{{ branch.species | titlecase }}</span
+                  >
+                  <br />
+                  <small>
+                    <ng-container *ngFor="let type of branch.types">
+                      <span
+                        class="type"
+                        [ngClass]="'type-' + type.toLowerCase()"
+                        >{{ type }}</span
+                      >
+                    </ng-container>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="evolution-chain-separator" />
+  </ng-container>
+</div>
+
+<!-- 1 2 and 2nd branch 1-->
+<div class="infocard-evolution-wrapper" *ngIf="exceptionalChainType === '122'">
+  <ng-container *ngFor="let root of evolutionChainRoots">
+    <div class="infocard-list-evo">
+      <!-- Base Stage -->
+      <div class="infocard" *ngIf="root">
+        <picture [routerLink]="['/pokemon', root.species]">
+          <source
+            *ngIf="root.image"
+            [srcset]="root.image.replace('.jpg', '.avif')"
+            type="image/avif"
+          />
+          <img
+            class="img-fixed img-sprite"
+            [src]="root.image"
+            [alt]="root.species"
+          />
+        </picture>
+        <div class="infocard-lg-data text-muted">
+          <span class="ent-name" [routerLink]="['/pokemon', root.species]">
+            {{ root.species | titlecase }}
+          </span>
+          <br />
+          <small>
+            <ng-container *ngFor="let type of root.types">
+              <span class="type" [ngClass]="'type-' + type.toLowerCase()">
+                {{ type }}
+              </span>
+            </ng-container>
+          </small>
+        </div>
+      </div>
+
+      <!-- Split Evolutions -->
+      <div class="infocard-evo-split" *ngIf="root.evolves_to.length > 0">
+        <div
+          class="infocard-list-evo"
+          *ngFor="let evo of root.evolves_to; let i = index"
+        >
+          <!-- Arrow with evolution method -->
+          <span class="infocard infocard-arrow">
+            <small>
+              <ng-container *ngFor="let detail of evo.evolution_details">
+                <ng-container *ngIf="detail.known_move">
+                  (after {{ detail.known_move | titlecase }} learned{{
+                    detail.location ? ", " + detail.location : ""
+                  }})
+                </ng-container>
+              </ng-container>
+            </small>
+            <i
+              class="icon-arrow"
+              [ngClass]="i === 0 ? 'icon-arrow-ne' : 'icon-arrow-se'"
+            ></i>
+          </span>
+
+          <!-- Evolution Stage 1 (e.g. Mr. Mime / Galarian Mr. Mime) -->
+          <div class="infocard" *ngIf="evo">
+            <picture [routerLink]="['/pokemon', evo.species]">
+              <source
+                *ngIf="evo.image"
+                [srcset]="evo.image.replace('.jpg', '.avif')"
+                type="image/avif"
+              />
+              <img
+                class="img-fixed img-sprite"
+                [src]="evo.image"
+                [alt]="evo.species"
+              />
+            </picture>
+            <div class="infocard-lg-data text-muted">
+              <span class="ent-name" [routerLink]="['/pokemon', evo.species]">
+                {{ evo.species | titlecase }}
+              </span>
+              <br />
+              <small *ngIf="evo.is_form && evo.is_default == false">
+                {{ evo.species | titlecase }} Form
+              </small>
+              <br />
+              <small>
+                <ng-container *ngFor="let type of evo.types">
+                  <span class="type" [ngClass]="'type-' + type.toLowerCase()">
+                    {{ type }}
+                  </span>
+                </ng-container>
+              </small>
+            </div>
+          </div>
+
+          <!-- Arrow to Stage 2 (e.g. Mr. Rime) -->
+          <ng-container *ngIf="evo.evolves_to.length > 0">
+            <span class="infocard infocard-arrow">
+              <i class="icon-arrow icon-arrow-e"></i>
+              <small>
+                <ng-container
+                  *ngFor="let detail of evo.evolves_to[0].evolution_details"
+                >
+                  <ng-container *ngIf="detail.min_level"
+                    >Level {{ detail.min_level }}</ng-container
+                  >
+                  <ng-container *ngIf="detail.item"
+                    >Use {{ detail.item | titlecase }}</ng-container
+                  >
+                  <ng-container *ngIf="detail.trigger === 'trade'"
+                    >Trade</ng-container
+                  >
+                </ng-container>
+              </small>
+            </span>
+
+            <!-- Final Stage (e.g. Mr. Rime) -->
+            <div class="infocard" *ngIf="evo.evolves_to[0]">
+              <picture [routerLink]="['/pokemon', evo.evolves_to[0].species]">
+                <source
+                  *ngIf="evo.evolves_to[0].image"
+                  [srcset]="evo.evolves_to[0].image.replace('.jpg', '.avif')"
+                  type="image/avif"
+                />
+                <img
+                  class="img-fixed img-sprite"
+                  [src]="evo.evolves_to[0].image"
+                  [alt]="evo.evolves_to[0].species"
+                />
+              </picture>
+              <div class="infocard-lg-data text-muted">
+                <span
+                  class="ent-name"
+                  [routerLink]="['/pokemon', evo.evolves_to[0].species]"
+                >
+                  {{ evo.evolves_to[0].species | titlecase }}
+                </span>
+                <br />
+                <small>
+                  <ng-container *ngFor="let type of evo.evolves_to[0].types">
+                    <span class="type" [ngClass]="'type-' + type.toLowerCase()">
+                      {{ type }}
+                    </span>
+                  </ng-container>
+                </small>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <hr class="evolution-chain-separator" />
+  </ng-container>
+</div>
+
+<!-- EEVEE 1 - 8 -->
+<div class="infocard-evolution-wrapper" *ngIf="exceptionalChainType === '18'">
+  <div class="eevee-evolution-circle">
+    <!-- Eevee in the center -->
+    <div class="infocard center">
+      <picture [routerLink]="['/pokemon', evolutionChainRoots[0].species]">
+        <source
+          *ngIf="evolutionChainRoots[0].image"
+          [srcset]="evolutionChainRoots[0].image.replace('.jpg', '.avif')"
+          type="image/avif"
+        />
+        <img
+          class="img-fixed img-sprite"
+          [src]="evolutionChainRoots[0].image"
+          [alt]="evolutionChainRoots[0].species"
+        />
+      </picture>
+      <div class="infocard-lg-data text-muted">
+        <span
+          class="ent-name"
+          [routerLink]="['/pokemon', evolutionChainRoots[0].species]"
+        >
+          {{ evolutionChainRoots[0].species | titlecase }}
+        </span>
+        <br />
+        <small>
+          <ng-container *ngFor="let type of evolutionChainRoots[0].types">
+            <span class="type" [ngClass]="'type-' + type.toLowerCase()">{{
+              type
+            }}</span>
+          </ng-container>
+        </small>
+      </div>
+    </div>
+
+    <!-- 8 Evolutions Around -->
+    <ng-container
+      *ngFor="let evo of evolutionChainRoots[0].evolves_to; let i = index"
+    >
+      <!-- Arrow -->
+      <span class="infocard infocard-arrow evo-arrow evo-arrow-{{ i }}">
+        <small>
+          <ng-container *ngFor="let detail of evo.evolution_details">
+            <ng-container *ngIf="detail.known_move">
+              (after {{ detail.known_move | titlecase }} learned{{
+                detail.location ? ", " + detail.location : ""
+              }})
+            </ng-container>
+          </ng-container>
+        </small>
+        <i
+          class="icon-arrow"
+          [ngClass]="[
+            i === 0
+              ? 'icon-arrow-n'
+              : i === 1
+              ? 'icon-arrow-ne'
+              : i === 2
+              ? 'icon-arrow-e'
+              : i === 3
+              ? 'icon-arrow-se'
+              : i === 4
+              ? 'icon-arrow-s'
+              : i === 5
+              ? 'icon-arrow-sw'
+              : i === 6
+              ? 'icon-arrow-w'
+              : 'icon-arrow-nw'
+          ]"
+        ></i>
+      </span>
+
+      <!-- Evolution Card -->
+      <div class="infocard evo-pos evo-{{ i }}">
+        <picture [routerLink]="['/pokemon', evo.species]">
+          <source
+            *ngIf="evo.image"
+            [srcset]="evo.image.replace('.jpg', '.avif')"
+            type="image/avif"
+          />
+          <img
+            class="img-fixed img-sprite"
+            [src]="evo.image"
+            [alt]="evo.species"
+          />
+        </picture>
+        <div class="infocard-lg-data text-muted">
+          <span class="ent-name" [routerLink]="['/pokemon', evo.species]">
+            {{ evo.species | titlecase }}
+          </span>
+          <br />
+          <small>
+            <ng-container *ngFor="let type of evo.types">
+              <span class="type" [ngClass]="'type-' + type.toLowerCase()">{{
+                type
+              }}</span>
+            </ng-container>
+          </small>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

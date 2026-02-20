@@ -1,0 +1,145 @@
+<article *ngIf="move">
+  <div class="book-wrapper">
+    <div class="book-page">
+      <h1>{{ getDisplayName(move.name) }}</h1>
+
+      <p class="short-effect" [style.border-color]="getTypeColor(move.type)">
+        <strong>Effect:</strong> {{ move.effect }}
+      </p>
+      <hr />
+
+      <fieldset
+        class="modern-list"
+        [style.border-left-color]="getTypeColor(move.type)"
+      >
+        <legend>{{ getDisplayName(move.name) }} Details</legend>
+        <ul>
+          <li>
+            <strong [ngStyle]="getTypeLabelStyle(move.type)">Type:</strong>
+            <span class="type" [ngClass]="'type-' + move.type.toLowerCase()">
+              {{ move.type }}</span
+            >
+          </li>
+          <li>
+            <strong [ngStyle]="getTypeLabelStyle(move.type)">Category:</strong>
+            <img
+              class="category-icon"
+              [src]="getCategoryStatusImage(move.category)"
+              [alt]="move.category"
+            />
+            {{ move.category }}
+          </li>
+          <li>
+            <strong [ngStyle]="getTypeLabelStyle(move.type)">Power:</strong>
+            {{ move.power }}
+          </li>
+          <li>
+            <strong [ngStyle]="getTypeLabelStyle(move.type)">Accuracy:</strong>
+            {{ move.accuracy }}
+          </li>
+          <li>
+            <strong [ngStyle]="getTypeLabelStyle(move.type)">PP:</strong>
+            {{ move.pp }}
+          </li>
+          <li>
+            <strong [ngStyle]="getTypeLabelStyle(move.type)"
+              >Introduced:</strong
+            >
+            {{ getGenerations() }}
+          </li>
+        </ul>
+      </fieldset>
+
+      <hr />
+
+      <div class="table-columns">
+        <!-- Left Table: Game Entries -->
+        <div class="table-column">
+          <table class="modern-table">
+            <caption>
+              Entries by game versions
+            </caption>
+            <thead>
+              <tr>
+                <th>Game Version</th>
+                <th>Effect Entry</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let entry of move.flavor_texts">
+                <th>add</th>
+                <td>
+                  <p>{{ entry | capitalizeFirstLetter }}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Right Table: Pokémon with Ability -->
+        <div class="table-column" *ngIf="pokemonThatLearnIt.length > 0">
+          <div class="table-wrapper">
+            <table class="modern-table">
+              <caption>
+                Pokémon that learn
+                {{
+                  move.name | titlecase
+                }}
+              </caption>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let poke of fullLearnerData"
+                  [routerLink]="['/pokemon', getPokemonRoute(poke)]"
+                >
+                  <td>
+                    <div
+                      style="display: flex; align-items: center; gap: 0.5rem"
+                    >
+                      <img
+                        [src]="poke.images['sprite-default']"
+                        [alt]="poke.name + ' sprite'"
+                        width="48"
+                        height="48"
+                        (error)="onImgError($event , poke)"
+                      />
+                      <span>{{ poke.dex_number | leadingZero : 4 }}</span>
+                    </div>
+                  </td>
+
+                  <td>
+                    {{ poke.name | titlecase }}
+                  </td>
+
+                  <td>
+                    <span
+                      class="type"
+                      [ngClass]="'type-' + poke.types[0]"
+                      [ngStyle]="{ background: getTypeColor(poke.types[0]) }"
+                      [routerLink]="['/type', poke.types[0]]"
+                      >{{ poke.types[0] | titlecase }}</span
+                    >
+                    <span
+                      class="type"
+                      *ngIf="poke.types[1]"
+                      [ngClass]="'type-' + poke.types[1]"
+                      [ngStyle]="{ background: getTypeColor(poke.types[1]) }"
+                      [routerLink]="['/type', poke.types[1]]"
+                      >{{ poke.types[1] | titlecase }}</span
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

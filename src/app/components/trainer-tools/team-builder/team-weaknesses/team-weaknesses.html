@@ -1,0 +1,40 @@
+<div *ngIf="team?.length; else noData" class="table-wrapper">
+  <table class="modern-table">
+    <thead>
+      <tr>
+        <th>
+          <span style="display: block; text-align: center">Move</span>
+          <span style="display: block; font-size: 0.8rem">↓</span>
+        </th>
+        <th *ngFor="let mon of team">
+          <img class="pokeImg" [routerLink]="'/pokemon/' + mon.name" [src]="mon.image" width="64" height="64" [alt]="mon.name" />
+          {{ mon.name | titlecase }}
+        </th>
+        <th style="white-space: nowrap;">Total Weak</th>
+        <th style="white-space: nowrap;">Total Resist</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let type of allTypes">
+        <td>
+          <span class="type type-{{ type.toLowerCase() }}">{{
+            type | titlecase
+          }}</span>
+        </td>
+        <td *ngFor="let mon of team" [ngClass]="getCoverageClass(mon, type)">
+          {{ getCoverageDisplay(mon, type) }}
+        </td>
+        <td [ngClass]="getTotalWeakClass(type)">
+          {{ getTotalWeakDisplay(type) }}
+        </td>
+        <td [ngClass]="getTotalResistClass(type)">
+          {{ getTotalResistDisplay(type) }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noData>
+  <p class="no-results">No Pokémon in this team.</p>
+</ng-template>

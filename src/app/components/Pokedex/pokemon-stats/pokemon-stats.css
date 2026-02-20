@@ -1,0 +1,453 @@
+/* Stats Table */
+.stats-table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+  border-top: 2px dashed #d0d7e4;
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.stats-table th {
+  text-align: left;
+  padding: 0 0 0.5rem 0;
+  font-weight: 700;
+  color: #1e3a5f;
+  font-size: 0.9rem;
+  user-select: none;
+}
+
+.stats-table td {
+  vertical-align: middle;
+  padding: 0.75rem 1rem;
+  background-color: #ffffff;
+  color: #1e3a5f;
+  font-weight: 600;
+  user-select: none;
+}
+
+.stat-name {
+  width: 140px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #1e3a5f;
+}
+
+.stat-value {
+  width: 50px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #1e3a5f;
+}
+
+.stat-bar-cell {
+  width: 100%;
+  padding-left: 1rem;
+  min-width: 80px; /* prevent it from shrinking too much */
+  max-width: 150px;
+}
+
+.stat-bar {
+  background-color: #dce6f0;
+  border-radius: 999px; /* full pill shape */
+  height: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.stat-fill {
+  height: 100%;
+  border-radius: 999px; /* match outer radius */
+  position: relative;
+  overflow: hidden;
+  background-color: currentColor; /* inherits from stat-color class */
+}
+
+.stat-fill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.3) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.3) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 24px 24px;
+  animation: diagonalStripes 1s linear infinite;
+  pointer-events: none;
+  border-radius: 999px; /* make stripes follow same shape */
+}
+
+@keyframes diagonalStripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 24px 0;
+  }
+}
+
+/* Stat colors */
+.stat-red {
+  background-color: #e53935;
+}
+.stat-orange {
+  background-color: #fb8c00;
+}
+.stat-yellow {
+  background-color: #fdd835;
+}
+.stat-green {
+  background-color: #85c33a;
+}
+.stat-dark-green {
+  background-color: #217826;
+}
+.stat-blue {
+  background-color: #1e88e5;
+}
+
+/* Total row */
+.stats-total-row td {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #1e3a5f;
+  text-align: center;
+  padding: 1rem;
+  user-select: none;
+}
+
+.stats-table thead {
+  border-radius: 12px;
+  box-shadow: inset 0 -2px 4px rgb(0 0 0 / 0.06);
+}
+
+.stats-table thead tr {
+  border-radius: 12px;
+}
+
+.stats-table thead th {
+  padding: 1rem 1.25rem;
+  font-weight: 700;
+  color: #1e2a50;
+  text-align: left;
+  user-select: none;
+  border: none;
+  /* smooth rounded corners on first/last */
+}
+
+.stats-table thead th:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.stats-table thead th:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* Round edges for first and last cells in stats rows */
+.stats-table tbody tr td:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.stats-table tbody tr td:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.stat-fill {
+  height: 100%;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Stat range */
+.stat-range {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: var(--stat-color);
+  align-items: flex-start;
+}
+
+.range-pill-max {
+  display: inline-flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 4px;
+  background-color: #f3f6fb;
+  min-width: 90px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.4rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+  background-color: #d0f0dc;
+  color: #2e7d32;
+  transition: background-color 0.3s ease;
+}
+
+.range-pill-min {
+  display: inline-flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 4px;
+  background-color: #f3f6fb;
+  min-width: 90px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.4rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+  background-color: #fbdede;
+  color: #c62828;
+  transition: background-color 0.3s ease;
+}
+
+.min-label,
+.max-label {
+  color: #607d8b;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.min-value,
+.max-value {
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.range-arrow {
+  font-weight: bold;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+@media (max-width: 1000px) {
+  .stats-table th,
+  .stats-table td {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .stat-name {
+    font-size: 0.9rem;
+    width: 120px;
+  }
+
+  .stat-value {
+    width: 40px;
+    font-size: 0.9rem;
+  }
+
+  .stat-bar-cell {
+    padding-left: 0.5rem;
+    max-width: 120px;
+  }
+
+  .stat-bar {
+    height: 12px; /* slightly shorter bars for mobile */
+  }
+
+  .stat-fill {
+    transition: width 0.3s ease-in-out;
+  }
+
+  /* Make range pills smaller */
+  .stat-range {
+    font-size: 0.75rem;
+  }
+
+  .range-pill-min,
+  .range-pill-max {
+    min-width: 40px;
+    padding: 0.15rem 0.4rem;
+    font-size: 0.8rem;
+  }
+
+  .range-arrow {
+    font-size: 1rem;
+  }
+}
+
+/* MODAL */
+/* === Searchable Dropdown Container === */
+.compare-search-container {
+  position: relative;
+  width: 280px;
+  margin: 1rem 0;
+}
+
+.compare-search-container input {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* === Dropdown List === */
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  z-index: 1000;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-item {
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-item img {
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.no-results {
+  padding: 0.5rem 1rem;
+  color: #999;
+  font-style: italic;
+}
+
+/* === Comparison Modal === */
+.comparison-modal {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 2px solid #888;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-content .close-btn {
+  float: right;
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.comparison-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.poke-col {
+  text-align: center;
+}
+
+.poke-col img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  margin-bottom: 0.25rem;
+}
+
+/* === Comparison Table === */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.comparison-table th,
+.comparison-table td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+/* Stat coloring for better/worse */
+.stat-better {
+  background-color: #c8e6c9; /* light green */
+  font-weight: bold;
+}
+
+.stat-worse {
+  background-color: #ffcdd2; /* light red */
+}
+
+.comparison-table tfoot tr {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+canvas {
+  width: 400px !important;
+  height: 400px !important;
+  display: block;
+  margin: 0 auto;
+  user-select: none;
+}
+
+.judge-chart-wrapper h3 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+
+  color: #333;
+}
+
+.stat-view-toggle {
+  margin: 1rem 0;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.stat-view-toggle button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: var(--button-bg, #ccc);
+  color: var(--button-text, #000);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.stat-view-toggle button.active {
+  background: var(--accent-color, #1e88e5);
+  color: white;
+  font-weight: bold;
+}

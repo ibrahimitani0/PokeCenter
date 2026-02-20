@@ -1,0 +1,173 @@
+[
+    {
+      "PowerItems": [
+        {
+          "boosts": "(HP)",
+          "icon": "pw.png",
+          "id": "1",
+          "name": "Power Weight"
+        },
+        {
+          "boosts": "(Attack)",
+          "icon": "pb.png",
+          "id": "2",
+          "name": "Power Bracer"
+        },
+        {
+          "boosts": "(Defense)",
+          "icon": "pbel.png",
+          "id": "3",
+          "name": "Power Belt"
+        },
+        {
+          "boosts": "(Sp. Attack)",
+          "icon": "pl.png",
+          "id": "4",
+          "name": "Power Lens"
+        },
+        {
+          "boosts": "(Sp. Defense)",
+          "icon": "pbn.png",
+          "id": "5",
+          "name": "Power Band"
+        },
+        {
+          "boosts": "(Speed)",
+          "icon": "pa.png",
+          "id": "6",
+          "name": "Power Anklet"
+        }
+      ],
+      "Vitamins": [
+        {
+          "boosts": "(HP)",
+          "icon": "hpUp.png",
+          "id": "1",
+          "name": "HP Up"
+        },
+        {
+          "boosts": "(Attack)",
+          "icon": "protein.png",
+          "id": "2",
+          "name": "Protein"
+        },
+        {
+          "boosts": "(Defense)",
+          "icon": "iron.png",
+          "id": "3",
+          "name": "Iron"
+        },
+        {
+          "boosts": "(Sp. Attack)",
+          "icon": "cal.png",
+          "id": "4",
+          "name": "Calcium"
+        },
+        {
+          "boosts": "(Sp. Defense)",
+          "icon": "zinc.png",
+          "id": "5",
+          "name": "Zinc"
+        },
+        {
+          "boosts": "(Speed)",
+          "icon": "carbos.png",
+          "id": "6",
+          "name": "Carbos"
+        }
+      ],
+      "Wings": [
+        {
+          "boosts": "(HP)",
+          "icon": "hw.png",
+          "id": "1",
+          "name": "Health Wing"
+        },
+        {
+          "boosts": "(Attack)",
+          "icon": "mw.png",
+          "id": "2",
+          "name": "Muscle Wing"
+        },
+        {
+          "boosts": "(Defense)",
+          "icon": "rw.png",
+          "id": "3",
+          "name": "Resist Wing"
+        },
+        {
+          "boosts": "(Sp. Attack)",
+          "icon": "gw.png",
+          "id": "4",
+          "name": "Genius Wing"
+        },
+        {
+          "boosts": "(Sp. Defense)",
+          "icon": "cw.png",
+          "id": "5",
+          "name": "Clever Wing"
+        },
+        {
+          "boosts": "(Speed)",
+          "icon": "sw.png",
+          "id": "5",
+          "name": "Swift Wing"
+        }
+      ],
+      "evBerries": [
+        {
+          "boosts": "(HP)",
+          "icon": "pomeg.png",
+          "id": "1",
+          "name": "Pomeg Berry"
+        },
+        {
+          "boosts": "(Attack)",
+          "icon": "kelp.png",
+          "id": "2",
+          "name": "Kelpsy Berry"
+        },
+        {
+          "boosts": "(Defense)",
+          "icon": "qualot.png",
+          "id": "3",
+          "name": "Qualot Berry"
+        },
+        {
+          "boosts": "(Sp. Attack)",
+          "icon": "hondew.png",
+          "id": "4",
+          "name": "Hondew Berry"
+        },
+        {
+          "boosts": "(Sp. Defence)",
+          "icon": "grepa.png",
+          "id": "5",
+          "name": "Grepa Berry"
+        },
+        {
+          "boosts": "(Speed)",
+          "icon": "tamato.png",
+          "id": "6",
+          "name": "Tamato Berry"
+        }
+      ],
+      "otherItems": [
+        {
+          "boosts": "Holding a Macho Brace, a Pokémon gains EVs while earning experience points, the Exp. Share item allows Pokémon to gain EVs without battling. It will gain the same base EVs that the Pokémon in battle gains. The Pokémon holding Exp. Share will benefit from its own Pokérus (see below), but not from the item or condition of the Pokémon in battle.",
+          "id": "1",
+          "name": "Macho Brace"
+        },
+        {
+          "boosts": "Every Pokémon has a 1/21,845 chance of generating the virus, the virus can spread to all the Pokémon in your party, a Pokémon with Pokérus can earn double the Evs yeilded from Pokémon battled. The downside is that the virus lasts only up to 24 hours if the infected Pokémon remains in your party, however the Pokémon stored in the PC will keep the virus indefinitely.",
+          "id": "2",
+          "name": "Pokérus"
+        },
+        {
+          "boosts": "Pokémon Holding Exp. Share can gain experience points as well as EVs without having to battle. It will gain the same base EVs that the Pokémon in battle gains.",
+          "id": "3",
+          "name": "Exp. Share"
+        }
+      ]
+    }
+  ]

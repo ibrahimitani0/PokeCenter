@@ -1,0 +1,265 @@
+<article *ngIf="PTypes">
+  <div class="book-wrapper">
+    <div class="book-page">
+      <h1>{{ getDisplayName(PTypes.name) }} Types</h1>
+
+      <p class="short-effect">
+        {{ PTypes.description }} It's Damage class is primarily
+        {{ PTypes.move_damage_class.name }}
+        <img
+          [src]="getCategoryStatusImage(PTypes.move_damage_class.name)"
+          [alt]="PTypes.move_damage_class.name"
+        />.
+      </p>
+      <hr />
+
+      <div class="damage-relations">
+        <div class="damage-section">
+          <h4>Double Damage From</h4>
+          <div class="type-badges">
+            <span
+              class="type"
+              [ngClass]="'type-' + damage.name.toLowerCase()"
+              *ngFor="let damage of PTypes.damage_relations.double_damage_from"
+              [ngStyle]="{ background: getTypeColor(damage.name) }"
+              [routerLink]="['/type', damage.name]"
+            >
+              {{ damage.name | titlecase }}
+            </span>
+          </div>
+        </div>
+
+        <div class="damage-section">
+          <h4>Double Damage To</h4>
+          <div class="type-badges">
+            <span
+              class="type"
+              [ngClass]="'type-' + damage.name.toLowerCase()"
+              *ngFor="let damage of PTypes.damage_relations.double_damage_to"
+              [ngStyle]="{ background: getTypeColor(damage.name) }"
+              [routerLink]="['/type', damage.name]"
+            >
+              {{ damage.name | titlecase }}
+            </span>
+          </div>
+        </div>
+
+        <div class="damage-section">
+          <h4>Half Damage from</h4>
+          <div class="type-badges">
+            <span
+              class="type"
+              [ngClass]="'type-' + damage.name.toLowerCase()"
+              *ngFor="let damage of PTypes.damage_relations.half_damage_from"
+              [ngStyle]="{ background: getTypeColor(damage.name) }"
+              [routerLink]="['/type', damage.name]"
+            >
+              {{ damage.name | titlecase }}
+            </span>
+          </div>
+        </div>
+        <div class="damage-section">
+          <h4>Half Damage To</h4>
+          <div class="type-badges">
+            <span
+              class="type"
+              [ngClass]="'type-' + damage.name.toLowerCase()"
+              *ngFor="let damage of PTypes.damage_relations.half_damage_to"
+              [ngStyle]="{ background: getTypeColor(damage.name) }"
+              [routerLink]="['/type', damage.name]"
+            >
+              {{ damage.name | titlecase }}
+            </span>
+          </div>
+        </div>
+        <div class="damage-section">
+          <h4>No Damage From</h4>
+          <div class="type-badges">
+            <span
+              class="type"
+              [ngClass]="'type-' + damage.name.toLowerCase()"
+              *ngFor="let damage of PTypes.damage_relations.no_damage_from"
+              [ngStyle]="{ background: getTypeColor(damage.name) }"
+              [routerLink]="['/type', damage.name]"
+            >
+              {{ damage.name | titlecase }}
+            </span>
+          </div>
+        </div>
+        <div class="damage-section">
+          <h4>No Damage To</h4>
+          <div class="type-badges">
+            <span
+              class="type"
+              [ngClass]="'type-' + damage.name.toLowerCase()"
+              *ngFor="let damage of PTypes.damage_relations.no_damage_to"
+              [ngStyle]="{ background: getTypeColor(damage.name) }"
+              [routerLink]="['/type', damage.name]"
+            >
+              {{ damage.name | titlecase }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <br />
+      <hr />
+      <section class="damage-section">
+        <app-type-defenses
+          [types]="[PTypes.name]"
+          [name]="PTypes.name"
+          context="type"
+        ></app-type-defenses>
+      </section>
+      <hr />
+      <section>
+        <div class="table-column">
+          <table class="modern-table">
+            <caption>
+              Facts About
+              {{
+                getDisplayName(PTypes.name)
+              }}-Types
+            </caption>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Effects</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let effect of PTypes.effects">
+                <td>{{ effect.category }}</td>
+                <td>
+                  <p>{{ effect.effect }}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <br />
+      <hr />
+
+      <section>
+        <div class="table-columns">
+          <!-- Left Table: Game Entries -->
+          <div class="table-wrapper">
+            <table class="modern-table">
+              <caption>
+                All
+                {{
+                  getDisplayName(PTypes.name)
+                }}-Type Moves
+              </caption>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Category</th>
+                  <th>Power</th>
+                  <th>Accuracy</th>
+                  <th>PP</th>
+                  <th>Generation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let move of moves"
+                  [routerLink]="['/move', move.name]"
+                >
+                  <td>{{ sanitizeName(move.name) }}</td>
+                  <td class="type-badges">
+                    <span
+                      class="type"
+                      [ngClass]="'type-' + move.type.toLowerCase()"
+                      [ngStyle]="{ background: getTypeColor(move.type) }"
+                      [routerLink]="['/type', move.type]"
+                    >
+                      {{ move.type }}
+                    </span>
+                  </td>
+                  <td>
+                    <img
+                      [src]="getCategoryStatusImage(move.category)"
+                      [alt]="move.category"
+                      class="category-icon"
+                    />
+                  </td>
+                  <td>{{ move.power }}</td>
+                  <td>{{ move.accuracy }}</td>
+                  <td>{{ move.pp }}</td>
+                  <td>
+                    {{
+                      move.generation_introduced
+                        .replace("generation-", "")
+                        .toUpperCase()
+                    }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Right Table: Pokémon with Ability -->
+          <div class="table-column">
+            <div class="table-wrapper">
+              <table class="modern-table">
+                <caption>
+                  Pokémon with the type
+                  {{
+                    getDisplayName(PTypes.name)
+                  }}
+                </caption>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let poke of getPokemonWithThisType()"
+                    [routerLink]="['/pokemon', getPokemonRoute(poke)]"
+                  >
+                    <td>
+                      <div
+                        style="display: flex; align-items: center; gap: 0.5rem"
+                      >
+                        <img
+                          [src]="poke.images['sprite-default']"
+                          [alt]="poke.name + ' sprite'"
+                          width="48"
+                          height="48"
+                          (error)="onImgError($event, poke)"
+                        />
+                        <span>{{ poke.dex_number | leadingZero : 4 }}</span>
+                      </div>
+                    </td>
+
+                    <td>{{ getDisplayName(poke.name) }}</td>
+                    <td class="type-badges">
+                      <ng-container
+                        *ngFor="let type of poke.types; let i = index"
+                      >
+                        <span
+                          *ngIf="type"
+                          class="type"
+                          [ngClass]="'type-' + type.toLowerCase()"
+                          [ngStyle]="{ background: getTypeColor(type) }"
+                          [routerLink]="['/type', type]"
+                        >
+                          {{ type }}
+                        </span>
+                      </ng-container>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</article>

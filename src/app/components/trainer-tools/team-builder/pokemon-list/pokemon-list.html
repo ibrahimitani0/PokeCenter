@@ -1,0 +1,162 @@
+<div class="list-root">
+  <ng-container *ngIf="teams$ | async as teams; else loading">
+    <ng-container *ngIf="teams.length; else noTeams">
+      <div *ngFor="let t of teams; let ti = index">
+        <div class="team" *ngIf="(activeIndex$ | async) === ti">
+          <h2>{{ t.name }}</h2>
+          <div
+            class="pokemons-wrapper"
+            cdkDropList
+            cdkDropListOrientation="vertical"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div *ngFor="let mon of t.pokemon; let i = index" cdkDrag>
+              <fieldset
+                class="poke-card"
+                [ngStyle]="{
+                  '--type-color': getTypeColor(mon.types[0]),
+                  background: getBackgroundGradient(mon.types[0]),
+                  border: '4px solid' + getTypeColor(mon.types[0])
+                }"
+              >
+                <legend>
+                  <button (click)="openEditor(mon)" title="Edit">✎ Edit</button>
+                  <button (click)="remove(mon)" title="Remove">🗑 Delete</button>
+                </legend>
+
+                <div class="card-info">
+                  <!-- Name -->
+                  <h4>
+                    {{ mon.name | titlecase }}
+                  </h4>
+                  <!-- Sprite -->
+                  <img class="sprite" [src]="mon.image" [alt]="mon.name" />
+                  <!-- Type -->
+                  <div class="type-container">
+                    <span
+                      *ngFor="let type of mon.types"
+                      class="type"
+                      [ngClass]="'type-' + type.toLowerCase()"
+                      [routerLink]="['/type', type]"
+                    >
+                      {{ type }}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="card-details">
+                  <sub>
+                    <strong>Nickname: </strong>
+                    {{ mon.nickname | titlecase }}</sub
+                  >
+                  <sub>
+                    <strong>Level: </strong> {{ mon.level }} |
+                    <strong>Shiny: </strong>
+                    {{ mon.isShiny ? "Yes" : "No" }}
+                  </sub>
+                  <sub> <strong>Gender: </strong> {{ mon.gender }} </sub>
+                  <ng-container
+                    *ngIf="getItem(mon.heldItem) | async as item; else sub"
+                  >
+                    <img
+                      width="25"
+                      height="25"
+                      [src]="item.sprites.default"
+                      [alt]="item.name"
+                    />
+                    <sub> <strong>Item: </strong>{{ item.name }} </sub>
+                  </ng-container>
+                  <ng-template #sub>
+                    <sub> <strong>Item: </strong></sub></ng-template
+                  >
+
+                  <!-- Ability -->
+                  <div>
+                    <sub><strong>Ability: </strong> {{ mon.ability }}</sub>
+                  </div>
+
+                  <div>
+                    <sub><strong>Nature: </strong> {{ mon.nature }}</sub>
+                  </div>
+                </div>
+
+                <!-- Moves go here, between details and stats -->
+                <div class="moves-container">
+                  <sub><strong>Moves: </strong></sub>
+                  <ng-container *ngFor="let m of mon.moves; let i = index">
+                    <input disabled type="text" [(ngModel)]="mon.moves[i]" />
+                  </ng-container>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-container">
+                  <div class="stats-section">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Stats</th>
+                          <th></th>
+                          <th>EVs</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngIf="mon.baseStats as stats">
+                        <tr *ngFor="let s of stats; let i = index">
+                          <!-- Base Stat -->
+                          <td class="stat-name-header">
+                            {{ shortenName(s.name) }}
+                          </td>
+                          <td class="stat-bar-cell">
+                            <div class="stat-bar" aria-hidden="true">
+                              <div
+                                class="stat-fill"
+                                [style.width.%]="
+                                  getStatFillWidth(mon, evStats[i])
+                                "
+                                [ngClass]="getStatColorByValue(mon, evStats[i])"
+                              ></div>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div class="ev-input-wrapper">
+                              <input
+                                class="EVSinput"
+                                disabled
+                                type="number"
+                                min="0"
+                                max="252"
+                                step="1"
+                                [(ngModel)]="mon.evs[evStats[i]]"
+                              />
+                              <span class="nature-sign">{{
+                                getNatureSign(mon, evStats[i])
+                              }}</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <div class="showDefCov">
+            <button (click)="toggleDefCoverage()">
+              {{
+                showDefCoverage
+                  ? "Hide Defensive Coverage"
+                  : "Show Defensive Coverage"
+              }}
+            </button>
+          </div>
+          <div *ngIf="showDefCoverage">
+            <app-team-weaknesses [team]="t.pokemon"></app-team-weaknesses>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+  <ng-template #noTeams><p>No teams yet.</p></ng-template>
+  <ng-template #loading><p>Loading…</p></ng-template>
+</div>

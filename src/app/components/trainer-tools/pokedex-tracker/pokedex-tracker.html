@@ -1,0 +1,43 @@
+<div class="tracker-container">
+  <div class="search-wrapper">
+    <input
+      type="text"
+      maxlength="20"
+      [(ngModel)]="searchQuery"
+      (input)="resetVisibleCount()"
+      placeholder="Search..."
+    />
+    <span class="search-icon">🔍</span>
+
+    <div class="caught-counter" aria-live="polite" aria-atomic="true">
+      Caught ({{ caughtSet.size }}/{{ nationalDex.length }})
+    </div>
+  </div>
+
+  <div class="pokedex-grid">
+    <div
+      class="pokemon-card"
+      *ngFor="let mon of filteredPokedex | slice : 0 : visibleCount;"
+      (click)="toggleCaught(mon.dex_number)"
+      [class.caught]="isCaught(mon.dex_number)"
+     
+    >
+      <div class="sprite-wrapper">
+        <img
+          [src]="mon.images['official_artwork-default']"
+          [alt]="mon.name"
+          loading="lazy"
+        />
+      </div>
+      <div class="info">
+        <span class="dex-number">#{{ mon.dex_number }}</span>
+        <span class="name">{{ mon.name }}</span>
+        <span class="dex-number">
+          {{ mon.types[0] }}
+          <span *ngIf="mon.types[1]">/ {{ mon.types[1] }}</span>
+        </span>
+      </div>
+      <div class="caught-mark">✔</div>
+    </div>
+  </div>
+</div>

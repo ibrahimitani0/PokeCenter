@@ -1,0 +1,95 @@
+<article *ngIf="eggGroup">
+  <div class="book-wrapper">
+    <div class="book-page">
+      <h1 [ngStyle]="{ color: geteggGroupColor(eggGroup.name) }">
+        {{ getDisplayName(eggGroup.name) }}
+      </h1>
+
+      <p
+        class="short-effect"
+        [style.border-color]="geteggGroupColor(eggGroup.name)"
+      >
+        <span *ngIf="eggGroup.old_name"
+          >The {{ getDisplayName(eggGroup.name) }} egg group was previously
+          known as ({{ eggGroup.old_name }}). Pokémon in this group are
+        </span>
+        {{ eggGroup.short_desc }}
+      </p>
+      <hr />
+
+      <div class="table-columns">
+        <!-- Left Table: Game Entries -->
+      </div>
+
+      <!-- Right Table: Pokémon with Ability -->
+      <div class="table-column">
+        <table class="modern-table">
+          <caption>
+            Pokémon that belong to the
+            {{
+              eggGroup.name | titlecase
+            }}
+            Egg Group
+          </caption>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>type</th>
+              <th>2nd egg group</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let poke of getPokemonWithThisGroup()"
+              [routerLink]="['/pokemon', getPokemonRoute(poke)]"
+            >
+              <td>
+                <div style="display: flex; align-items: center; gap: 0.5rem">
+                  <img
+                    [src]="poke.images['sprite-default']"
+                    [alt]="poke.name + ' sprite'"
+                    width="48"
+                    height="48"
+                    (error)="onImgError($event, poke)"
+                  />
+                  <span>{{ poke.dex_number | leadingZero : 4 }}</span>
+                </div>
+              </td>
+
+              <td>{{ getDisplayName(poke.name) }}</td>
+
+              <td>
+                <span
+                  class="type"
+                  [ngClass]="'type-' + poke.types[0]"
+                  [ngStyle]="{ background: getTypeColor(poke.types[0]) }"
+                  [routerLink]="['/type', poke.types[0]]"
+                >
+                  {{ poke.types[0] | titlecase }}
+                </span>
+                <span
+                  class="type"
+                  [ngClass]="'type-' + poke.types[1]"
+                  [ngStyle]="{ background: getTypeColor(poke.types[1]) }"
+                  [routerLink]="['/type', poke.types[1]]"
+                  *ngIf="poke.types[1]"
+                >
+                  {{ poke.types[1] | titlecase }}
+                </span>
+              </td>
+              <td>
+                <span *ngIf="poke.egg_groups?.[1]; else noSecondGroup">
+                  {{ poke.egg_groups[1] }}
+                </span>
+                <ng-template #noSecondGroup>
+                  <span>&mdash;</span>
+                </ng-template>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>

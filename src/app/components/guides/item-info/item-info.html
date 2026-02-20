@@ -1,0 +1,70 @@
+<article *ngIf="item">
+  <div class="book-wrapper">
+    <div class="book-page">
+      <h1>{{ getDisplayName(item.name) }}</h1>
+
+      <p class="short-effect">
+        <strong>Effect:</strong>
+        <ng-container *ngFor="let e of item.effect_entries">
+          {{ e.effect }}
+        </ng-container>
+      </p>
+      <hr />
+
+      <fieldset class="modern-list">
+        <legend>
+          <img
+            class="category-icon"
+            [src]="item.sprites.default"
+            [alt]="item.name"
+          />
+          {{ getDisplayName(item.name) }} Details
+        </legend>
+        <ul>
+          <li>
+            <strong>Category:</strong>
+            {{ item.category }}
+          </li>
+          <li>
+            <strong >Cost:</strong>
+            {{ item.cost }}
+          </li>
+          <li>
+            <strong>Fling Power:</strong>
+            {{ item.fling_power }}
+          </li>
+          <li>
+            <strong>Fling Effect:</strong>
+            {{ item.fling_effect }}
+          </li>
+        </ul>
+      </fieldset>
+
+      <hr />
+
+      <div class="table-columns">
+        <!-- Left Table: Game Entries -->
+    
+          <table class="modern-table">
+            <caption>
+              Entries by game versions
+            </caption>
+            <thead>
+              <tr>
+                <th>Game Version</th>
+                <th>Effect Entry</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let entry of item.flavor_text_entries">
+                <th>{{entry.version}}</th>
+                <td>
+                  <p>{{ entry.flavor_text| capitalizeFirstLetter }}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</article>

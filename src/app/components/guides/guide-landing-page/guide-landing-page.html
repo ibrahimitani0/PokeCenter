@@ -1,0 +1,1072 @@
+<article>
+  <div class="tab-container">
+    <nav class="tab-header">
+      <button
+        *ngFor="let tab of tabs"
+        [class.active]="activeTab === tab.id"
+        (click)="onTabChange(tab.id)"
+      >
+        {{ tab.label }}
+      </button>
+    </nav>
+    <section class="tab-content" [ngSwitch]="activeTab">
+      <div *ngSwitchCase="'training'">
+        <!-- Training content here -->
+        <section class="training-section">
+          <h2>Training Pokémon: A Trainer’s Guide</h2>
+
+          <p>
+            Becoming a skilled Pokémon Trainer isn't just about catching
+            powerful creatures — it's about building strong bonds, understanding
+            strengths and weaknesses, and training smart. Whether you're
+            preparing for your first Gym Challenge or heading into the Pokémon
+            League, proper training can make the difference between victory and
+            defeat.
+          </p>
+        </section>
+        <section class="training-section">
+          <h3>Experience & Leveling Up</h3>
+          <p>
+            Pokémon gain experience (EXP) points through battles. When enough
+            EXP is accumulated, the Pokémon levels up, increasing its stats and
+            potentially learning new moves or evolving.
+          </p>
+          <ul>
+            <li>Wild Pokémon give less EXP than Trainers or Gym Leaders.</li>
+            <li>EXP Share distributes EXP to all party members.</li>
+            <li>
+              Some Pokémon evolve only after reaching certain levels (e.g.,
+              Charmeleon → Charizard at Lv.36).
+            </li>
+          </ul>
+        </section>
+        <section class="training-section">
+          <h3>Effort Values (EVs)</h3>
+          <p>
+            EVs are hidden points gained by defeating Pokémon in battle, which
+            enhance specific stats. For example:
+          </p>
+          <ul>
+            <li>Defeating a Pikachu grants Speed EVs.</li>
+            <li>Defeating a Machop gives Attack EVs.</li>
+          </ul>
+          <p>
+            EV training allows competitive trainers to fine-tune their Pokémon
+            for specific roles like tanking or sweeping.
+          </p>
+        </section>
+        <section class="training-section">
+          <h3>Individual Values (IVs)</h3>
+          <p>
+            IVs are the Pokémon's genetic potential, randomly determined at
+            capture or hatching. They affect stats and range from 0–31.
+          </p>
+          <ul>
+            <li>Use the Judge function in your PC to see IV summaries.</li>
+            <li>
+              Breeding with Destiny Knot and IV items can pass IVs to offspring.
+            </li>
+          </ul>
+        </section>
+        <section class="training-section">
+          <h3>Items & Training Tools</h3>
+          <ul>
+            <li>
+              <strong> Exp. Share</strong> – Distributes EXP to all party
+              Pokémon.
+            </li>
+            <li>
+              <strong> Power Items</strong> – Help with targeted EV training.
+            </li>
+            <li>
+              <strong> Vitamins</strong> – Boost EVs instantly (Protein, Carbos,
+              etc.).
+            </li>
+            <li>
+              <strong> Nature Mints</strong> – Adjust a Pokémon's stat growth
+              bias.
+            </li>
+          </ul>
+        </section>
+        <section class="training-section">
+          <h3>Pro Training Tips</h3>
+          <ul>
+            <li>
+              Maximize EVs (510 total, 252 per stat) for competitive Pokémon.
+            </li>
+            <li>
+              Choose Natures that complement your strategy (e.g., Jolly for
+              speed).
+            </li>
+            <li>
+              Use S.O.S. chains, hordes, or mass outbreaks for faster training
+              in some games.
+            </li>
+            <li>
+              Happiness-based evolutions (like Eevee to Espeon) need care,
+              items, and walking.
+            </li>
+          </ul>
+        </section>
+        <section class="training-section">
+          <h3>Did You Know?</h3>
+          <ul>
+            <li>
+              A Level 1 Pokémon with perfect IVs and EVs can defeat a Level 100
+              if the strategy is right.
+            </li>
+            <li>
+              Pokémon with the ability <strong>Pokérus</strong> gain double EVs
+              — and it's contagious!
+            </li>
+            <li>
+              Some moves (like Return) grow stronger with higher friendship.
+            </li>
+          </ul>
+
+          <p>
+            <em
+              >“Training isn’t just about strength — it’s about heart, focus,
+              and determination.”</em
+            >
+            — Veteran Trainer
+          </p>
+        </section>
+      </div>
+      <div *ngSwitchCase="'breeding'">
+        <div class="columns">
+          <div class="column">
+            <h2>Breeding & Egg Groups</h2>
+
+            <p>
+              Breeding is a core mechanic that allows Trainers to produce new
+              Pokémon with inherited moves, Abilities, and even optimized stats.
+              Not all Pokémon can breed, and compatibility is determined by
+              <strong>Egg Groups</strong> — a classification based on physical
+              traits or biological compatibility.
+            </p>
+
+            <h3>What Are Egg Groups?</h3>
+
+            <p>
+              Every Pokémon that is capable of breeding belongs to one or two
+              <strong>Egg Groups</strong>. Pokémon in the same Egg Group can
+              produce offspring when placed together in a nursery or daycare.
+              For example:
+            </p>
+
+            <ul>
+              <li>
+                <strong> Gyarados</strong> and <strong>Milotic</strong> can
+                breed — both are in the <em>Water 2</em> group.
+              </li>
+              <li>
+                <strong> Pikachu</strong> and <strong>Skitty</strong> cannot —
+                they share no Egg Group.
+              </li>
+            </ul>
+
+            <p>Some Egg Groups reflect body shape or function:</p>
+
+            <ul>
+              <li>
+                <strong> Field</strong> – Common land Pokémon (e.g., Eevee,
+                Growlithe)
+              </li>
+              <li>
+                <strong> Water 1 / 2 / 3</strong> – Different aquatic Pokémon
+                types
+              </li>
+              <li>
+                <strong> Flying</strong> – Pokémon with wings or flight traits
+              </li>
+              <li>
+                <strong> Monster</strong> – Dinosaur-like or reptilian Pokémon
+              </li>
+              <li>
+                <strong> Human-Like</strong> – Humanoid species like Machop
+              </li>
+              <li>
+                <strong> Amorphous</strong> – Ghosts or blob-like creatures like
+                Grimer
+              </li>
+            </ul>
+
+            <p>Others are unique:</p>
+
+            <ul>
+              <li>
+                <strong> Ditto</strong> – A special group that only includes
+                Ditto
+              </li>
+              <li>
+                <strong> Undiscovered</strong> – Legendary/Mythical Pokémon that
+                cannot breed
+              </li>
+            </ul>
+
+            <h3>Breeding Rules</h3>
+
+            <ul>
+              <li>
+                Breeding requires <strong>one male and one female</strong> of
+                the same Egg Group.
+              </li>
+              <li>
+                The hatched Pokémon is always the species of the
+                <strong>female</strong>, unless using Ditto.
+              </li>
+              <li>
+                <strong> Everstone</strong> allows passing down of Nature.
+              </li>
+              <li>
+                <strong> Moves, Abilities, Poké Balls</strong> may be inherited
+                depending on conditions.
+              </li>
+              <li>
+                <strong> Egg Moves</strong> are special techniques only
+                available through breeding.
+              </li>
+            </ul>
+
+            <h3>Ditto – The Ultimate Breeder</h3>
+
+            <p>
+              <strong>Ditto</strong> belongs to its own group and can breed with
+              almost any Pokémon that can breed, regardless of gender. It is
+              especially valuable for:
+            </p>
+
+            <ul>
+              <li>Breeding genderless Pokémon</li>
+              <li>
+                Producing offspring with specific <strong>Natures</strong> or
+                <strong>IVs</strong>
+              </li>
+              <li>Mass-breeding for competitive Pokémon</li>
+            </ul>
+
+            <h3>Breeding & Natures</h3>
+
+            <p>
+              When breeding, the offspring’s <strong>Nature</strong> is
+              typically inherited from one of the parents. To pass down a
+              desired Nature, breeders often give the parent Pokémon a
+              <em>Everstone</em> to hold, which guarantees the Nature is passed
+              on to the child.
+            </p>
+
+            <h3>Breeding & IVs</h3>
+
+            <p>
+              Regarding <strong>IVs</strong> (Individual Values), these are
+              partially inherited from the parents. By breeding with parents
+              that have high IVs, especially when using items like the
+              <em>Destiny Knot</em>, it is possible to pass down multiple strong
+              IV stats to the offspring, allowing breeders to produce Pokémon
+              with optimized stats for battle.
+            </p>
+            <p>
+              Additionally, certain <strong>Power Items</strong> can be held by
+              the parent Pokémon to help pass down specific IV stats to their
+              offspring. These include:
+            </p>
+
+            <ul class="powerItems">
+              <li>
+                <img
+                  src="../../../../assets/EffortValues/powerItems/pw.png"
+                  alt="Power Weight"
+                  class="power-icon"
+                />
+                <strong>Power Weight</strong> (HP)
+              </li>
+              <li>
+                <img
+                  src="../../../../assets/EffortValues/powerItems/pb.png"
+                  alt="Power Bracer"
+                  class="power-icon"
+                />
+                <strong>Power Bracer</strong> (Attack)
+              </li>
+              <li>
+                <img
+                  src="../../../../assets/EffortValues/powerItems/pbel.png"
+                  alt="Power Belt"
+                  class="power-icon"
+                />
+                <strong>Power Belt</strong> (Defense)
+              </li>
+              <li>
+                <img
+                  src="../../../../assets/EffortValues/powerItems/pl.png"
+                  alt="Power Lens"
+                  class="power-icon"
+                />
+                <strong>Power Lens</strong> (Special Attack)
+              </li>
+              <li>
+                <img
+                  src="../../../../assets/EffortValues/powerItems/pbn.png"
+                  alt="Power Band"
+                  class="power-icon"
+                />
+                <strong>Power Band</strong> (Special Defense)
+              </li>
+              <li>
+                <img
+                  src="../../../../assets/EffortValues/powerItems/pa.png"
+                  alt="Power Anklet"
+                  class="power-icon"
+                />
+                <strong>Power Anklet</strong> (Speed)
+              </li>
+            </ul>
+
+            <p>
+              When a parent holds one of these Power Items, the IV stat
+              corresponding to that item is guaranteed to be passed down to the
+              offspring, making them invaluable tools for targeted IV breeding.
+            </p>
+          </div>
+
+          <div class="column">
+            <div class="table-wrapper">
+              <table class="modern-table" id="eggGroup">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Pokemon</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let egg of eggGroups"
+                    [routerLink]="['/egg-group', egg.name]"
+                  >
+                    <td
+                      [ngStyle]="{
+                        color: geteggGroupColor(egg.name)
+                      }"
+                    >
+                      {{ sanitizeName(egg.name) }}
+                    </td>
+                    <td>
+                      {{ egg.pokemon_species.length }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'evs-ivs'">
+        <!-- EVs & IVs content here -->
+
+        <section>
+          <h2>Understanding EVs and IVs in Pokémon</h2>
+
+          <p>
+            In the world of Pokémon training, two crucial hidden mechanics
+            influence a Pokémon’s strength and potential:
+            <strong>Effort Values (EVs)</strong> and
+            <strong>Individual Values (IVs)</strong>. These stats determine how
+            strong a Pokémon can become at its maximum level, making them
+            essential for competitive battling and team building.
+          </p>
+        </section>
+
+        <section>
+          <h2>What are IVs?</h2>
+          <p>
+            <strong>Individual Values (IVs)</strong> are like a Pokémon's genes.
+            They are fixed when you first encounter or hatch a Pokémon and
+            cannot be changed (except with Hyper Training). IVs determine how
+            good a Pokémon can become in each stat — HP, Attack, Defense,
+            Special Attack, Special Defense, and Speed.
+          </p>
+          <ul>
+            <li>Each stat has an IV ranging from <strong>0 to 31</strong>.</li>
+            <li>A stat with a 31 IV is considered “perfect.”</li>
+            <li>
+              IVs are randomly generated when a Pokémon is caught or bred.
+            </li>
+            <li>
+              To check IVs in-game, unlock the <em>Judge</em> function in your
+              PC boxes.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <div class="evsSection">
+            <div class="left">
+              <h2>What are EVs?</h2>
+              <p>
+                <strong>Effort Values (EVs)</strong> are points gained through
+                battling or consuming specific items. Unlike IVs, EVs can be
+                trained and customized to improve specific stats based on how
+                you raise your Pokémon.
+              </p>
+
+              <ul>
+                <li>
+                  You can earn EVs by defeating specific Pokémon that grant
+                  them.
+                </li>
+                <li>
+                  Each Pokémon can gain a total of
+                  <strong>510 EVs</strong> across all stats.
+                </li>
+                <li>
+                  Up to <strong>252 EVs</strong> can be applied to a single
+                  stat.
+                </li>
+                <li>
+                  Every 4 EVs in a stat equals +1 actual stat point at level
+                  100.
+                </li>
+              </ul>
+            </div>
+            <div class="right">
+              <ul>
+                <h3>EV Pages</h3>
+                <li routerLink="/evs/all">All Pokémon EVs</li>
+                <br/>
+                <li routerLink="/evs/hp">HP ({{ evCounts.hp }})</li>
+                <li>Attack ({{ evCounts.attack }})</li>
+                <li>Defense ({{ evCounts.defense }})</li>
+                <li>Sp. Attack ({{ evCounts.spAttack }})</li>
+                <li>Sp. Defense ({{ evCounts.spDefense }})</li>
+                <li>Speed ({{ evCounts.speed }})</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>How EVs and IVs Impact Stats</h2>
+          <p>
+            A Pokémon’s final stats at level 100 are determined by a combination
+            of:
+          </p>
+          <ol>
+            <li>Base Stats (species-specific)</li>
+            <li>IVs (innate potential)</li>
+            <li>EVs (training effort)</li>
+            <li>Nature (stat modifier)</li>
+            <li>Level</li>
+          </ol>
+          <p>
+            For example, a Pokémon with a high Speed base stat, a 31 IV in
+            Speed, and 252 EVs in Speed will be much faster than average.
+            Competitive players carefully optimize EVs to boost the most useful
+            stats for a specific strategy.
+          </p>
+        </section>
+
+        <section>
+          <h2>Tips for Training EVs</h2>
+          <ul>
+            <li>
+              Use items like <strong>Vitamins</strong> (e.g., Carbos, Protein)
+              to quickly boost EVs.
+            </li>
+            <li>
+              Battle specific wild Pokémon for targeted EV gains — e.g., Zubat
+              gives Speed EVs.
+            </li>
+            <li>
+              Equip Power Items (e.g., Power Anklet) to gain more EVs per
+              battle.
+            </li>
+            <li>
+              Use berries like Pomeg or Kelpsy to remove unwanted EVs and
+              reallocate them.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Hyper Training and Bottle Caps</h2>
+          <p>
+            Since IVs are unchangeable by default,
+            <strong>Hyper Training</strong> allows you to simulate perfect IVs
+            using <strong>Bottle Caps</strong>. This makes your Pokémon viable
+            in competitive play without requiring perfect breeding.
+          </p>
+        </section>
+
+        <section class="genetics-dictionary">
+          <h3>Genetic Traits</h3>
+          <dl>
+            <ng-container *ngFor="let stat of getGroupedStats()">
+              <dt class="dict-term">{{ stat }}</dt>
+              <dd class="dict-desc">
+                <ul>
+                  <li
+                    *ngFor="
+                      let desc of groupedCharacteristics[stat].descriptions
+                    "
+                  >
+                    “{{ desc }}”
+                  </li>
+                </ul>
+                Possible IV values:
+                <strong>{{
+                  groupedCharacteristics[stat].possibleValues.join(", ")
+                }}</strong>
+              </dd>
+            </ng-container>
+          </dl>
+        </section>
+
+        <section>
+          <h2>Summary</h2>
+          <p>
+            EVs and IVs are fundamental to building strong Pokémon. IVs
+            determine a Pokémon's natural potential, while EVs allow you to
+            shape its strengths during training. Mastering both systems is key
+            to success in battles — whether in competitive formats or high-level
+            in-game challenges.
+          </p>
+        </section>
+      </div>
+
+      <div *ngSwitchCase="'natures'">
+        <div class="columns">
+          <div class="column">
+            <h2>Pokémon Natures</h2>
+
+            <p>
+              Natures play a vital role in shaping a Pokémon’s stats and
+              personality. While they might seem like flavor text at first
+              glance, each nature subtly adjusts how a Pokémon grows — raising
+              one stat by 10% and lowering another by 10%. This difference
+              becomes most noticeable at higher levels, especially level 100.
+            </p>
+
+            <p>
+              There are <strong>25 unique Natures</strong> in total. Of these,
+              <strong>20 Natures</strong> influence stats, while
+              <strong>5 Natures</strong> are considered neutral — they raise and
+              lower the same stat, effectively canceling out any impact.
+            </p>
+
+            <p>
+              Choosing the right Nature can optimize a Pokémon’s performance in
+              battle. For instance, a Pokémon that primarily uses physical
+              attacks may benefit from an Adamant Nature (↑Attack, ↓Special
+              Attack), while a fast special attacker might prefer Timid (↑Speed,
+              ↓Attack).
+            </p>
+
+            <h3>Stat Modifiers by Nature</h3>
+            <ul>
+              <li>
+                <strong> Attack</strong>: Raised by Lonely, Adamant, Naughty,
+                Brave
+              </li>
+              <li>
+                <strong> Defense</strong>: Raised by Bold, Impish, Lax, Relaxed
+              </li>
+              <li>
+                <strong> Special Attack</strong>: Raised by Modest, Mild, Rash,
+                Quiet
+              </li>
+              <li>
+                <strong> Special Defense</strong>: Raised by Calm, Gentle,
+                Careful, Sassy
+              </li>
+              <li>
+                <strong> Speed</strong>: Raised by Timid, Hasty, Jolly, Naive
+              </li>
+            </ul>
+
+            <h3>Neutral Natures</h3>
+            <p>
+              Hardy, Docile, Serious, Bashful, and Quirky are considered neutral
+              — they don’t alter a Pokémon's stats in any way and are typically
+              used when no specific optimization is needed.
+            </p>
+
+            <h3>Berry Preferences</h3>
+            <p>
+              Natures also determine a Pokémon’s taste in Berries. Each stat
+              corresponds to a flavor:
+            </p>
+            <ul>
+              <li><strong> Spicy</strong> → Attack</li>
+              <li><strong> Sour</strong> → Defense</li>
+              <li><strong> Dry</strong> → Special Attack</li>
+              <li><strong> Bitter</strong> → Special Defense</li>
+              <li><strong> Sweet</strong> → Speed</li>
+            </ul>
+
+            <p>
+              A Pokémon will enjoy the flavor linked to its raised stat and
+              dislike the flavor tied to its lowered stat. For example, a
+              Pokémon with a Modest Nature (↑Sp. Atk, ↓Attack) will like
+              <strong>Dry</strong> Berries and dislike
+              <strong>Spicy</strong> ones.
+            </p>
+
+            <p>
+              Understanding and utilizing Natures allows Trainers to fine-tune
+              their Pokémon for battle, breeding, and contests — making them an
+              essential detail in raising competitive teams.
+            </p>
+          </div>
+
+          <div class="column">
+            <h1>Natures by stat</h1>
+            <div class="table-wrapper">
+              <table class="modern-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th *ngFor="let colStat of stats">
+                      <span
+                        *ngIf="isRaisedStat(colStat)"
+                        style="
+                          color: green;
+                          font-weight: bold;
+                          margin-left: 4px;
+                        "
+                        >▲</span
+                      >
+                      {{ statDisplayNames[colStat] || colStat }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let rowStat of stats">
+                    <th style="white-space: nowrap">
+                      <span
+                        *ngIf="isLoweredStat(rowStat)"
+                        style="color: red; font-weight: bold; margin-left: 4px"
+                      >
+                        ▼
+                      </span>
+                      <span style="display: inline-flex; align-items: center">
+                        {{ statDisplayNames[rowStat] || rowStat }}
+                      </span>
+                    </th>
+
+                    <td
+                      *ngFor="let colStat of stats"
+                      [attr.data-label]="colStat | titlecase"
+                    >
+                      {{
+                        getNatureByRaiseAndLower(colStat, rowStat) | titlecase
+                      }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'abilities'">
+        <h1>Pokémon Abilities</h1>
+
+        <div class="filter-controls">
+          <input
+            type="text"
+            [(ngModel)]="abilitySearch"
+            class="filter-input"
+            placeholder="Search..."
+          />
+          <select [(ngModel)]="selectedGeneration" class="filter-select">
+            <option value="">All Generations</option>
+            <option *ngFor="let gen of generations" [value]="gen">
+              {{ gen }}
+            </option>
+          </select>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="modern-table" id="abilities">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Effect</th>
+                <th>Generation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let ability of filteredAbilities()"
+                [routerLink]="['/ability', ability.name]"
+              >
+                <td>{{ sanitizeName(ability.name) }}</td>
+                <td>{{ getEnglishEffect(ability) }}</td>
+                <td>
+                  {{
+                    ability.generation.name
+                      .replace("generation-", "")
+                      .toUpperCase()
+                  }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'type-chart'">
+        <!-- Type Chart content here -->
+        <section class="type-chart-section">
+          <h2 class="type-section-title">Type Matchups</h2>
+          <p class="type-section-description">
+            Every Pokémon falls under one or two of the 18
+            <strong>Types</strong> such as
+            <span
+              class="type-label inline-type"
+              style="background-color: #78c850"
+              >Grass</span
+            >,
+            <span
+              class="type-label inline-type"
+              style="background-color: #ee8130"
+              >Fire</span
+            >, or
+            <span
+              class="type-label inline-type"
+              style="background-color: #6390f0"
+              >Water</span
+            >. These types determine how effective moves are in battle. For
+            example, a <strong>Fire</strong>-type moves are super effective
+            against <strong>Grass</strong>-type Pokémon, but not very effective
+            against <strong>Water</strong>-types.
+          </p>
+          <p class="type-section-description">
+            The table below shows how each attacking type performs against
+            defending types. Use it to gain the upper hand in battle!
+          </p>
+
+          <div class="table-wrapper">
+            <table class="type-table">
+              <thead>
+                <tr>
+                  <th class="type-label">
+                    <div class="defend">
+                      Defend
+                      <span>→</span>
+                    </div>
+                    <div class="attack">
+                      Attack
+                      <span>↓</span>
+                    </div>
+                  </th>
+                  <th
+                    *ngFor="let defType of types"
+                    class="type-label"
+                    [ngStyle]="{ background: getTypeColor(defType) }"
+                    [routerLink]="['/type', defType]"
+                  >
+                    {{ defType | titlecase }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let atkType of types">
+                  <td
+                    class="type-label"
+                    [ngStyle]="{ background: getTypeColor(atkType) }"
+                    [routerLink]="['/type', atkType]"
+                  >
+                    {{ atkType | titlecase }}
+                  </td>
+                  <td *ngFor="let defType of types">
+                    <div
+                      class="multiplier"
+                      [ngClass]="
+                        getMultiplierClass(getMultiplier(atkType, defType))
+                      "
+                    >
+                      {{ formatMultiplier(getMultiplier(atkType, defType)) }}
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <div *ngSwitchCase="'all-moves'">
+        <h1>Pokémon Moves ({{ filteredMoves().length }})</h1>
+
+        <div class="filter-controls">
+          <input
+            type="text"
+            [(ngModel)]="moveSearch"
+            class="filter-input"
+            placeholder="Search..."
+          />
+          <select [(ngModel)]="selectedmoveGen" class="filter-select">
+            <option value="">All Generations</option>
+            <option *ngFor="let gen of moveGen" [value]="gen">
+              {{ gen }}
+            </option>
+          </select>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="modern-table" id="moves">
+            <thead>
+              <tr>
+                <th style="width: 200px">Name</th>
+                <th>Type</th>
+                <th>Category</th>
+                <th>Power</th>
+                <th>Accuracy</th>
+                <th>PP</th>
+                <th>Generation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let move of filteredMoves()"
+                [routerLink]="['/move', move.name]"
+              >
+                <td>{{ sanitizeName(move.name) }}</td>
+                <td class="type-badges">
+                  <span
+                    class="type"
+                    [ngClass]="'type-' + move.type.toLowerCase()"
+                    [ngStyle]="{ background: getTypeColor(move.type) }"
+                    [routerLink]="['/type', move.type]"
+                  >
+                    {{ move.type }}
+                  </span>
+                </td>
+                <td>
+                  <img
+                    [src]="getCategoryStatusImage(move.category)"
+                    [alt]="move.category"
+                    class="category-icon"
+                  />
+                </td>
+                <td>
+                  {{ move.power }}
+                  <span *ngIf="!move.power">-</span>
+                </td>
+                <td>
+                  {{ move.accuracy }}
+                  <span *ngIf="!move.accuracy">-</span>
+                </td>
+                <td>{{ move.pp }}</td>
+                <td>
+                  {{
+                    move.generation_introduced
+                      .replace("generation-", "")
+                      .toUpperCase()
+                  }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'items'">
+        <article class="pokemon-items-article">
+          <section>
+            <h2>Items ({{ filtereditems().length }})</h2>
+
+            <div class="filter-controls">
+              <input
+                type="text"
+                [(ngModel)]="itemSearch"
+                class="filter-input"
+                placeholder="Search..."
+              />
+              <select [(ngModel)]="selectedItemCatego" class="filter-select">
+                <option value="">- All -</option>
+                <option *ngFor="let cat of itemCateg" [value]="cat">
+                  {{ cat }}
+                </option>
+              </select>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="modern-table" id="items">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th style="width: 200px">Name</th>
+                    <th>Category</th>
+                    <th>Effect</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let item of filtereditems()"
+                    [routerLink]="['/item', item.name]"
+                  >
+                    <td>
+                      <ng-container *ngIf="item.sprites.default">
+                        <img
+                          [src]="item.sprites.default"
+                          [alt]="item.name"
+                          class="category-icon"
+                        />
+                      </ng-container>
+                    </td>
+                    <td>{{ sanitizeName(item.name) }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>
+                      <ng-container *ngFor="let e of item.effect_entries">
+                        {{ e.effect }}
+                      </ng-container>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </article>
+      </div>
+
+      <div *ngSwitchCase="'battle-styles'">
+        <article class="battle-styles-article">
+          <h1>Pokémon Battle Styles</h1>
+
+          <section id="casual-battles">
+            <h2>Casual Battles</h2>
+            <p>
+              Casual battles are friendly matches between trainers that often
+              focus more on creativity, favorite Pokémon, or theme teams rather
+              than strict competition. These battles may ignore EV training or
+              optimized strategies, allowing players to enjoy the thrill of
+              battle without the pressure of meta or tier lists.
+            </p>
+          </section>
+
+          <section id="competitive-battles">
+            <h2>Competitive Singles</h2>
+            <p>
+              In competitive single battles (1v1), strategy is key. Players
+              focus on building balanced teams of six, using tools like EV/IV
+              training, nature optimization, type synergy, and prediction.
+              Popular formats like Smogon tiers help define rulesets, such as OU
+              (OverUsed), UU (UnderUsed), and Ubers.
+            </p>
+          </section>
+
+          <section id="double-battles">
+            <h2>Competitive Doubles</h2>
+            <p>
+              Double battles involve two Pokémon on the field per side and are
+              the default format for official tournaments. Doubles emphasize
+              coordination, synergy, and speed control, with moves like Protect,
+              Follow Me, and Helping Hand playing critical roles. Weather and
+              terrain effects are more impactful in this format.
+            </p>
+          </section>
+
+          <section id="vgc">
+            <h2>Official VGC Format</h2>
+            <p>
+              The Video Game Championships (VGC) is the official competitive
+              format endorsed by The Pokémon Company. VGC battles are 4v4 double
+              battles, selected from a team of six. Rules are updated annually,
+              including bans on certain legendary Pokémon or items, and usually
+              only allow Pokémon available in the current generation or regional
+              Pokédex.
+            </p>
+            <p>
+              VGC focuses on fast-paced, strategic play and rewards
+              adaptability, prediction, and understanding of the evolving meta.
+              Popular strategies include Trick Room teams, Intimidate cycling,
+              and Tera-type optimization in recent generations.
+            </p>
+          </section>
+
+          <section id="other-formats">
+            <h2>Other Popular Formats</h2>
+            <p>
+              Aside from standard singles and doubles, many players enjoy
+              formats like Monotype (all team members share a type), Battle
+              Stadium, Little Cup (only unevolved Pokémon), and Draft League
+              (players draft unique teams and compete over weeks). These formats
+              allow for unique strategies and often encourage creative team
+              building.
+            </p>
+          </section>
+
+          <section id="unique-spin-offs">
+            <h2>Unique Battle Styles in Spin-Off Games</h2>
+
+            <h3>Pokémon Legends: Arceus</h3>
+            <p>
+              In <em>Legends: Arceus</em>, battles blend real-time and
+              turn-based mechanics, breaking traditional norms. Players can
+              approach wild Pokémon stealthily or engage directly. The battle
+              system introduces two unique battle styles that influence move
+              order and effects:
+            </p>
+            <ul>
+              <li>
+                <strong> Agile Style:</strong> Moves used in Agile Style allow
+                the Pokémon to act faster, increasing the chance to move first
+                in battle. Agile moves often have reduced power but can be
+                crucial for quick strategic plays, such as setting up status or
+                hitting first.
+              </li>
+              <li>
+                <strong> Strong Style:</strong> Moves used in Strong Style
+                sacrifice priority and speed for increased power, delivering a
+                harder-hitting attack that often has additional effects like
+                breaking through shields or causing recoil.
+              </li>
+            </ul>
+            <p>
+              This system encourages tactical choices between speed and power on
+              each turn, adding fresh depth to Pokémon battles in the Hisui
+              region.
+            </p>
+
+            <h3>Pokémon Ranger Series</h3>
+            <p>
+              <em>Pokémon Ranger</em> introduces a unique capture mechanic using
+              a "capture styler" device, where players draw circles around
+              Pokémon on the touchscreen to catch them temporarily. Battles are
+              more action oriented and less about strategy, focusing on quick
+              reflexes and mini-game style challenges.
+            </p>
+
+            <h3>Pokémon XD: Gale of Darkness & Colosseum</h3>
+            <p>
+              Both <em>Pokémon XD: Gale of Darkness</em> and
+              <em>Pokémon Colosseum</em>
+              for the GameCube feature 3D battle arenas with double battles as
+              the core format. These games introduce the concept of "Shadow
+              Pokémon," which require purification, adding a story-driven
+              element to battles. The style combines classic turn-based strategy
+              with unique battle animations and story mechanics.
+            </p>
+
+            <h3>Pokémon Mystery Dungeon</h3>
+            <p>
+              In the <em>Pokémon Mystery Dungeon</em> series, battles happen in
+              turn-based dungeon crawls where positioning on a grid matters. The
+              style focuses on exploration and survival against waves of wild
+              Pokémon, blending RPG and roguelike elements.
+            </p>
+          </section>
+        </article>
+      </div>
+
+      <div *ngSwitchDefault>
+        <p>Select a tab to view content.</p>
+      </div>
+    </section>
+  </div>
+</article>

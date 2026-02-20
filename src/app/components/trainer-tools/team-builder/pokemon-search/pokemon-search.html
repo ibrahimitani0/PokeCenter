@@ -1,0 +1,74 @@
+<div class="search-root">
+  <input
+    type="text"
+    placeholder="Search Pokémon by name..."
+    [(ngModel)]="searchQuery"
+    (input)="onInput(searchQuery)"
+    aria-label="Search Pokémon"
+    class="filter-input"
+  />
+
+  <div class="table-wrapper" *ngIf="filtered.length">
+    <table class="modern-table">
+      <thead>
+        <tr>
+          <th>Sprite</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Abilities</th>
+          <th>HP</th>
+          <th>ATK</th>
+          <th>DEF</th>
+          <th>SPA</th>
+          <th>SPD</th>
+          <th>SPE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of filtered" (click)="select(p)" class="pokemon-row">
+          <!-- Sprite -->
+          <td>
+            <img
+              [src]="p.images['sprite-default']"
+              alt="{{ p.name }}"
+              (error)="onImgError($event, p)"
+            />
+          </td>
+
+          <!-- Name -->
+          <td>{{ p.name | titlecase }}</td>
+
+          <!-- Types -->
+          <td>
+            <span class="type" [ngClass]="'type-' + p.types[0].toLowerCase()">{{
+              p.types[0]
+            }}</span>
+            <span
+              *ngIf="p.types[1]"
+              class="type"
+              [ngClass]="'type-' + p.types[1].toLowerCase()"
+              >{{ p.types[1] }}</span
+            >
+          </td>
+
+          <!-- Abilities -->
+          <td>
+            <span *ngFor="let a of p.abilities; let last = last">
+              {{ a.name }}<span *ngIf="a.is_hidden">(H)</span
+              ><span *ngIf="!last">, </span>
+            </span>
+          </td>
+
+          <!-- Base Stats -->
+          <ng-container>
+            <td *ngFor="let s of p.stats">{{ s.base_stat }}</td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p *ngIf="!filtered.length && searchQuery" class="no-results">
+    No Pokémon found for "{{ searchQuery }}"
+  </p>
+</div>

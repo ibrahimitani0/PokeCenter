@@ -1,0 +1,404 @@
+[
+  {
+    "id": 1,
+    "gene_modulo": 0,
+    "possible_values": [
+      0,
+      5,
+      10,
+      15,
+      20,
+      25,
+      30
+    ],
+    "description": "Loves to eat"
+  },
+  {
+    "id": 2,
+    "gene_modulo": 0,
+    "possible_values": [
+      0,
+      5,
+      10,
+      15,
+      20,
+      25,
+      30
+    ],
+    "description": "Proud of its power"
+  },
+  {
+    "id": 3,
+    "gene_modulo": 0,
+    "possible_values": [
+      0,
+      5,
+      10,
+      15,
+      20,
+      25,
+      30
+    ],
+    "description": "Sturdy body"
+  },
+  {
+    "id": 4,
+    "gene_modulo": 0,
+    "possible_values": [
+      0,
+      5,
+      10,
+      15,
+      20,
+      25,
+      30
+    ],
+    "description": "Highly curious"
+  },
+  {
+    "id": 5,
+    "gene_modulo": 0,
+    "possible_values": [
+      0,
+      5,
+      10,
+      15,
+      20,
+      25,
+      30
+    ],
+    "description": "Strong willed"
+  },
+  {
+    "id": 6,
+    "gene_modulo": 0,
+    "possible_values": [
+      0,
+      5,
+      10,
+      15,
+      20,
+      25,
+      30
+    ],
+    "description": "Likes to run"
+  },
+  {
+    "id": 7,
+    "gene_modulo": 1,
+    "possible_values": [
+      1,
+      6,
+      11,
+      16,
+      21,
+      26,
+      31
+    ],
+    "description": "Takes plenty of siestas"
+  },
+  {
+    "id": 8,
+    "gene_modulo": 1,
+    "possible_values": [
+      1,
+      6,
+      11,
+      16,
+      21,
+      26,
+      31
+    ],
+    "description": "Likes to thrash about"
+  },
+  {
+    "id": 9,
+    "gene_modulo": 1,
+    "possible_values": [
+      1,
+      6,
+      11,
+      16,
+      21,
+      26,
+      31
+    ],
+    "description": "Capable of taking hits"
+  },
+  {
+    "id": 10,
+    "gene_modulo": 1,
+    "possible_values": [
+      1,
+      6,
+      11,
+      16,
+      21,
+      26,
+      31
+    ],
+    "description": "Mischievous"
+  },
+  {
+    "id": 11,
+    "gene_modulo": 1,
+    "possible_values": [
+      1,
+      6,
+      11,
+      16,
+      21,
+      26,
+      31
+    ],
+    "description": "Somewhat vain"
+  },
+  {
+    "id": 12,
+    "gene_modulo": 1,
+    "possible_values": [
+      1,
+      6,
+      11,
+      16,
+      21,
+      26,
+      31
+    ],
+    "description": "Alert to sounds"
+  },
+  {
+    "id": 13,
+    "gene_modulo": 2,
+    "possible_values": [
+      2,
+      7,
+      12,
+      17,
+      22,
+      27
+    ],
+    "description": "Nods off a lot"
+  },
+  {
+    "id": 14,
+    "gene_modulo": 2,
+    "possible_values": [
+      2,
+      7,
+      12,
+      17,
+      22,
+      27
+    ],
+    "description": "A little quick tempered"
+  },
+  {
+    "id": 15,
+    "gene_modulo": 2,
+    "possible_values": [
+      2,
+      7,
+      12,
+      17,
+      22,
+      27
+    ],
+    "description": "Highly persistent"
+  },
+  {
+    "id": 16,
+    "gene_modulo": 2,
+    "possible_values": [
+      2,
+      7,
+      12,
+      17,
+      22,
+      27
+    ],
+    "description": "Thoroughly cunning"
+  },
+  {
+    "id": 17,
+    "gene_modulo": 2,
+    "possible_values": [
+      2,
+      7,
+      12,
+      17,
+      22,
+      27
+    ],
+    "description": "Strongly defiant"
+  },
+  {
+    "id": 18,
+    "gene_modulo": 2,
+    "possible_values": [
+      2,
+      7,
+      12,
+      17,
+      22,
+      27
+    ],
+    "description": "Impetuous and silly"
+  },
+  {
+    "id": 19,
+    "gene_modulo": 3,
+    "possible_values": [
+      3,
+      8,
+      13,
+      18,
+      23,
+      28
+    ],
+    "description": "Scatters things often"
+  },
+  {
+    "id": 20,
+    "gene_modulo": 3,
+    "possible_values": [
+      3,
+      8,
+      13,
+      18,
+      23,
+      28
+    ],
+    "description": "Likes to fight"
+  },
+  {
+    "id": 21,
+    "gene_modulo": 3,
+    "possible_values": [
+      3,
+      8,
+      13,
+      18,
+      23,
+      28
+    ],
+    "description": "Good endurance"
+  },
+  {
+    "id": 22,
+    "gene_modulo": 3,
+    "possible_values": [
+      3,
+      8,
+      13,
+      18,
+      23,
+      28
+    ],
+    "description": "Often lost in thought"
+  },
+  {
+    "id": 23,
+    "gene_modulo": 3,
+    "possible_values": [
+      3,
+      8,
+      13,
+      18,
+      23,
+      28
+    ],
+    "description": "Hates to lose"
+  },
+  {
+    "id": 24,
+    "gene_modulo": 3,
+    "possible_values": [
+      3,
+      8,
+      13,
+      18,
+      23,
+      28
+    ],
+    "description": "Somewhat of a clown"
+  },
+  {
+    "id": 25,
+    "gene_modulo": 4,
+    "possible_values": [
+      4,
+      9,
+      14,
+      19,
+      24,
+      29
+    ],
+    "description": "Likes to relax"
+  },
+  {
+    "id": 26,
+    "gene_modulo": 4,
+    "possible_values": [
+      4,
+      9,
+      14,
+      19,
+      24,
+      29
+    ],
+    "description": "Quick tempered"
+  },
+  {
+    "id": 27,
+    "gene_modulo": 4,
+    "possible_values": [
+      4,
+      9,
+      14,
+      19,
+      24,
+      29
+    ],
+    "description": "Good perseverance"
+  },
+  {
+    "id": 28,
+    "gene_modulo": 4,
+    "possible_values": [
+      4,
+      9,
+      14,
+      19,
+      24,
+      29
+    ],
+    "description": "Very finicky"
+  },
+  {
+    "id": 29,
+    "gene_modulo": 4,
+    "possible_values": [
+      4,
+      9,
+      14,
+      19,
+      24,
+      29
+    ],
+    "description": "Somewhat stubborn"
+  },
+  {
+    "id": 30,
+    "gene_modulo": 4,
+    "possible_values": [
+      4,
+      9,
+      14,
+      19,
+      24,
+      29
+    ],
+    "description": "Quick to flee"
+  }
+]

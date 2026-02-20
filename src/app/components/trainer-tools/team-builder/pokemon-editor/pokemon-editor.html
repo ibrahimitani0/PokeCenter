@@ -1,0 +1,422 @@
+<fieldset
+  class="editor-root"
+  *ngIf="selected; else Search"
+  [ngStyle]="{
+    background: getBackgroundGradient(selected.types[0]),
+    border: '4px solid' + getTypeColor(selected.types[0])
+  }"
+>
+  <div class="actions">
+    <button
+      class="cancel"
+      [style.--typeColor]="getTypeColor(selected.types[0])"
+      [style.--typeHover]="getTypeColorDarker(selected.types[0])"
+      (click)="cancel()"
+    >
+      ✕
+    </button>
+  </div>
+
+  <div class="editor-body">
+    <section class="info">
+      <!-- Column 1: Name > Image > Types -->
+      <div class="column1">
+        <h2>{{ selected.name | titlecase }}</h2>
+
+        <img [src]="selected.image" alt="{{ selected.name }}" />
+
+        <div class="types">
+          <span
+            *ngIf="selected.types[0]"
+            class="type"
+            [ngClass]="'type-' + selected.types[0].toLowerCase()"
+          >
+            {{ selected.types[0] }}
+          </span>
+          <span
+            *ngIf="selected.types[1]"
+            class="type"
+            [ngClass]="'type-' + selected.types[1].toLowerCase()"
+          >
+            {{ selected.types[1] }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Column 2: Inputs -->
+      <div class="column2">
+        <div class="info-group">
+          <div class="input-group">
+            <label>Nickname</label>
+            <input
+              #nickname
+              type="text"
+              [(ngModel)]="selected.nickname"
+              (ngModelChange)="save()"
+              placeholder="Nickname"
+            />
+          </div>
+          <div class="input-group">
+            <label>Level</label>
+            <input
+              type="number"
+              min="1"
+              max="100"
+              [(ngModel)]="selected.level"
+              (ngModelChange)="onLevelChange()"
+              placeholder="1-100"
+            />
+          </div>
+
+          <div class="gender-group">
+            <label>Gender</label>
+            <ng-container *ngFor="let g of allowedGenders">
+              <input
+                type="radio"
+                name="gender"
+                [value]="g.value"
+                [(ngModel)]="selected.gender"
+                (ngModelChange)="save()"
+              />
+              {{ g.label }}
+            </ng-container>
+          </div>
+          <div class="input-group">
+            <div class="checkBoxGroup">
+              <label>Shiny</label>
+              <input
+                type="checkbox"
+                [(ngModel)]="selected.isShiny"
+                (ngModelChange)="onShinyChange($event); save()"
+              />
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Poké Ball</label>
+            <input
+              #ballInput
+              class="flat-bottom"
+              type="text"
+              [(ngModel)]="ballSearch"
+              (focus)="ballDropdownOpen = true"
+              (blur)="onBlur('ball')"
+              (ngModelChange)="save()"
+              placeholder="Search Poké Ball..."
+              autocomplete="off"
+            />
+            <ul *ngIf="ballDropdownOpen" class="dropdown-list">
+              <li
+                *ngFor="let b of filteredBalls()"
+                (mousedown)="$event.preventDefault()"
+                (click)="selectBall(b, ballInput)"
+              >
+                {{ b }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 3: Chart Controls > Chart -->
+      <div class="column3">
+        <div class="stat-chart-controls">
+          <button
+            (click)="setChartMode('all')"
+            [class.active]="chartMode === 'all'"
+          >
+            Show All
+          </button>
+          <button
+            (click)="setChartMode('base')"
+            [class.active]="chartMode === 'base'"
+          >
+            Show Base Stats
+          </button>
+          <button
+            (click)="setChartMode('evs')"
+            [class.active]="chartMode === 'evs'"
+          >
+            Show EVs
+          </button>
+          <button
+            (click)="setChartMode('ivs')"
+            [class.active]="chartMode === 'ivs'"
+          >
+            Show IVs
+          </button>
+        </div>
+
+        <div
+          class="stat-chart-container"
+          [ngStyle]="{ background: getBackgroundGradient(selected.types[0]) }"
+        >
+          <canvas #radarChart width="240" height="240"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="details">
+      <!-- Ability -->
+      <div class="input-group">
+        <label>Ability</label>
+        <input
+          #abilityInput
+          class="flat-bottom"
+          type="text"
+          [(ngModel)]="abilitySearch"
+          (focus)="abilityDropdownOpen = true"
+          (blur)="onBlur('ability')"
+          (ngModelChange)="save()"
+          placeholder="Search ability..."
+          autocomplete="off"
+        />
+        <ul *ngIf="abilityDropdownOpen" class="dropdown-list">
+          <li
+            *ngFor="let a of filteredAbilities()"
+            (mousedown)="$event.preventDefault()"
+            (click)="selectAbility(a.name, abilityInput)"
+          >
+            <div class="ability-name">
+              {{ a.name }}
+              <span *ngIf="a.is_hidden">(Hidden)</span>
+            </div>
+
+            <div class="ability-effect" *ngIf="abilityDetailsMap[a.name]">
+              <ng-container
+                *ngFor="let entry of abilityDetailsMap[a.name].effect_entries"
+              >
+                <span>{{ entry.short_effect }}</span>
+              </ng-container>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Item -->
+      <div class="input-group item-group">
+        <img
+          *ngIf="selectedItemSprite"
+          [src]="selectedItemSprite"
+          alt="Item sprite"
+          class="item-sprite"
+        />
+        <label>Item</label>
+
+        <input
+          #itemInput
+          class="flat-bottom"
+          type="text"
+          [(ngModel)]="itemSearch"
+          (focus)="itemDropdownOpen = true"
+          (blur)="onBlur('item')"
+          (ngModelChange)="save()"
+          placeholder="Search held item..."
+          autocomplete="off"
+        />
+
+        <ul *ngIf="itemDropdownOpen" class="dropdown-list">
+          <li
+            *ngFor="let i of filteredItems()"
+            (mousedown)="$event.preventDefault()"
+            (click)="selectItem(i.name, itemInput)"
+          >
+            <img
+              *ngIf="i.sprites?.default"
+              [src]="i.sprites.default"
+              alt="{{ i.name }}"
+            />
+            <strong>{{ i.name }}</strong>
+            <small class="item-effect">{{ getEnglishEffectText(i) }}</small>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Moves -->
+      <div class="moves-section">
+        <h4>Moves</h4>
+        <div
+          *ngFor="
+            let moveName of selected.moves;
+            let i = index;
+            trackBy: trackByIndex
+          "
+          class="move-row"
+        >
+          <input
+            #moveInput
+            type="text"
+            [(ngModel)]="moveSearches[i]"
+            (focus)="moveDropdownOpen[i] = true"
+            (blur)="onMoveBlur(i)"
+            (ngModelChange)="save()"
+            placeholder="Search move..."
+            autocomplete="off"
+            [class.cleared-highlight]="moveClearedHighlight[i]"
+          />
+
+          <ul *ngIf="moveDropdownOpen[i]" class="dropdown-list-move">
+            <li
+              *ngFor="let move of filteredMoves(i)"
+              (mousedown)="$event.preventDefault()"
+              (click)="selectMove(i, move.move_name, moveInput)"
+            >
+              <span class="move-name">{{ move.move_name }}</span>
+
+              <span
+                class="type"
+                [ngClass]="'type-' + move.moveDetails.type.toLowerCase()"
+                >{{ move.moveDetails.type }}</span
+              >
+
+              <img
+                class="move-category-icon"
+                [src]="getCategoryStatusImage(move.moveDetails.category)"
+                [alt]="move.moveDetails.category"
+              />
+              <span class="move-stats">
+                <ng-container *ngIf="move.moveDetails.power"
+                  >{{ move.moveDetails.power }} /
+                </ng-container>
+                <ng-container *ngIf="move.moveDetails.accuracy"
+                  >{{ move.moveDetails.accuracy }} /
+                </ng-container>
+                <ng-container *ngIf="move.moveDetails.pp">{{
+                  move.moveDetails.pp
+                }}</ng-container>
+              </span>
+              <span class="move-effects">
+                {{ move.moveDetails.short_effect }}
+              </span>
+            </li>
+          </ul>
+
+          <button
+            (click)="clearMove(i)"
+            class="move-clear-btn"
+            title="Clear move"
+          >
+            🗑
+          </button>
+        </div>
+      </div>
+      <!-- Nature -->
+      <div class="input-group">
+        <label>Nature</label>
+        <input
+          #natureInput
+          class="flat-bottom"
+          type="text"
+          [(ngModel)]="natureSearch"
+          (focus)="natureDropdownOpen = true"
+          (blur)="onBlur('nature')"
+          (ngModelChange)="save()"
+          placeholder="Search nature..."
+          autocomplete="off"
+        />
+        <ul *ngIf="natureDropdownOpen" class="dropdown-list">
+          <li
+            *ngFor="let n of filteredNatures()"
+            (mousedown)="$event.preventDefault()"
+            (click)="selectNature(n.natureName, natureInput)"
+          >
+            {{ n.natureName }} (+{{ shortenName(n.raises) }}, -{{
+              shortenName(n.lowers)
+            }})
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="stats-section">
+      <table>
+        <caption>
+          Stats
+        </caption>
+        <thead>
+          <tr>
+            <th colspan="3">Base</th>
+            <th colspan="2">
+              EVs ({{ getEVUsage().remaining }} / 508 remaining)
+            </th>
+            <th>IVs</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody *ngIf="selected.baseStats as stats">
+          <tr *ngFor="let s of stats; let i = index">
+            <!-- Base Stat -->
+            <td class="stat-name-header">{{ shortenName(s.name) }}</td>
+            <td class="stat-value-cell">{{ s.base_stat }}</td>
+            <td class="stat-bar-cell">
+              <div class="stat-bar" aria-hidden="true">
+                <div
+                  class="stat-fill"
+                  [style.width.%]="getStatFillWidth(evStats[i])"
+                  [ngClass]="getStatColorByValue(evStats[i])"
+                ></div>
+              </div>
+            </td>
+
+            <!-- EVs -->
+            <!-- EV Number Input -->
+            <td>
+              <span class="nature-symbol">{{
+                getNatureSymbol(evStats[i])
+              }}</span>
+              <input
+                type="number"
+                min="0"
+                max="252"
+                step="1"
+                [(ngModel)]="selected.evs[evStats[i]]"
+                (ngModelChange)="onEVChange(evStats[i])"
+              />
+            </td>
+
+            <!-- EV Range Slider -->
+            <td>
+              <input
+                type="range"
+                min="0"
+                max="252"
+                step="1"
+                [(ngModel)]="selected.evs[evStats[i]]"
+                (ngModelChange)="onEVChange(evStats[i])"
+              />
+            </td>
+
+            <!-- IVs -->
+            <td>
+              <input
+                type="number"
+                min="0"
+                max="31"
+                [(ngModel)]="selected.ivs[ivStats[i]]"
+                (ngModelChange)="onIVChange(ivStats[i], $event)"
+              />
+            </td>
+
+            <!-- Calculated Stat with Min/Max -->
+            <td
+              [ngClass]="{
+                'stat-raised':
+                  getNatureModifiers(selected.nature || '')[evStats[i]] > 1,
+                'stat-lowered':
+                  getNatureModifiers(selected.nature || '')[evStats[i]] < 1
+              }"
+              style="font-weight: 700"
+            >
+              {{ getCalculatedStat(evStats[i]) }}
+              <span *ngIf="getNatureSymbol(evStats[i]) === '+'">↑</span>
+              <span *ngIf="getNatureSymbol(evStats[i]) === '−'">↓</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</fieldset>
+
+<ng-template #Search>
+  <app-pokemon-search></app-pokemon-search>
+</ng-template>

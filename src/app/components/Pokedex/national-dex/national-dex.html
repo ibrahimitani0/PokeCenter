@@ -1,0 +1,139 @@
+<article>
+  <header class="pokemon-page-menu">
+    <nav [class.hidden]="!menuVisible">
+      <div class="pokemon-page-menu-inner">
+        <div>
+          <ul [class.hidden]="!menuVisible">
+            <li class="custom-dropdown" (clickOutside)="closeDropdown()">
+              <div class="dropdown-toggle" (click)="toggleDropdown()">
+                {{ selectedType || "Type Filter" }}
+                <span class="arrow">▼</span>
+              </div>
+              <div class="dropdown-menu" *ngIf="typeDropdownOpen">
+                <div
+                  class="dropdown-option"
+                  [class.selected]="selectedType === ''"
+                  (click)="selectType('')"
+                >
+                  - All -
+                </div>
+                <div
+                  *ngFor="let type of pokemonTypes"
+                  class="dropdown-option type-{{ type.toLowerCase() }}"
+                  [class.selected]="selectedType === type"
+                  (click)="selectType(type)"
+                >
+                  {{ type }}
+                </div>
+              </div>
+            </li>
+
+            <li class="custom-dropdown" (clickOutside)="closeDropdown()">
+              <div
+                class="dropdown-toggle"
+                (click)="generationDropdownOpen = !generationDropdownOpen"
+              >
+                {{ getSelectedGenerationLabel() }}
+                <span class="arrow">▼</span>
+              </div>
+
+              <div class="dropdown-menu" *ngIf="generationDropdownOpen">
+                <div
+                  class="dropdown-option-gen"
+                  [class.selected]="selectedGeneration === ''"
+                  (click)="selectedGeneration = ''; closeDropdown()"
+                >
+                  - All -
+                </div>
+                <div
+                  *ngFor="let gen of pokemonGenerations"
+                  class="dropdown-option-gen"
+                  [class.selected]="selectedGeneration === gen.value"
+                  (click)="selectedGeneration = gen.value; closeDropdown()"
+                >
+                  {{ gen.label }}
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <input
+                type="text"
+                [(ngModel)]="searchQuery"
+                placeholder="Search..."
+              />
+            </li>
+            <li>
+              <button
+                class="back-to-top-button"
+                (click)="scrollToTop()"
+                aria-label="Back to Top"
+              >
+                ⬆
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <button (click)="toggleMenu()" class="toggle-button">
+      {{ menuVisible ? "▲" : "▼" }}
+    </button>
+  </header>
+
+  <div class="pokedex-container">
+    <div
+      *ngFor="let pokemon of filteredPokedex | slice : 0 : visibleCount;"
+      class="pokemon-card"
+      (click)="goToDetails(pokemon.name)"
+      [style.borderColor]="getTypeColor(pokemon.types[0])"
+      [style.background]="getBodyColor(pokemon.types[0])"
+    >
+      <div
+        class="image-wrapper"
+        [style.borderColor]="getTypeColor(pokemon.types[0])"
+        [ngStyle]="{
+          'background-image': getHabitatBackground(pokemon.habitat)
+        }"
+      >
+        <img
+          [src]="pokemon.images['official_artwork-default']"
+          [alt]="pokemon.name + ' artwork'"
+          loading="eager"
+        />
+      </div>
+
+      <div class="cardInfoContainer">
+        <div class="headerRow">
+          <div class="dexContainer">
+            <h3>#{{ pokemon.dex_number | leadingZero : 4 }}</h3>
+          </div>
+          <div class="nameContainer">
+            <h2>{{ getDisplayName(pokemon.species) | capitalizeFirstLetter }}</h2>
+          </div>
+        </div>
+
+        <div class="type-list">
+          <div
+            *ngFor="let type of pokemon.types"
+            class="type"
+            [ngClass]="'type-' + type.toLowerCase()"
+          >
+            {{ type }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button
+    *ngIf="!infiniteScrollEnabled && visibleCount < pokedex.length"
+    class="pokeball-button"
+    (click)="loadMore()"
+    aria-label="Load More"
+  >
+    <div class="pokeball-bounce-wrapper">
+      <div class="pokeball"></div>
+    </div>
+  </button>
+</article>

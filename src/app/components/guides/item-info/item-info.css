@@ -1,0 +1,392 @@
+:host {
+  display: block;
+  padding: 2rem;
+  min-height: 100vh;
+  color: var(--text-color, #e0f2fe);
+  box-sizing: border-box;
+}
+
+/* Outer Wrapper (book) */
+.book-wrapper {
+  background: var(--card-color);
+  /* border: 3px solid var(--border-color); */
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 1920px;
+  margin: 2rem auto;
+  box-shadow: var(--box-shadow);
+  backdrop-filter: blur(6px);
+}
+
+.book-wrapper::before {
+  left: 0;
+  border-right: 1px solid var(--border-muted, #c3d9e9);
+}
+
+.book-wrapper::after {
+  right: 0;
+  border-left: 1px solid var(--border-muted, #c3d9e9);
+}
+
+/* Inner Page */
+.book-page {
+  padding: 2rem;
+  background: var(
+    --card-inner-bg,
+    rgba(15, 23, 42, 0.9)
+  ); /* Use card-inner-bg with slight opacity fallback */
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  color: var(--card-text-color, var(--text-color)); /* Ensure readable text */
+}
+
+/* Heading */
+.book-page h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px dashed var(--border-color, #3b82f6);
+  padding-bottom: 0.25rem;
+  color: var(--text-color);
+}
+
+/* Short effect / emphasis text */
+.short-effect {
+  background: var(--card-color, rgba(15, 23, 42, 0.7));
+  padding: 0.75rem;
+  border-left: 5px solid var(--border-color, #3b82f6);
+  font-style: italic;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+/* Lists */
+.book-page ul {
+  padding-left: 1.5rem;
+  color: var(--text-color);
+  /* Slightly muted for better hierarchy */
+  opacity: 0.85;
+}
+
+/* Horizontal rule */
+.book-page hr {
+  border: none;
+  border-top: 1px solid var(--border-muted, #b4cde0);
+  margin: 1.5rem 0;
+}
+
+/* Table columns container for side-by-side tables */
+.table-columns {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.table-column {
+  flex: 1 1 500px;
+  min-width: 300px;
+  max-width: 100%;
+}
+
+/* Table wrapper - clip overflow for rounded corners */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Table caption styling */
+.modern-table caption {
+  caption-side: top; /* default: can also use 'bottom' */
+  font-weight: bold;
+  font-size: 1.25rem;
+  text-align: center;
+  padding: 0.5rem;
+  color: var(--text-color);
+}
+
+/* ================================
+   Styled Data Table (Theme-Aware)
+================================ */
+.modern-table {
+  width: 100%;
+  border-collapse: separate; /* keep separate to allow border-radius */
+  border-spacing: 0;
+  border-radius: 12px;
+  background-color: var(--card-color);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--text-color);
+
+  /* Clip cell content */
+  overflow: hidden;
+  border: 1px solid transparent; /* helps clipping */
+}
+
+/* Round top corners on first and last th */
+.modern-table thead th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.modern-table thead th:last-child {
+  border-top-right-radius: 12px;
+}
+
+/* Round bottom corners on last row's first and last td */
+.modern-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+
+.modern-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
+
+/* Table head */
+.modern-table thead {
+  background: var(--table-header-bg);
+  color: var(--table-header-text);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.modern-table thead th {
+  padding: 14px 20px;
+  font-weight: 900;
+  text-align: left;
+  border-bottom: 2px solid var(--highlight-bg);
+  /* Remove side borders to avoid sharp edges */
+  border-left: none;
+  border-right: none;
+  white-space: nowrap; /* Prevents line break */
+}
+
+/* Table body rows */
+.modern-table tbody tr {
+  transition: background-color 0.25s ease, transform 0.2s ease;
+  cursor: default;
+}
+
+.modern-table tbody tr:nth-child(odd) {
+  background-color: rgba(255, 203, 5, 0.1);
+}
+
+.modern-table tbody tr:nth-child(even) {
+  background-color: rgba(59, 130, 246, 0.07);
+}
+
+.modern-table tbody tr:hover {
+  background-color: rgba(255, 203, 5, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(255, 203, 5, 0.4);
+  cursor: pointer;
+}
+
+/* Table body cells */
+.modern-table tbody td {
+  padding: 10px 16px;
+  border-top: 1px solid rgba(255, 203, 5, 0.3);
+  vertical-align: middle;
+  font-weight: 600;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+
+  /* Remove side borders to avoid breaking border-radius */
+  border-left: none;
+  border-right: none;
+}
+.modern-list {
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+  max-width: 400px;
+  color: #2c2c2c;
+  border-left: 4px solid #1e90ff; /* default blue, overridden by style binding */
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.modern-list legend {
+  padding-left: 10px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.modern-list ul {
+  margin: 0;
+  padding: 0;
+}
+
+.modern-list li {
+  display: flex;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.modern-list li:last-child {
+  border-bottom: none;
+}
+
+.modern-list li strong {
+  min-width: 110px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: capitalize;
+  margin-right: 0.5rem;
+}
+
+.modern-list li:not(:last-child):hover {
+  background: #e6f0ff;
+  cursor: default;
+}
+
+.category-icon {
+  display: block; /* ensures width applies properly */
+  margin-right: 3px;
+  width: 30px;
+  height: auto; /* maintain aspect ratio */
+  align-self: center; /* if used inside a flex container */
+}
+
+.type {
+  display: inline-flex; /* So they sit side by side and center content */
+  align-items: center;
+  justify-content: center;
+  width: 60px; /* Fixed width */
+  height: 20px; /* Fixed height */
+  border: 2px solid #fff;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  padding: 0; /* Remove padding to keep size consistent */
+  border-radius: 50px;
+  color: white;
+  text-transform: uppercase;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+  margin: 0.2rem;
+}
+
+.type:hover {
+  transform: scale(1.1);
+}
+
+.type-normal {
+  background: linear-gradient(145deg, #a8a878, #7e7e5a);
+  box-shadow: 0 0 8px #a8a878;
+}
+.type-fire {
+  background: linear-gradient(145deg, #f08030, #c06020);
+  box-shadow: 0 0 8px #ff6f00;
+}
+.type-water {
+  background: linear-gradient(145deg, #6890f0, #446fc0);
+  box-shadow: 0 0 8px #6890f0;
+}
+.type-electric {
+  background: linear-gradient(145deg, #f8d030, #c8a720);
+  box-shadow: 0 0 8px #ffee33;
+}
+.type-grass {
+  background: linear-gradient(145deg, #78c850, #5a9a32);
+  box-shadow: 0 0 8px #78c850;
+}
+.type-ice {
+  background: linear-gradient(145deg, #98d8d8, #6fbcbc);
+  box-shadow: 0 0 8px #98d8d8;
+}
+.type-fighting {
+  background: linear-gradient(145deg, #c03028, #902320);
+  box-shadow: 0 0 8px #c03028;
+}
+.type-poison {
+  background: linear-gradient(145deg, #a040a0, #702970);
+  box-shadow: 0 0 8px #a040a0;
+}
+.type-ground {
+  background: linear-gradient(145deg, #e0c068, #b89c50);
+  box-shadow: 0 0 8px #e0c068;
+}
+.type-flying {
+  background: linear-gradient(145deg, #a890f0, #7f6cc0);
+  box-shadow: 0 0 8px #a890f0;
+}
+.type-psychic {
+  background: linear-gradient(145deg, #f85888, #c0406e);
+  box-shadow: 0 0 8px #f85888;
+}
+.type-bug {
+  background: linear-gradient(145deg, #a8b820, #7f9218);
+  box-shadow: 0 0 8px #a8b820;
+}
+.type-rock {
+  background: linear-gradient(145deg, #b8a038, #8c7a28);
+  box-shadow: 0 0 8px #b8a038;
+}
+.type-ghost {
+  background: linear-gradient(145deg, #705898, #503e78);
+  box-shadow: 0 0 8px #705898;
+}
+.type-dragon {
+  background: linear-gradient(145deg, #7038f8, #5028c0);
+  box-shadow: 0 0 8px #7038f8;
+}
+.type-dark {
+  background: linear-gradient(145deg, #705848, #4e3e30);
+  box-shadow: 0 0 8px #705848;
+}
+.type-steel {
+  background: linear-gradient(145deg, #b8b8d0, #8c8cac);
+  box-shadow: 0 0 8px #b8b8d0;
+}
+.type-fairy {
+  background: linear-gradient(145deg, #ee99ac, #c87a8f);
+  box-shadow: 0 0 8px #ee99ac;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  :host {
+    padding: 1rem;
+  }
+
+  .book-wrapper {
+    max-width: 100%;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Remove side glow on mobile for simplicity */
+  .book-wrapper::before,
+  .book-wrapper::after {
+    display: none;
+  }
+
+  .book-page {
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  }
+
+  .book-page h1 {
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .short-effect {
+    padding: 0.5rem;
+    border-left-width: 4px;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .book-page ul {
+    padding-left: 1.25rem;
+  }
+}

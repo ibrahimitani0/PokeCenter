@@ -1,0 +1,163 @@
+<div class="search-root">
+  <!-- Compare Section -->
+  <section class="compare-section" *ngIf="comparePoke.length">
+    <h2>Comparing Pokémon (# {{ comparePoke.length }})</h2>
+    <div class="compare-grid">
+      <div
+        class="compare-card"
+        *ngFor="let p of comparePoke"
+        [style.borderColor]="getTypeColor(p.types[0])"
+        [style.background]="getBodyColor(p.types[0])"
+        [style.--type-color]="getTypeColor(p.types[0])"
+      >
+        <button class="remove-btn" (click)="removeFromCompare(p)">✕</button>
+
+        <!-- Sprite -->
+        <img
+          class="compare-sprite"
+          [src]="
+            shinyMap.get(p.name)
+              ? p.images['official_artwork-shiny']
+              : p.images['official_artwork-default']
+          "
+          [alt]="p.name"
+          (click)="toggleShiny(p)"
+          (error)="onImgError($event, p)"
+        />
+
+        <!-- Name -->
+        <h3>{{ p.name | titlecase }}</h3>
+
+        <!-- Types -->
+        <div class="type-container">
+          <span
+            *ngFor="let type of p.types"
+            class="type"
+            [ngClass]="'type-' + type.toLowerCase()"
+            [routerLink]="['/type', type]"
+          >
+            {{ type }}
+          </span>
+        </div>
+
+        <!-- Abilities -->
+        <div
+          class="ability"
+          [class.hidden]="ability.is_hidden"
+          *ngFor="let ability of p.abilities"
+          [routerLink]="['/ability', ability.name]"
+        >
+          {{ ability.name | capitalizeFirstLetter }}
+          <span *ngIf="ability.is_hidden"> (Hidden)</span>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-container">
+          <div class="stats-section">
+            <table>
+              <thead class="stat-name-header">
+                <tr>
+                  <th colspan="3">Stats</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let s of p.stats; let i = index">
+                  <!-- Base Stat -->
+                  <td class="stat-name-header">
+                    {{ shortenStatName(s.name) }}
+                  </td>
+                  <td class="stat-value-cell">{{ s.base_stat }}</td>
+                  <td class="stat-bar-cell">
+                    <div class="stat-bar" aria-hidden="true">
+                      <div
+                        class="stat-fill"
+                        [style.width.%]="s.base_stat"
+                        [ngClass]="getStatColorByValue(s.base_stat)"
+                      ></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search & Table Section -->
+  <section>
+    <input
+      type="text"
+      placeholder="Search Pokémon by name..."
+      [(ngModel)]="searchQuery"
+      (input)="onInput(searchQuery)"
+      aria-label="Search Pokémon"
+      class="filter-input"
+    />
+
+    <div class="table-wrapper" *ngIf="filtered.length">
+      <table class="modern-table">
+        <thead>
+          <tr>
+            <th>Sprite</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Abilities</th>
+            <th>HP</th>
+            <th>ATK</th>
+            <th>DEF</th>
+            <th>SPA</th>
+            <th>SPD</th>
+            <th>SPE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let p of filtered"
+            (click)="select(p)"
+            class="pokemon-row"
+          >
+            <td>
+              <img
+                [src]="p.images['sprite-default']"
+                alt="{{ p.name }}"
+                (error)="onImgError($event, p)"
+              />
+            </td>
+            <td>{{ p.name | titlecase }}</td>
+            <td>
+              <span
+                class="type"
+                [ngClass]="'type-' + p.types[0].toLowerCase()"
+                >{{ p.types[0] }}</span
+              >
+              <span
+                *ngIf="p.types[1]"
+                class="type"
+                [ngClass]="'type-' + p.types[1].toLowerCase()"
+              >
+                {{ p.types[1] }}
+              </span>
+            </td>
+            <td>
+              <span *ngFor="let a of p.abilities; let last = last">
+                {{ a.name }}<span *ngIf="a.is_hidden">(H)</span
+                ><span *ngIf="!last">, </span>
+              </span>
+            </td>
+            <ng-container>
+              <td *ngFor="let s of p.stats">{{ s.base_stat }}</td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p *ngIf="!filtered.length && searchQuery" class="no-results">
+      No Pokémon found for "{{ searchQuery }}"
+    </p>
+  </section>
+</div>

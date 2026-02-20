@@ -1,0 +1,70 @@
+.type-header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.type-subtitle {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.type-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.type-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.type-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60px;
+}
+
+.type-label {
+  width: 100%;
+  padding: 4px;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 4px 4px 0 0;
+}
+
+.multiplier {
+  width: 100%;
+  font-size: 0.8rem;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 0 0 4px 4px;
+  padding: 4px;
+  background-color: #eee;
+}
+
+.multiplier.weak {
+  background-color: #37963c;
+  color: #fff;
+}
+
+.multiplier.resist {
+  background-color: #ff4545;
+  color: #fff;
+}
+
+.multiplier.immune {
+  background-color: #616161;
+  color: #fff;
+}
+
+.multiplier.neutral {
+  background-color: #eee;
+  color: #000;
+}

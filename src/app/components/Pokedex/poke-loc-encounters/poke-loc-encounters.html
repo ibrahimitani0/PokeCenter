@@ -1,0 +1,17 @@
+<div class="loc-table-container">
+  <table class="loc-table">
+    <tbody>
+      <tr *ngFor="let versionGroup of locationEncounters">
+        <th [style.color]="getColorForGame(versionGroup.version)">
+          {{ versionGroup.version | titlecase }}
+        </th>
+        <td>
+          <p>{{ getCombinedLocations(versionGroup) }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="locationEncounters.length === 0" class="no-encounters">
+    No encounter data available.
+  </p>
+</div>

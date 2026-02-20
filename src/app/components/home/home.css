@@ -1,0 +1,262 @@
+:host {
+  display: block;
+  padding: 2rem;
+  min-height: 100vh;
+  color: var(--text-color);
+  box-sizing: border-box;
+}
+
+.quickLinks a:visited {
+  color: #3b4cca !important;
+  text-decoration: underline; /* optional: keep underline */
+}
+
+.container {
+  background: var(--card-color);
+  /* border: 3px solid var(--border-color); */
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 1920px;
+  margin: 2rem auto;
+  box-shadow: var(--box-shadow);
+  backdrop-filter: blur(6px);
+}
+.popular-pokemon {
+  list-style: none;
+  margin-left: -40px;
+}
+
+.homepage-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  width: auto;
+  margin: 2rem auto;
+  align-items: start;
+  background: var(--card-inner-bg);
+  color: var(--card-text-color);
+  /* border: 2px solid var(--border-color); */
+  border-radius: 16px;
+  box-shadow: var(--box-shadow);
+}
+
+.welcome-title {
+  grid-column: 1 / -1;
+  display: flex; /* make flex container */
+  justify-content: center; /* horizontal center */
+  align-items: center; /* vertical center */
+  height: 184px;
+
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffd600; /* bright yellow */
+  margin-bottom: -0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  text-shadow:
+    /* dark outline */ -2px -2px 0 #0047ab, 2px -2px 0 #0047ab,
+    -2px 2px 0 #0047ab, 2px 2px 0 #0047ab,
+    /* layered shadows for 3D depth */ 0 0 5px #ffb300, 0 4px 0 #cc9200,
+    0 6px 3px rgba(0, 0, 0, 0.6);
+
+  background-image: url("/assets/banner.png");
+  background-repeat: no-repeat;
+  background-position: center -2px; /* lifted image */
+  background-size: 900px;
+  background-origin: content-box;
+  border-bottom: 2px dashed;
+}
+
+/* Subtitle spans both columns, left aligned */
+.welcome-subtitle {
+  grid-column: 1 / -1;
+  text-align: left;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  background: var(--card-color, rgba(15, 23, 42, 0.7));
+  padding: 0.75rem;
+  border-left: 5px solid var(--header-border-color, #3b82f6);
+  color: var(--text-color);
+}
+
+/* Left content area */
+.homepage-left {
+  padding: 2rem;
+  border-radius: 1rem;
+  color: var(--text-color);
+  font-weight: 500;
+  margin-top: -60px;
+}
+
+/* Sidebar */
+.homepage-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: var(--text-color);
+}
+
+/* Article inside left */
+.homepage-intro {
+  color: var(--text-color);
+}
+
+.homepage-intro h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--highlight-text);
+}
+
+.homepage-intro h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 2px dashed var(--header-border-color);
+  padding-bottom: 0.25rem;
+}
+
+/* Feature list styling */
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-list li {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.feature-list li::before {
+  content: "▶";
+  position: absolute;
+  left: 0;
+  color: var(--highlight-bg);
+}
+
+.start-exploring a {
+  color: var(--highlight-text);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* ==============================
+   Type List & Type Colors
+   ============================== */
+
+.type {
+  display: inline-flex; /* So they sit side by side and center content */
+  align-items: center;
+  justify-content: center;
+  width: 70px; /* Fixed width */
+  height: 30px; /* Fixed height */
+  border: 2px solid #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  padding: 0; /* Remove padding to keep size consistent */
+  border-radius: 50px;
+  color: white;
+  text-transform: uppercase;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+  margin: 0.2rem;
+  text-decoration: none;
+}
+
+.type:hover {
+  transform: scale(1.1);
+}
+
+.type-normal {
+  background: linear-gradient(145deg, #a8a878, #7e7e5a);
+  box-shadow: 0 0 8px #a8a878;
+}
+.type-fire {
+  background: linear-gradient(145deg, #f08030, #c06020);
+  box-shadow: 0 0 8px #ff6f00;
+}
+.type-water {
+  background: linear-gradient(145deg, #6890f0, #446fc0);
+  box-shadow: 0 0 8px #6890f0;
+}
+.type-electric {
+  background: linear-gradient(145deg, #f8d030, #c8a720);
+  box-shadow: 0 0 8px #ffee33;
+}
+.type-grass {
+  background: linear-gradient(145deg, #78c850, #5a9a32);
+  box-shadow: 0 0 8px #78c850;
+}
+.type-ice {
+  background: linear-gradient(145deg, #98d8d8, #6fbcbc);
+  box-shadow: 0 0 8px #98d8d8;
+}
+.type-fighting {
+  background: linear-gradient(145deg, #c03028, #902320);
+  box-shadow: 0 0 8px #c03028;
+}
+.type-poison {
+  background: linear-gradient(145deg, #a040a0, #702970);
+  box-shadow: 0 0 8px #a040a0;
+}
+.type-ground {
+  background: linear-gradient(145deg, #e0c068, #b89c50);
+  box-shadow: 0 0 8px #e0c068;
+}
+.type-flying {
+  background: linear-gradient(145deg, #a890f0, #7f6cc0);
+  box-shadow: 0 0 8px #a890f0;
+}
+.type-psychic {
+  background: linear-gradient(145deg, #f85888, #c0406e);
+  box-shadow: 0 0 8px #f85888;
+}
+.type-bug {
+  background: linear-gradient(145deg, #a8b820, #7f9218);
+  box-shadow: 0 0 8px #a8b820;
+}
+.type-rock {
+  background: linear-gradient(145deg, #b8a038, #8c7a28);
+  box-shadow: 0 0 8px #b8a038;
+}
+.type-ghost {
+  background: linear-gradient(145deg, #705898, #503e78);
+  box-shadow: 0 0 8px #705898;
+}
+.type-dragon {
+  background: linear-gradient(145deg, #7038f8, #5028c0);
+  box-shadow: 0 0 8px #7038f8;
+}
+.type-dark {
+  background: linear-gradient(145deg, #705848, #4e3e30);
+  box-shadow: 0 0 8px #705848;
+}
+.type-steel {
+  background: linear-gradient(145deg, #b8b8d0, #8c8cac);
+  box-shadow: 0 0 8px #b8b8d0;
+}
+.type-fairy {
+  background: linear-gradient(145deg, #ee99ac, #c87a8f);
+  box-shadow: 0 0 8px #ee99ac;
+}
+
+/* Responsive: stack on narrow screens */
+@media (max-width: 768px) {
+  .homepage-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  .welcome-title {
+    font-size: 2.4rem;
+  }
+  .homepage-left,
+  .homepage-sidebar {
+    padding: 1rem;
+  }
+}

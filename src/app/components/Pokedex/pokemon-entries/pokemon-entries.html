@@ -1,0 +1,21 @@
+<div class="entries-table-container" *ngIf="groupedFlavorTexts.length > 0">
+          <table class="entries-table">
+          <tbody>
+            <tr *ngFor="let entry of groupedFlavorTexts">
+              <th>
+                <ng-container
+                  *ngFor="let part of entry.label.split('/'); let last = last"
+                >
+                  <span [style.color]="getColorForGame(part.trim())">{{
+                    part.trim()
+                  }}</span
+                  ><span *ngIf="!last">/</span>
+                </ng-container>
+              </th>
+              <td>
+                <p>{{ entry.text | capitalizeFirstLetter }}</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+</div>

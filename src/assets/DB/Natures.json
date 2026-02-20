@@ -1,0 +1,152 @@
+ [
+    {
+      "lowers": "special-attack",
+      "natureId": 1,
+      "natureName": "Adamant",
+      "raises": "attack"
+    },
+    {
+      "lowers": "special-attack",
+      "natureId": 2,
+      "natureName": "Bashful",
+      "raises": "special-attack"
+    },
+    {
+      "lowers": "attack",
+      "natureId": 3,
+      "natureName": "Bold",
+      "raises": "defense"
+    },
+    {
+      "lowers": "speed",
+      "natureId": 4,
+      "natureName": "Brave",
+      "raises": "attack"
+    },
+    {
+      "lowers": "attack",
+      "natureId": 5,
+      "natureName": "Calm",
+      "raises": "special-defense"
+    },
+    {
+      "lowers": "special-attack",
+      "natureId": 6,
+      "natureName": "Careful",
+      "raises": "special-defense"
+    },
+    {
+      "lowers": "defense",
+      "natureId": 7,
+      "natureName": "Docile",
+      "raises": "defense"
+    },
+    {
+      "lowers": "defense",
+      "natureId": 8,
+      "natureName": "Gentle",
+      "raises": "special-defense"
+    },
+    {
+      "lowers": "attack",
+      "natureId": 9,
+      "natureName": "Hardy",
+      "raises": "attack"
+    },
+    {
+      "lowers": "defense",
+      "natureId": 10,
+      "natureName": "Hasty",
+      "raises": "speed"
+    },
+    {
+      "lowers": "special-attack",
+      "natureId": 11,
+      "natureName": "Impish",
+      "raises": "defense"
+    },
+    {
+      "lowers": "special-attack",
+      "natureId": 12,
+      "natureName": "Jolly",
+      "raises": "speed"
+    },
+    {
+      "lowers": "special-defense",
+      "natureId": 13,
+      "natureName": "Lax",
+      "raises": "defense"
+    },
+    {
+      "lowers": "defense",
+      "natureId": 14,
+      "natureName": "Lonely",
+      "raises": "attack"
+    },
+    {
+      "lowers": "defense",
+      "natureId": 15,
+      "natureName": "Mild",
+      "raises": "special-attack"
+    },
+    {
+      "lowers": "attack",
+      "natureId": 16,
+      "natureName": "Modest",
+      "raises": "special-attack"
+    },
+    {
+      "lowers": "special-defense",
+      "natureId": 17,
+      "natureName": "Naive",
+      "raises": "speed"
+    },
+    {
+      "lowers": "special-defense",
+      "natureId": 18,
+      "natureName": "Naughty",
+      "raises": "attack"
+    },
+    {
+      "lowers": "speed",
+      "natureId": 19,
+      "natureName": "Quiet",
+      "raises": "special-attack"
+    },
+    {
+      "lowers": "special-defense",
+      "natureId": 20,
+      "natureName": "Quirky",
+      "raises": "special-defense"
+    },
+    {
+      "lowers": "special-defense",
+      "natureId": 21,
+      "natureName": "Rash",
+      "raises": "special-attack"
+    },
+    {
+      "lowers": "speed",
+      "natureId": 22,
+      "natureName": "Relaxed",
+      "raises": "defense"
+    },
+    {
+      "lowers": "speed",
+      "natureId": 23,
+      "natureName": "Sassy",
+      "raises": "special-defense"
+    },
+    {
+      "lowers": "speed",
+      "natureId": 24,
+      "natureName": "Serious",
+      "raises": "speed"
+    },
+    {
+      "lowers": "attack",
+      "natureId": 25,
+      "natureName": "Timid",
+      "raises": "speed"
+    }
+  ]

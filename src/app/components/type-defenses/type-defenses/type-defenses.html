@@ -1,0 +1,31 @@
+<p class="type-subtitle">
+  <ng-container *ngIf="context === 'pokemon'">
+    The effectiveness of each type on <em>{{ getDisplayName(name) }}</em>.
+  </ng-container>
+  <ng-container *ngIf="context === 'type'">
+    The effectiveness of each type against <em>{{ getDisplayName(name) }}</em>.
+  </ng-container>
+</p>
+
+<div class="type-grid">
+  <div class="type-row">
+    <div class="type-cell" *ngFor="let type of topRow">
+      <div class="type-label" [ngStyle]="{ backgroundColor: typeColors[type] }">
+        {{ type.toUpperCase() }}
+      </div>
+      <div class="multiplier" [ngClass]="getClass(typeMultipliers[type])">
+        {{ formatMultiplier(typeMultipliers[type]) }}
+      </div>
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-cell" *ngFor="let type of bottomRow">
+      <div class="type-label" [ngStyle]="{ backgroundColor: typeColors[type] }">
+        {{ type.toUpperCase() }}
+      </div>
+      <div class="multiplier" [ngClass]="getClass(typeMultipliers[type])">
+        {{ formatMultiplier(typeMultipliers[type]) }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,191 @@
+:host {
+  display: block;
+  padding: 1rem;
+  min-height: 100vh;
+  color: var(--text-color, #e0f2fe);
+  box-sizing: border-box;
+}
+
+.search-input {
+  width: 900px;
+  padding: 0.5rem 1rem;
+  border: 3px solid var(--border-color);
+  border-radius: 12px;
+  background-color: var(--card-inner-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+  margin: 16px auto 1rem; /* This centers horizontally */
+  box-shadow: inset 0 0 6px var(--hover-glow);
+  display: block; /* ensures block behavior */
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--highlight-text);
+  box-shadow: 0 0 10px var(--highlight-text);
+}
+
+/* Outer Wrapper (book) */
+.book-wrapper {
+  background: var(--card-color);
+  border-radius: 16px;
+  padding: 1.25rem;
+  max-width: 1920px;
+  margin: 1.5rem auto;
+  box-shadow: var(--box-shadow);
+  backdrop-filter: blur(6px);
+}
+
+.book-wrapper::before {
+  left: 0;
+  border-right: 1px solid var(--border-muted, #c3d9e9);
+}
+
+.book-wrapper::after {
+  right: 0;
+  border-left: 1px solid var(--border-muted, #c3d9e9);
+}
+
+/* Inner Page */
+.book-page {
+  padding: 1.25rem;
+  background: var(--card-inner-bg, rgba(15, 23, 42, 0.9));
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  color: var(--card-text-color, var(--text-color));
+}
+
+/* Heading */
+.book-page h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 2px dashed var(--border-color, #3b82f6);
+  padding-bottom: 0.2rem;
+  color: var(--text-color);
+}
+
+/* Short effect / emphasis text */
+.short-effect {
+  background: var(--card-color, rgba(15, 23, 42, 0.7));
+  padding: 0.75rem;
+  border-left: 5px solid var(--border-color, #3b82f6);
+  font-style: italic;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+/* Horizontal rule */
+.book-page hr {
+  border: none;
+  border-top: 1px solid var(--border-muted, #b4cde0);
+  margin: 1.5rem 0;
+}
+
+/* Styled Data Table */
+.modern-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  background-color: var(--card-color);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--text-color);
+}
+
+.modern-table thead th:first-child {
+  border-top-left-radius: 12px;
+}
+.modern-table thead th:last-child {
+  border-top-right-radius: 12px;
+}
+.modern-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+.modern-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
+
+/* Table Head */
+.modern-table thead {
+  background: var(--table-header-bg);
+  color: var(--table-header-text);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.modern-table thead th {
+  padding: 10px 14px;
+  font-weight: 900;
+  text-align: left;
+  border-bottom: 2px solid var(--highlight-bg);
+  white-space: nowrap;
+  font-size: 0.85rem;
+}
+
+/* Body Rows */
+.modern-table tbody tr {
+  transition: background-color 0.25s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.modern-table tbody tr:nth-child(odd) {
+  background-color: rgba(255, 203, 5, 0.1);
+}
+
+.modern-table tbody tr:nth-child(even) {
+  background-color: rgba(59, 130, 246, 0.07);
+}
+
+.modern-table tbody tr:hover {
+  background-color: rgba(255, 203, 5, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(255, 203, 5, 0.4);
+}
+
+/* Body Cells */
+.modern-table tbody td {
+  padding: 8px 12px;
+  border-top: 1px solid rgba(255, 203, 5, 0.3);
+  vertical-align: middle;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.evs-layout {
+  display: flex;
+  gap: 20px; /* space between sidebar and table */
+  align-items: flex-start; /* align top edges */
+}
+
+/* optional: control widths */
+.modern-list {
+  flex: 0 0 220px; /* fixed width sidebar */
+}
+
+.evs-table {
+  flex: 1; /* table takes up remaining space */
+}
+
+.modern-list {
+  padding: 12px;
+  background: var(--card-color);
+  border-radius: 10px;
+}
+
+.modern-list ul {
+  list-style: none;
+  padding-left: 1rem;
+  color: var(--text-color);
+  opacity: 0.85;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+ul li::before {
+  content: "▶";
+  padding-right: 5px;
+  color: var(--highlight-bg);
+}
+.modern-list li:hover {
+  cursor: pointer;
+  color: var(--highlight-text);
+}

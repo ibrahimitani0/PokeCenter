@@ -1,0 +1,101 @@
+<article>
+  <div class="book-wrapper">
+    <div class="book-page">
+      <h1>EVs Info</h1>
+      <p class="short-effect" *ngIf="stat != 'all'">
+        <strong>
+          Below is a list of all the Pokémon that yield Effort Points (EVs) in
+          {{ stat }}. Many Pokémon provide EVs in multiple stats - these are
+          noted where applicable.
+        </strong>
+      </p>
+      <p class="short-effect" *ngIf="stat == 'all'">
+        <strong>
+          This page lists every pokemon, with the Effort Points (EVs) they
+          provide in each stat. Check the Trainer Guide EVs page for more details on how
+          they work.
+        </strong>
+      </p>
+
+      <hr />
+
+      <div class="evs-layout">
+        <!-- Stat Pages -->
+        <div class="modern-list">
+          <ul>
+            <h3>EV Pages</h3>
+            <li routerLink="/evs/all">All Pokémon EVs</li>
+            <br />
+            <li routerLink="/evs/hp">HP ({{ evCounts.hp }})</li>
+            <li routerLink="/evs/attack">Attack ({{ evCounts.attack }})</li>
+            <li routerLink="/evs/defense">Defense ({{ evCounts.defense }})</li>
+            <li routerLink="/evs/spAttack">
+              Sp. Attack ({{ evCounts.spAttack }})
+            </li>
+            <li routerLink="/evs/spDefense">
+              Sp. Defense ({{ evCounts.spDefense }})
+            </li>
+            <li routerLink="/evs/speed">Speed ({{ evCounts.speed }})</li>
+          </ul>
+        </div>
+
+        <!-- Search + Table -->
+        <div class="evs-table">
+          <input
+            type="text"
+            placeholder="Search Pokémon..."
+            [(ngModel)]="searchQuery"
+            (input)="onInput(searchQuery)"
+            class="search-input"
+          />
+
+          <table class="modern-table">
+            <thead>
+              <tr>
+                <th>Sprite</th>
+                <th>Name</th>
+                <th>HP</th>
+                <th>ATK</th>
+                <th>DEF</th>
+                <th>SPA</th>
+                <th>SPD</th>
+                <th>SPE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let p of filteredPokemon"
+                class="pokemon-row"
+                [routerLink]="['/pokemon', getPokemonRoute(p)]"
+              >
+                <!-- Sprite -->
+                <td>
+                  <img
+                    width="64"
+                    height="64"
+                    [src]="p.images['sprite-default']"
+                    alt="{{ p.name }}"
+                    (error)="onImgError($event, p)"
+                  />
+                </td>
+
+                <!-- Name -->
+                <td>{{ p.name | titlecase }}</td>
+
+                <!-- Stats -->
+                <ng-container>
+                  <td *ngFor="let s of p.stats">
+                    {{ s.effort === 0 ? "" : s.effort }}
+                  </td>
+                </ng-container>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Optional loading indicator -->
+          <div *ngIf="loading" class="loading-indicator">Loading...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
