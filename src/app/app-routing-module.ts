@@ -53,7 +53,7 @@ const routes: Routes = [
   {
     path: 'ev-tracker',
     component: EvTrainingTool,
-    resolve: { PokeMasterListResolver },
+    resolve: { pokemon: PokeMasterListResolver },
   },
   {
     path: 'type/:name',
